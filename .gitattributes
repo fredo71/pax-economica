@@ -1,0 +1,5 @@
+# Normalise to LF in the repository. Golden-file tests diff engine output,
+# so a CRLF/LF mismatch between machines would show up as spurious failures.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
