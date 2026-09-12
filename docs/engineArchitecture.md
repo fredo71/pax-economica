@@ -34,23 +34,23 @@ raw JSON tree
    │
    │  build + validate               factories, §4
    ▼
-node tree  ──────────────┐
+holder tree  ──────────────┐
    │                     │  lex, parse, bind             §5
    │                     ▼
-   │                 bound expressions
+   │                 checked expressions
    │                     │
    │◄────────────────────┘
    │
    │  eight phases                   §6
    ▼
-node tree, advanced
+holder tree, advanced
    │
    │  serialise
    ▼
 document text
 ```
 
-The JSON tree is thrown away once the node tree is built. Nothing after stage 2 sees a `JsonObject`.
+The JSON tree is thrown away once the holder tree is built. Nothing after stage 2 sees a `JsonObject`.
 
 ---
 
@@ -75,21 +75,21 @@ Some string fields are *not* expressions — `On_match: "cancel"` is a keyword l
 
 ---
 
-## 4. JSON to node tree
+## 4. JSON to holder tree
 
 ### Factories, not deserialisation
 
 Each node type has a private constructor and one static factory. Construction and validation are the same act, so an invalid object cannot exist.
 
 ```csharp
-public sealed class EnumDecl
+public sealed class EnumDeclaration
 {
     public string   Name    { get; }
     public string[] Options { get; }
 
-    private EnumDecl(string name, string[] options) { … }
+    private EnumDeclaration(string name, string[] options) { … }
 
-    public static EnumDecl? From(JsonObject json, DocPath path, Diagnostics diag)
+    public static EnumDeclaration? From(JsonObject json, DocumentPath path, Diagnostics diag)
     {
         // 1. unknown keys          -> load error
         // 2. required key missing  -> load error
@@ -129,7 +129,7 @@ The serialise-reload invariant in `docs/testing.md` proves it.
 ### Stages
 
 ```
-text  ->  tokens  ->  syntax tree  ->  bound tree  ->  figure
+text  ->  tokens  ->  syntax tree  ->  checked tree  ->  figure
        lex        parse            bind          evaluate
 ```
 
@@ -157,7 +157,7 @@ Binding performs the checks that are static:
 | declaration colliding with a reserved name | §15 line 1386 |
 | function name not in the closed set | §2 lines 37-48 |
 
-**Evaluate** — walk the bound tree, return a figure. A tree-walking interpreter, not compiled code.
+**Evaluate** — walk the checked tree, return a figure. A tree-walking interpreter, not compiled code.
 
 ### Names resolve late
 
@@ -165,7 +165,7 @@ Binding does **not** resolve a value name to a declaration. §6 line 643 — "Th
 
 So a name that does not exist yet was never going to fail, and a holder created mid-tick needs nothing invalidated. Name lookup happens at read time.
 
-This also means a bound node cannot hold a direct pointer to a declaration. Late binding is a property of the language, not an optimisation that may be removed.
+This also means a checked node cannot hold a direct pointer to a declaration. Late binding is a property of the language, not an optimisation that may be removed.
 
 ### Parse once per load
 
@@ -229,8 +229,8 @@ So the bulk of the document is locally computable: read the frozen state, produc
 These arrive at a value from elsewhere, so they are collected before they can be applied:
 
 ```csharp
-record Delta (ValueId Target, double Contribution);   // numeric, sums
-record Assign(ValueId Target, Value  Figure);         // ref/enum/bool/string
+record NumericDelta(ValueId Target, double Amount);   // numeric, sums
+record Assignment  (ValueId Target, Value  Figure);         // ref/enum/bool/string
 ```
 
 Two rules make collecting them unavoidable. §5 line 543 — deltas **sum**, so two writers in one phase both land and neither overwrites the other. §5 line 550 — two distinct non-numeric assignments in one phase mean *no write lands*. Neither can be expressed by writing into a copy of the world.
@@ -260,13 +260,13 @@ The write list *is* the working copy §5 line 518 refers to. Copying the world w
 | Type | Role |
 |---|---|
 | `Value` | a runtime figure. every accessor answers for every kind — no read is undefined (§1 line 26) |
-| `VType` | the type language of §3. carries its own target, so nothing else declares shape |
+| `DeclaredType` | the type language of §3. carries its own target, so nothing else declares shape |
 | `Diagnostics` | collects load errors, rejections and logs, with a cap |
-| `DocPath` | where a node is, for error messages: `Actor.fra.Institution.economy.Values.money` |
+| `DocumentPath` | where a node is, for error messages: `Actor.fra.Institution.economy.Values.money` |
 | node classes | one per holder kind (§6 line 579) plus catalog kinds. private constructors, static factories |
-| `Ast` | immutable syntax tree |
-| `Bound` | the checked tree the evaluator walks |
-| `Delta`, `Assign` | collected pushes, applied at the phase boundary |
+| `SyntaxNode` | immutable syntax tree |
+| `CheckedExpression` | the checked tree the evaluator walks |
+| `NumericDelta`, `Assignment` | collected pushes, applied at the phase boundary |
 
 Numbers are `double` throughout. §2 line 57 — all arithmetic evaluates in float; there is no integer arithmetic to mix with, so `int / int` does not truncate.
 
@@ -280,7 +280,7 @@ Kept here rather than in comments, per `CLAUDE.md`.
 
 **Factories, not a separate schema file.** A schema describing legal keys would still need the classes, and the two would drift. The class defines its own legal keys, so there is one source of truth. A schema can be *generated* from the classes later, to hand the model so it writes valid documents.
 
-**Bound tree, not annotation in place.** Keeps authored data and derived data apart, and keeps §15's checks out of the parser so the parser only ever fails on malformed text.
+**CheckedExpression tree, not annotation in place.** Keeps authored data and derived data apart, and keeps §15's checks out of the parser so the parser only ever fails on malformed text.
 
 **No runtime C# compilation.** Expressions arrive as text at runtime (§1 line 26), and C# cannot provide what the language requires: totality (§1 line 26 — no expression may fail or fail to terminate), saturating division (§2 line 63, where C# gives `Infinity`), `and`/`or` returning 0 or 1 rather than `bool`, and `random()` as a hash rather than a stream (§2 line 124). §15's load errors are checks a C# compiler would not make. The names in an expression are not C# symbols. LINQ is the right model for implementing the pipeline; it is not a substitute for the evaluator.
 
@@ -292,13 +292,13 @@ Kept here rather than in comments, per `CLAUDE.md`.
 
 ## 9. First slice
 
-Expressions only. No document, no node tree, no tick.
+Expressions only. No document, no holder tree, no tick.
 
 ```csharp
 Evaluate("2 + 3 * 4")   ->  14
 ```
 
-**Built:** `Lexer`, `Token`, `Ast`, `Parser`, `Value`, and the world-free part of `Functions`.
+**Built:** `Lexer`, `Token`, `SyntaxNode`, `Parser`, `Value`, and the world-free part of `Functions`.
 
 **Covered**
 

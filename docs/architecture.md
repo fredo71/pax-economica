@@ -54,13 +54,13 @@ Dependencies point one way. A lower layer never references a higher one.
 | Layer | Holds | Depends on |
 |---|---|---|
 | **Core** | diagnostics, values, the type language | nothing |
-| **Expr** | lexer, parser, AST, evaluator | Core |
-| **Model** | nodes, declarations, world, document load | Core, Expr |
-| **Runtime** | tick, phases, writes, change | Core, Expr, Model |
+| **Expressions** | lexer, parser, syntax tree, evaluator | Core |
+| **Model** | holders, declarations, world, document load | Core, Expressions |
+| **Runtime** | tick, phases, writes, change | Core, Expressions, Model |
 
 Outside `PaxEngine`, the same rule runs across projects: `PaxSession` may reference `PaxEngine` and `PaxAi`; neither of those may reference anything. `PaxEngine` references only the .NET base library.
 
-**The evaluator takes a world as a parameter; it is not part of the world.** A `partial class World` spanning both Model and Expr welds the two layers together and leaves neither testable alone.
+**The evaluator takes a world as a parameter; it is not part of the world.** A `partial class World` spanning both Model and Expressions welds the two layers together and leaves neither testable alone.
 
 If a layering violation is ever committed, split `PaxEngine` into per-layer assemblies so the compiler enforces what the rule could not.
 
@@ -72,7 +72,7 @@ If a layering violation is ever committed, split `PaxEngine` into per-layer asse
 engine C#/
   PaxEngine.sln
   PaxEngine/                  the simulation
-    Core/  Expr/  Model/  Runtime/
+    Core/  Expressions/  Model/  Runtime/
   PaxAi/                      prompts, model call, reading the reply
   PaxSession/                 the loop
   PaxEngine.Cli/              console host
@@ -183,14 +183,14 @@ The only stage designed in detail here. Later stages get their section when reac
 | Layer | Type | Role |
 |---|---|---|
 | Core | `Diagnostics` | the three tiers, with a tick number per entry |
-| Core | `VType` | §3 type language: `int`, `float`, `bool`, `string`, `ref(kind)`, `enum(name)`, `list<T>`, `map<K,V>`. the type carries its own target, so nothing else declares shape |
+| Core | `DeclaredType` | §3 type language: `int`, `float`, `bool`, `string`, `ref(kind)`, `enum(name)`, `list<T>`, `map<K,V>`. the type carries its own target, so nothing else declares shape |
 | Core | `Value` | a runtime figure. every accessor answers for every kind (§1) |
-| Expr | `Lexer`, `Parser`, `Ast` | §2 grammar, precedence climbing |
-| Expr | `Evaluator` | walks an AST against a context. reads, never writes |
-| Model | `Node` | a holder: parent, id, backing JSON |
-| Model | `ValueDecl` | one declared value: type, default, bounds, permissions, calculation |
-| Model | `World` | loads the document, reads Settings/Tag/Enum/Function, builds the node tree, indexes declarations, parses every expression once at load |
-| Model | `JsonRead` | JSON accessor helpers |
+| Expressions | `Lexer`, `Parser`, `SyntaxNode` | §2 grammar, precedence climbing |
+| Expressions | `Evaluator` | walks a syntax tree against a context. reads, never writes |
+| Model | `Holder` | a holder: parent, id, backing JSON |
+| Model | `ValueDeclaration` | one declared value: type, default, bounds, permissions, calculation |
+| Model | `World` | loads the document, reads Settings/Tag/Enum/Function, builds the holder tree, indexes declarations, parses every expression once at load |
+| Model | `JsonFields` | JSON accessor helpers |
 | Runtime | `Tick` | §5 phase order, including phase freezing |
 | Cli | `load`, `eval`, `tick`, `trace` | docs/testing.md |
 

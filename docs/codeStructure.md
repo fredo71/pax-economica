@@ -107,42 +107,42 @@ The engine never pauses mid-tick. It finishes, then reports. An answer arrives a
 | Class | Purpose | Spec |
 |---|---|---|
 | `Diagnostics` | collects notices during a run, with a cap so logging cannot exhaust memory | §15 |
-| `VType` | the type language: `int`, `float`, `bool`, `string`, `ref(kind)`, `enum(name)`, `list<T>`, `map<K,V>`. carries its own target, so nothing else declares shape | §3 |
+| `DeclaredType` | the type language: `int`, `float`, `bool`, `string`, `ref(kind)`, `enum(name)`, `list<T>`, `map<K,V>`. carries its own target, so nothing else declares shape | §3 |
 | `Value` | a runtime figure. every accessor answers for every kind — no read is undefined | §1 line 26 |
 | `Constants` | `DIV_EPSILON`, `MAX_VALUE`, `WORLD_SEED`, `wake_budget`, `liveliness`, read from the document's `Settings` | §15 lines 1366-1373 |
-| `Hash` | `random()` as a hash over `(seed, holder, path, tick, call site)` — never a stream, so a formula read twice in one phase gives the same figure | §2 line 124, §1 line 22 |
+| `Chance` | `random()` as a hash over `(seed, holder, path, tick, call site)` — never a stream, so a formula read twice in one phase gives the same figure | §2 line 124, §1 line 22 |
 
-### Expr — depends on Core
+### Expressions — depends on Core
 
 | Class | Purpose | Spec |
 |---|---|---|
 | `Token` | one lexical item | §2 |
 | `Lexer` | text to tokens | §2 |
-| `Ast` | the node types: literal, name, unary, binary, member, call, set pipeline | §2 |
-| `Parser` | tokens to `Ast`. precedence exactly C#'s: `not` > `* / %` > `+ -` > `< > <= >=` > `== !=` > `and` > `or` | §2 line 100 |
-| `Evaluator` | walks an `Ast` against a context and a world. reads, never writes | §2 |
+| `SyntaxNode` | the node types: literal, name, unary, binary, member, call, set pipeline | §2 |
+| `Parser` | tokens to `SyntaxNode`. precedence exactly C#'s: `not` > `* / %` > `+ -` > `< > <= >=` > `== !=` > `and` > `or` | §2 line 100 |
+| `Evaluator` | walks a `SyntaxNode` against a context and a world. reads, never writes | §2 |
 | `Functions` | the closed function set — arithmetic, comparison, logical, `if/min/max/clamp/abs/sign/trunc`, `random`, `as/where/apply`, `sum/count/avg/min/max`, roots, `adjacent`, `provinces_within`, `has`, `get`, `flatten` | §2 lines 37-48 |
 
 `Evaluator` takes the world as a parameter. It is never part of the world, and it holds nothing between calls.
 
 There is no indexing, `first`, `last` or `sort`. §2 line 53 — adding one breaks frozen phases the same day.
 
-### Model — depends on Core, Expr
+### Model — depends on Core, Expressions
 
 | Class | Purpose | Spec |
 |---|---|---|
 | `Document` | the parsed JSON. knows the fixed skeleton: odd depths are keywords, even depths are names | §17 lines 1464-1471 |
-| `JsonRead` | key lookup and typed reads off a JSON object | — |
-| `Node` | one holder: its kind, id, parent, and backing JSON | §6 |
+| `JsonFields` | key lookup and typed reads off a JSON object | — |
+| `Holder` | one holder: its kind, id, parent, and backing JSON | §6 |
 | `HolderKind` | the seven: province, actor, entity, modifier instance, contract, world, institution | §6 line 579 |
-| `ValueDecl` | one declared value: kind, type, expression, bounds, permissions. instances carry theirs in full rather than pointing at a template | §3, §17 line 1490 |
-| `World` | the loaded document: node tree, declaration index, parsed expressions | — |
+| `ValueDeclaration` | one declared value: kind, type, expression, bounds, permissions. instances carry theirs in full rather than pointing at a template | §3, §17 line 1490 |
+| `World` | the loaded document: holder tree, declaration index, parsed expressions | — |
 | `Loader` | document to `World`. raises the load errors of §15 and creates the `empty` actor that owns unowned provinces | §15 line 1379, §6 line 583 |
 | `Registry` | id to node. ids come from scanning the document, never a counter, so a reload produces the same ids | §5 line 571 |
 
 Expressions are parsed once, at load. Nothing re-parses during a tick.
 
-### Runtime — depends on Core, Expr, Model
+### Runtime — depends on Core, Expressions, Model
 
 | Class | Purpose | Spec |
 |---|---|---|
@@ -215,7 +215,7 @@ See `docs/testing.md`.
 ## Rules that must hold
 
 1. `PaxEngine` names no HTTP type, no model, and reads no file.
-2. Dependencies point one way. `Core` <- `Expr` <- `Model` <- `Runtime`, and nothing points back.
+2. Dependencies point one way. `Core` <- `Expressions` <- `Model` <- `Runtime`, and nothing points back.
 3. `Engine.Run` is the only public method into the simulation.
 4. The same document and seed gives the same result, and ticking twice equals ticking, saving, reloading, ticking.
 5. The AI is asked only at phase 8, never mid-tick.

@@ -24,7 +24,9 @@ you can find in the docs for the following:
   - explicit does not mean long -- variable names should be as short as possible while staying self-explanatory, the same short-but-self-explanatory principle that applies to function names (e.g. DeclaredType, not DeclaredValueTypeAsParsedFromDocument)
   - name a variable or function by its purpose -- what it does or represents in the logic -- not by its technical/mechanical nature (its type, which JSON key it was read from, or how it's implemented). a long name that just restates the technical source (e.g. calculatedValueStringFromJsonObject) is not better than a short meaningless one (e.g. val) -- both fail to say what the value is for. prefer names like effectiveReading/baseFigure over value1/value2 when a value is one of several conceptually distinct roles.
   - variables must never be a single letter or a short letter cluster, even as part of a compound name (e.g. v, vPrev, vNext are not acceptable) -- spell out what the variable actually represents (e.g. frozenFigure, writtenFigure)
-  - a type name is never shadowed by a field name in scope. a static helper class `Doc` alongside a field `World.Doc` forces every call to be written `PaxEngine.Doc.Obj(...)` and silently breaks the moment one is missed. give helper classes names that cannot be shadowed (e.g. JsonRead).
+  - the same rule applies to every name in the project, not just variables: classes, types, methods, files and folders. no truncation and no acronyms -- write EnumDeclaration not EnumDecl, Expressions/ not Expr/, SyntaxNode not Ast, DeclaredType not VType, DocumentPath not DocPath. a reader who has not seen the word before must be able to say it out loud and guess what it is.
+  - an acronym is only allowed when the user already uses it in conversation about this project (AI, JSON, CLI). a name invented for the code never gets one.
+  - a type name is never shadowed by a field name in scope. a static helper class `Doc` alongside a field `World.Doc` forces every call to be written `PaxEngine.Doc.Obj(...)` and silently breaks the moment one is missed. give helper classes names that cannot be shadowed (e.g. JsonFields).
 
 ### Comments
 
@@ -128,9 +130,9 @@ you can find in the docs for the following:
 
 ```
 Core      diagnostics, values, types          -- depends on nothing
-Expr      lexer, parser, AST, evaluator       -- depends on Core
-Model     nodes, declarations, world, load    -- depends on Core, Expr
-Runtime   tick, phases, writes, change        -- depends on Core, Expr, Model
+Expressions      lexer, parser, syntax tree, evaluator       -- depends on Core
+Model     nodes, declarations, world, load    -- depends on Core, Expressions
+Runtime   tick, phases, writes, change        -- depends on Core, Expressions, Model
 Cli       argument parsing, output formatting -- depends on all
 ```
 

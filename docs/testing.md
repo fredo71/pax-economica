@@ -67,7 +67,7 @@ Every §2 operator gets a row. Every §3 coercion gets a row. A bug fix in an ex
 
 ### Unit tests
 
-Components with logic of their own and no need for a world: `VType.Parse` round-tripping, lexer edges, parser precedence and associativity, diagnostic tiering, number formatting.
+Components with logic of their own and no need for a world: `DeclaredType.Parse` round-tripping, lexer edges, parser precedence and associativity, diagnostic tiering, number formatting.
 
 ### Golden scenarios
 
