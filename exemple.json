@@ -1,0 +1,957 @@
+{
+    "Settings": {
+        "WORLD_SEED": 20250911,
+        "DIV_EPSILON": 1e-9,
+        "MAX_VALUE": 1000000000000,
+        "wake_budget": 3,
+        "liveliness": 0
+    },
+    "Tag": {
+        "cost": {
+            "Type": "float",
+            "Description": "reduces the holder's money; carried by anything that draws down a treasury, found via get(cost)."
+        },
+        "movable_location": {
+            "Type": "ref(province)",
+            "Description": "marks a field as the holder's changeable position, so a generic movement action can find anything eligible to move regardless of entity type."
+        }
+    },
+    "Enum": {
+        "diplomatic_state": {
+            "Options": [
+                "peace",
+                "tension",
+                "war"
+            ],
+            "Description": "coarse standing between two actors; the first option is the default."
+        }
+    },
+    "Function": {
+        "hostile": {
+            "Parameters": [
+                "a",
+                "b"
+            ],
+            "Value": "sum( a.diplomacy.at_war as t where t.key == b apply t.value ) > 0",
+            "Revisable_by": [],
+            "Description": "true when a is at war with b. Revisable_by is empty, so no AI can redefine what counts as hostile."
+        }
+    },
+    "Institution": {
+        "institution_economy_nation": {
+            "Values": {
+                "gdp": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "sum( provinces as p where p.owner == self apply p.gdp )",
+                    "calculated_value": 1000,
+                    "Description": "the nation's total economic output: the sum of gdp across every province it owns."
+                },
+                "tax": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "0.5",
+                    "calculated_value": 0.5,
+                    "Bounds": [
+                        0,
+                        1
+                    ],
+                    "Writable_by": [
+                        "owner"
+                    ],
+                    "Description": "share of gdp collected as revenue each turn. Writable by owner, so the nation's AI sets it and the player may argue for a change."
+                },
+                "money": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "prev.base + gdp*tax - sum( self.get(cost) )",
+                    "calculated_value": 0,
+                    "Description": "the treasury: rises from tax revenue, falls as everything tagged cost is paid."
+                }
+            }
+        },
+        "institution_economy_province": {
+            "Values": {
+                "gdp": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "prev.base + growth*prev.base*world.technology.tech",
+                    "calculated_value": 1000,
+                    "Description": "this province's output, compounding by its growth rate and scaled by global tech."
+                },
+                "growth": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "0.5",
+                    "calculated_value": 0.5,
+                    "Modifiable_by": [
+                        "director"
+                    ],
+                    "Description": "per-turn growth rate. Read bare it resolves effective, so attached modifiers compose onto it without any formula looking for them."
+                }
+            }
+        },
+        "diplomacy": {
+            "Values": {
+                "at_war": {
+                    "Kind": "value",
+                    "Type": "map<ref(actor), bool>",
+                    "Value": "{}",
+                    "calculated_value": {},
+                    "Writable_by": [
+                        "director"
+                    ],
+                    "Description": "one entry per actor this nation is at war with. Dense per-pair figures live in a map, not in one holder per pair."
+                },
+                "trust": {
+                    "Kind": "value",
+                    "Type": "map<ref(actor), float>",
+                    "Value": "{}",
+                    "calculated_value": {},
+                    "Writable_by": [
+                        "director"
+                    ],
+                    "Description": "how this nation regards each other actor. An absent key reads as the value type's default, which is 0."
+                }
+            }
+        },
+        "faction_opposition": {
+            "Writable_by": [
+                "director"
+            ],
+            "Values": {
+                "loyalty": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "1.0",
+                    "calculated_value": 1,
+                    "Bounds": [
+                        0,
+                        1
+                    ],
+                    "Description": "how far the internal opposition will go along. The actor reads this and cannot write it: Writable_by on the institution names only the director, and permissions inherit."
+                }
+            },
+            "Emissions": [
+                {
+                    "When": "loyalty < 0.3",
+                    "Applies_to": "provinces as p where p.owner == self",
+                    "Modifier_id": [
+                        {
+                            "Target_value": "institution_economy_province.growth",
+                            "Values": {
+                                "Contribution": {
+                                    "Kind": "value",
+                                    "Type": "float",
+                                    "Value": "-0.2",
+                                    "calculated_value": -0.2
+                                }
+                            },
+                            "On_match": "cancel"
+                        }
+                    ],
+                    "Description": "disloyalty drags on growth everywhere this nation rules. self resolves to the holder, so Applies_to means this actor's provinces; bare loyalty resolves inside this institution."
+                }
+            ]
+        }
+    },
+    "Entities": {
+        "entity_army": {
+            "Arg": {
+                "soldiers": {
+                    "Type": "int",
+                    "Description": "size at recruitment."
+                },
+                "location": {
+                    "Type": "ref(province)",
+                    "Description": "province it is raised in."
+                },
+                "owner": {
+                    "Type": "ref(actor)",
+                    "Description": "which actor commands it."
+                }
+            },
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "",
+                "calculated_value": "",
+                "Writable_by": [
+                    "defect"
+                ],
+                "Description": "who commands it. Writable_by names an ACTION, not a principal, so anyone may rewrite it but only through defect and on that action's terms. This one line is the whole consent rule for changing sides."
+            },
+            "location": {
+                "Kind": "formula",
+                "Type": "ref(province)",
+                "Value": "if( progress.base >= 1, destination, prev.base )",
+                "calculated_value": "",
+                "Description": "where it stands. A formula rather than a value, because this type moves: it snaps to destination the instant progress crosses 1, with no landing step anywhere."
+            },
+            "movement": {},
+            "on_encounter": {
+                "soldiers": "-sum( others as o where hostile(self.owner, o.owner) apply o.soldiers ) * 0.1",
+                "Revisable_by": []
+            },
+            "Destroyed_when": "soldiers < 10",
+            "on_destroy": [
+                {
+                    "Write": "self.owner.institution_economy_nation.Modifier",
+                    "Id": "auto",
+                    "Template": "modifier_one_time_cost",
+                    "Arg": {
+                        "Values.amount": {
+                            "Value": "-soldiers * 500"
+                        }
+                    }
+                }
+            ],
+            "Values": {
+                "soldiers": {
+                    "Kind": "value",
+                    "Type": "int",
+                    "Value": "0",
+                    "calculated_value": 0,
+                    "Bounds": [
+                        0,
+                        1000000
+                    ],
+                    "Description": "current strength. Bounded at zero so an over-large loss cannot invert it and refund a phantom army."
+                },
+                "cost": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "soldiers*5",
+                    "calculated_value": 0,
+                    "Tags": [
+                        "cost"
+                    ],
+                    "Description": "per-tick upkeep, swept into its nation's get(cost) each turn."
+                },
+                "speed": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "0.5",
+                    "calculated_value": 0.5,
+                    "Description": "fraction of a tile crossed per tick."
+                },
+                "morale": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "1.0",
+                    "calculated_value": 1,
+                    "Bounds": [
+                        0,
+                        1
+                    ],
+                    "Modifiable_by": [
+                        "director"
+                    ],
+                    "Description": "willingness to fight. The director can press an army toward defection through modifiers here without ever touching owner."
+                },
+                "destination": {
+                    "Kind": "value",
+                    "Type": "ref(province)",
+                    "Value": "",
+                    "calculated_value": "",
+                    "Tags": [
+                        "movable_location"
+                    ],
+                    "Writable_by": [
+                        "move_army"
+                    ],
+                    "Valid": "count( adjacent(self.location) as c where c.id == value ) > 0",
+                    "Description": "where it is headed. Only move_army writes it, and only to an adjacent province."
+                },
+                "progress": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "if( prev.base >= 1, prev.base - 1, prev.base + self.speed )",
+                    "calculated_value": 0,
+                    "Bounds": [
+                        0,
+                        1
+                    ],
+                    "Description": "distance covered toward destination. Bounded at 1, so excess above a full tile is discarded rather than banked."
+                }
+            }
+        }
+    },
+    "Modifiers": {
+        "modifier_removed_cost": {
+            "Arg": {
+                "removed_cost": {
+                    "Type": "float",
+                    "Description": "amount to add to, or if negative subtract from, the target's cost pool."
+                }
+            },
+            "Values": {
+                "removed_cost": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "0",
+                    "calculated_value": 0,
+                    "Description": "set from Arg at instantiation."
+                },
+                "cost": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "removed_cost",
+                    "calculated_value": 0,
+                    "Tags": [
+                        "cost"
+                    ],
+                    "Description": "re-reads removed_cost every tick rather than snapshotting it, so a caller passing a live figure stays tracked."
+                }
+            }
+        },
+        "modifier_one_time_cost": {
+            "Arg": {
+                "amount": {
+                    "Type": "float",
+                    "Description": "the one-off charge, or refund if negative."
+                }
+            },
+            "Destroyed_when": "age >= 1",
+            "Values": {
+                "age": {
+                    "Kind": "formula",
+                    "Type": "int",
+                    "Value": "prev.base + 1",
+                    "calculated_value": 0,
+                    "Description": "ticks since this instance was created. Each instance carries its own, seeded at attachment."
+                },
+                "amount": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "0",
+                    "calculated_value": 0,
+                    "Description": "set from Arg at instantiation."
+                },
+                "cost": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "amount",
+                    "calculated_value": 0,
+                    "Tags": [
+                        "cost"
+                    ],
+                    "Description": "carries the cost tag for exactly one tick before this instance destroys itself."
+                }
+            },
+            "Description": "a single charge against whatever holder it sits on, self-destructing after one tick. Used for recruitment and for paying off survivors."
+        },
+        "modifier_growth_penalty": {
+            "Target_value": "institution_economy_province.growth",
+            "Destroyed_when": "age >= 5",
+            "Values": {
+                "age": {
+                    "Kind": "formula",
+                    "Type": "int",
+                    "Value": "prev.base + 1",
+                    "calculated_value": 0,
+                    "Description": "ticks since this instance was attached. Per instance, not per template, so two provinces penalised at different times expire at different times."
+                },
+                "Contribution": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "-0.5",
+                    "calculated_value": -0.5,
+                    "Description": "summed onto growth's base wherever this instance lives."
+                }
+            },
+            "Description": "composes onto the growth of whichever province holds it. Reading growth effective already includes it; no formula goes looking. Expires on its own timer with no AI call."
+        }
+    },
+    "Actions": {
+        "recruit_army": {
+            "Description": "spend money to raise an army. The upfront charge is a one-tick modifier, not a direct write, because money is a formula and formulas are never written.",
+            "Requires": "self.institution_economy_nation.money >= soldiers*1000",
+            "Available": [
+                "owner"
+            ],
+            "Approval": [],
+            "Parameters": {
+                "soldiers": {
+                    "Type": "int",
+                    "Description": "how many to recruit."
+                },
+                "location": {
+                    "Type": "ref(province)",
+                    "Description": "where to raise them."
+                }
+            },
+            "Effect": [
+                {
+                    "Write": "self.Entity",
+                    "Id": "auto",
+                    "Template": "entity_army",
+                    "Arg": {
+                        "owner": {
+                            "Value": "self.id"
+                        },
+                        "location": {
+                            "Value": "location"
+                        },
+                        "Values.soldiers": {
+                            "Value": "soldiers"
+                        }
+                    }
+                },
+                {
+                    "Write": "self.institution_economy_nation.Modifier",
+                    "Id": "auto",
+                    "Template": "modifier_one_time_cost",
+                    "Arg": {
+                        "Values.amount": {
+                            "Value": "soldiers*1000"
+                        }
+                    }
+                }
+            ]
+        },
+        "establish_economy": {
+            "Description": "attach a fresh economy institution. Free, but only if there is not one already.",
+            "Requires": "self.has(institution_economy_nation) == 0",
+            "Available": [
+                "owner"
+            ],
+            "Approval": [],
+            "Parameters": {},
+            "Effect": [
+                {
+                    "Write": "self.Institution",
+                    "Id": "institution_economy_nation",
+                    "Template": "institution_economy_nation"
+                }
+            ]
+        },
+        "move_army": {
+            "Description": "order one of the owner's movable entities toward an adjacent province. Writes destination, never location, because location is a formula and cannot be written.",
+            "Requires": "true",
+            "Available": [
+                "owner"
+            ],
+            "Approval": [],
+            "Parameters": {
+                "army": {
+                    "Type": "ref(entity)",
+                    "Filter": "count( value.get(movable_location) ) > 0 and value.owner == self.id",
+                    "Description": "which of the owner's movable entities to order."
+                },
+                "destination": {
+                    "Type": "ref(province)",
+                    "Description": "where to send it. Adjacency is enforced by destination's own Valid at write time."
+                }
+            },
+            "Effect": [
+                {
+                    "Write": "army",
+                    "Arg": {
+                        "Values.destination": {
+                            "Value": "destination"
+                        }
+                    }
+                }
+            ]
+        },
+        "defect": {
+            "Description": "bribe a demoralised enemy army into changing sides. One value write, because ownership is a field rather than a position in the document.",
+            "Requires": "self.institution_economy_nation.money >= bribe and bribe >= army.soldiers * 100 * army.morale",
+            "Available": [
+                "actor"
+            ],
+            "Approval": [],
+            "Parameters": {
+                "army": {
+                    "Type": "ref(entity)",
+                    "Filter": "value.type == \"entity_army\" and value.owner != self.id and hostile(self.id, value.owner)",
+                    "Description": "an enemy army you are at war with."
+                },
+                "bribe": {
+                    "Type": "float",
+                    "Description": "what you are willing to pay. Cheaper the worse their morale."
+                }
+            },
+            "Effect": [
+                {
+                    "Write": "army",
+                    "Arg": {
+                        "owner": {
+                            "Value": "self.id"
+                        }
+                    }
+                },
+                {
+                    "Write": "self.institution_economy_nation.Modifier",
+                    "Id": "auto",
+                    "Template": "modifier_one_time_cost",
+                    "Arg": {
+                        "Values.amount": {
+                            "Value": "bribe"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "Actor": {
+        "fra": {
+            "Institution": {
+                "institution_economy_nation": {
+                    "Values": {
+                        "gdp": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "sum( provinces as p where p.owner == self apply p.gdp )",
+                            "calculated_value": 1000,
+                            "Description": "the nation's total economic output: the sum of gdp across every province it owns."
+                        },
+                        "tax": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "0.5",
+                            "calculated_value": 0.5,
+                            "Bounds": [
+                                0,
+                                1
+                            ],
+                            "Writable_by": [
+                                "owner"
+                            ],
+                            "Description": "share of gdp collected as revenue each turn. Writable by owner, so the nation's AI sets it and the player may argue for a change."
+                        },
+                        "money": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "prev.base + gdp*tax - sum( self.get(cost) )",
+                            "calculated_value": 0,
+                            "Description": "the treasury: rises from tax revenue, falls as everything tagged cost is paid."
+                        }
+                    }
+                },
+                "diplomacy": {
+                    "Values": {
+                        "at_war": {
+                            "Kind": "value",
+                            "Type": "map<ref(actor), bool>",
+                            "Value": "{}",
+                            "calculated_value": {
+                                "eng": 0
+                            },
+                            "Writable_by": [
+                                "director"
+                            ],
+                            "Description": "one entry per actor this nation is at war with. Dense per-pair figures live in a map, not in one holder per pair."
+                        },
+                        "trust": {
+                            "Kind": "value",
+                            "Type": "map<ref(actor), float>",
+                            "Value": "{}",
+                            "calculated_value": {
+                                "eng": 0.4
+                            },
+                            "Writable_by": [
+                                "director"
+                            ],
+                            "Description": "how this nation regards each other actor. An absent key reads as the value type's default, which is 0."
+                        }
+                    }
+                }
+            },
+            "Entity": {
+                "army_1": {
+                    "type": "entity_army",
+                    "owner": {
+                        "Kind": "value",
+                        "Type": "ref(actor)",
+                        "Value": "fra",
+                        "calculated_value": "fra",
+                        "Writable_by": [
+                            "defect"
+                        ],
+                        "Description": "who commands it. Writable_by names an ACTION, not a principal, so anyone may rewrite it but only through defect and on that action's terms. This one line is the whole consent rule for changing sides."
+                    },
+                    "location": {
+                        "Kind": "formula",
+                        "Type": "ref(province)",
+                        "Value": "if( progress.base >= 1, destination, prev.base )",
+                        "calculated_value": "province_france",
+                        "Description": "where it stands. A formula rather than a value, because this type moves: it snaps to destination the instant progress crosses 1, with no landing step anywhere."
+                    },
+                    "Values": {
+                        "soldiers": {
+                            "Kind": "value",
+                            "Type": "int",
+                            "Value": "0",
+                            "calculated_value": 50,
+                            "Bounds": [
+                                0,
+                                1000000
+                            ],
+                            "Description": "current strength. Bounded at zero so an over-large loss cannot invert it and refund a phantom army."
+                        },
+                        "cost": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "soldiers*5",
+                            "calculated_value": 250,
+                            "Tags": [
+                                "cost"
+                            ],
+                            "Description": "per-tick upkeep, swept into its nation's get(cost) each turn."
+                        },
+                        "speed": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "0.5",
+                            "calculated_value": 0.5,
+                            "Description": "fraction of a tile crossed per tick."
+                        },
+                        "morale": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "1.0",
+                            "calculated_value": 1,
+                            "Bounds": [
+                                0,
+                                1
+                            ],
+                            "Modifiable_by": [
+                                "director"
+                            ],
+                            "Description": "willingness to fight. The director can press an army toward defection through modifiers here without ever touching owner."
+                        },
+                        "destination": {
+                            "Kind": "value",
+                            "Type": "ref(province)",
+                            "Value": "",
+                            "calculated_value": "",
+                            "Tags": [
+                                "movable_location"
+                            ],
+                            "Writable_by": [
+                                "move_army"
+                            ],
+                            "Valid": "count( adjacent(self.location) as c where c.id == value ) > 0",
+                            "Description": "where it is headed. Only move_army writes it, and only to an adjacent province."
+                        },
+                        "progress": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "if( prev.base >= 1, prev.base - 1, prev.base + self.speed )",
+                            "calculated_value": 0,
+                            "Bounds": [
+                                0,
+                                1
+                            ],
+                            "Description": "distance covered toward destination. Bounded at 1, so excess above a full tile is discarded rather than banked."
+                        }
+                    },
+                    "movement": {},
+                    "on_encounter": {
+                        "soldiers": "-sum( others as o where hostile(self.owner, o.owner) apply o.soldiers ) * 0.1",
+                        "Revisable_by": []
+                    },
+                    "Destroyed_when": "soldiers < 10",
+                    "on_destroy": [
+                        {
+                            "Write": "self.owner.institution_economy_nation.Modifier",
+                            "Id": "auto",
+                            "Template": "modifier_one_time_cost",
+                            "Arg": {
+                                "Values.amount": {
+                                    "Value": "-soldiers * 500"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "eng": {
+            "Institution": {
+                "institution_economy_nation": {
+                    "Values": {
+                        "gdp": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "sum( provinces as p where p.owner == self apply p.gdp )",
+                            "calculated_value": 1000,
+                            "Description": "the nation's total economic output: the sum of gdp across every province it owns."
+                        },
+                        "tax": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "0.5",
+                            "calculated_value": 0.5,
+                            "Bounds": [
+                                0,
+                                1
+                            ],
+                            "Writable_by": [
+                                "owner"
+                            ],
+                            "Description": "share of gdp collected as revenue each turn. Writable by owner, so the nation's AI sets it and the player may argue for a change."
+                        },
+                        "money": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "prev.base + gdp*tax - sum( self.get(cost) )",
+                            "calculated_value": 0,
+                            "Description": "the treasury: rises from tax revenue, falls as everything tagged cost is paid."
+                        }
+                    }
+                },
+                "diplomacy": {
+                    "Values": {
+                        "at_war": {
+                            "Kind": "value",
+                            "Type": "map<ref(actor), bool>",
+                            "Value": "{}",
+                            "calculated_value": {
+                                "fra": 0
+                            },
+                            "Writable_by": [
+                                "director"
+                            ],
+                            "Description": "one entry per actor this nation is at war with. Dense per-pair figures live in a map, not in one holder per pair."
+                        },
+                        "trust": {
+                            "Kind": "value",
+                            "Type": "map<ref(actor), float>",
+                            "Value": "{}",
+                            "calculated_value": {
+                                "fra": 0.4
+                            },
+                            "Writable_by": [
+                                "director"
+                            ],
+                            "Description": "how this nation regards each other actor. An absent key reads as the value type's default, which is 0."
+                        }
+                    }
+                }
+            },
+            "Entity": {}
+        },
+        "empty": {
+            "Institution": {},
+            "Entity": {}
+        }
+    },
+    "Provinces": {
+        "province_france": {
+            "Name": "france",
+            "Neighbors": [
+                "province_england"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra",
+                "Writable_by": [
+                    "actor"
+                ],
+                "Valid": "count( self.entities as e where e.owner == value and e.type == \"entity_army\" ) > 0 and count( self.entities as e where e.owner == prev.base and e.type == \"entity_army\" ) == 0",
+                "Description": "who holds this province. Writable by any actor, but only one with an army here while the current owner has none. Two claimants in one phase produce two distinct ref writes, so neither lands and the tile stays put."
+            },
+            "Modifier": {
+                "mod_1": {
+                    "type": "modifier_growth_penalty",
+                    "Values": {
+                        "age": {
+                            "Kind": "formula",
+                            "Type": "int",
+                            "Value": "prev.base + 1",
+                            "calculated_value": 0,
+                            "Description": "ticks since this instance was attached. Per instance, not per template, so two provinces penalised at different times expire at different times."
+                        },
+                        "Contribution": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "-0.5",
+                            "calculated_value": -0.5,
+                            "Description": "summed onto growth's base wherever this instance lives."
+                        }
+                    },
+                    "Target_value": "institution_economy_province.growth",
+                    "Destroyed_when": "age >= 5",
+                    "Description": "composes onto the growth of whichever province holds it. Reading growth effective already includes it; no formula goes looking. Expires on its own timer with no AI call."
+                }
+            },
+            "Institution": {
+                "institution_economy_province": {
+                    "Values": {
+                        "gdp": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "prev.base + growth*prev.base*world.technology.tech",
+                            "calculated_value": 1000,
+                            "Description": "this province's output, compounding by its growth rate and scaled by global tech."
+                        },
+                        "growth": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "0.5",
+                            "calculated_value": 0.5,
+                            "Modifiable_by": [
+                                "director"
+                            ],
+                            "Description": "per-turn growth rate. Read bare it resolves effective, so attached modifiers compose onto it without any formula looking for them."
+                        }
+                    }
+                }
+            }
+        },
+        "province_england": {
+            "Name": "england",
+            "Neighbors": [
+                "province_france"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "eng",
+                "calculated_value": "eng",
+                "Writable_by": [
+                    "actor"
+                ],
+                "Valid": "count( self.entities as e where e.owner == value and e.type == \"entity_army\" ) > 0 and count( self.entities as e where e.owner == prev.base and e.type == \"entity_army\" ) == 0"
+            },
+            "Modifier": {},
+            "Institution": {
+                "institution_economy_province": {
+                    "Values": {
+                        "gdp": {
+                            "Kind": "formula",
+                            "Type": "float",
+                            "Value": "prev.base + growth*prev.base*world.technology.tech",
+                            "calculated_value": 1000,
+                            "Description": "this province's output, compounding by its growth rate and scaled by global tech."
+                        },
+                        "growth": {
+                            "Kind": "value",
+                            "Type": "float",
+                            "Value": "0.5",
+                            "calculated_value": 0.5,
+                            "Modifiable_by": [
+                                "director"
+                            ],
+                            "Description": "per-turn growth rate. Read bare it resolves effective, so attached modifiers compose onto it without any formula looking for them."
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "World": {
+        "Institution": {
+            "technology": {
+                "Values": {
+                    "tech": {
+                        "Kind": "value",
+                        "Type": "float",
+                        "Value": "0.01",
+                        "calculated_value": 0.01,
+                        "Writable_by": [
+                            "director"
+                        ],
+                        "Description": "global technology level, a multiplier on province growth. Referenced as world.technology.tech."
+                    }
+                }
+            }
+        }
+    },
+    "Contract": {
+        "payment_10_000_france_eng": {
+            "Description": "France pays England a flat 10,000 each turn. One figure computed once and referenced from both ends with opposite signs, which is what keeps the two sides balanced.",
+            "Parties": [
+                "fra",
+                "eng"
+            ],
+            "Values": {
+                "payment": {
+                    "Kind": "value",
+                    "Type": "float",
+                    "Value": "10000",
+                    "calculated_value": 10000
+                },
+                "actual_payment": {
+                    "Kind": "formula",
+                    "Type": "float",
+                    "Value": "clamp( fra.institution_economy_nation.money, 0, payment )",
+                    "calculated_value": 0,
+                    "Description": "what France can actually pay: floored at zero so a negative treasury cannot flip the payment's sign, capped at the agreed figure."
+                }
+            },
+            "Emissions": [
+                {
+                    "When": "true",
+                    "Applies_to": "actors as a where a.id == \"fra\"",
+                    "Modifier_id": [
+                        {
+                            "Modifier_id": "modifier_removed_cost",
+                            "Arg": {
+                                "removed_cost": {
+                                    "Value": "actual_payment"
+                                }
+                            },
+                            "On_match": "cancel"
+                        }
+                    ],
+                    "Description": "the payer's side."
+                },
+                {
+                    "When": "true",
+                    "Applies_to": "actors as a where a.id == \"eng\"",
+                    "Modifier_id": [
+                        {
+                            "Modifier_id": "modifier_removed_cost",
+                            "Arg": {
+                                "removed_cost": {
+                                    "Value": "-actual_payment"
+                                }
+                            },
+                            "On_match": "cancel"
+                        }
+                    ],
+                    "Description": "the payee's side, reading the same figure with the opposite sign."
+                }
+            ],
+            "Hooks": [
+                {
+                    "Trigger": "becomes actual_payment < payment"
+                }
+            ]
+        },
+        "trade_agreement_france_england": {
+            "Description": "while it stands, every province either party owns gets a growth bonus. One emission covers it, and a newly-conquered province is picked up automatically.",
+            "Parties": [
+                "fra",
+                "eng"
+            ],
+            "Emissions": [
+                {
+                    "When": "true",
+                    "Applies_to": "provinces as p where p.owner == \"fra\" or p.owner == \"eng\"",
+                    "Modifier_id": [
+                        {
+                            "Target_value": "institution_economy_province.growth",
+                            "Values": {
+                                "Contribution": {
+                                    "Kind": "value",
+                                    "Type": "float",
+                                    "Value": "0.2",
+                                    "calculated_value": 0.2
+                                }
+                            },
+                            "On_match": "cancel"
+                        }
+                    ],
+                    "Description": "On_match cancel leaves an already-matched province alone rather than re-creating its instance every tick. No Destroyed_when: the instances die with the contract that emitted them."
+                }
+            ]
+        }
+    }
+}

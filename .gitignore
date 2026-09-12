@@ -1,0 +1,23 @@
+# ---- .NET build output ----
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userprefs
+
+# ---- IDE ----
+.vs/
+.idea/
+*.swp
+
+# ---- Agent / exploration scratch ----
+# Throwaway worlds the agent writes while exploring. Never committed:
+# anything worth keeping gets promoted into tests/scenarios/ instead.
+scratch/
+
+# ---- OS ----
+Thumbs.db
+desktop.ini
+.DS_Store
