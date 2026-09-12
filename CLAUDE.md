@@ -3,6 +3,7 @@ introduction : this project is a simulation engine in C# for Pax Economica. the 
 you can find in the docs for the following:
   - docs/engineSpec.md : the language itself -- expressions, values, holders, writes, change, entities, agency, the AI, spans. the authority on what any behaviour *means*
   - docs/architecture.md : layering, the projects and how they fit together, the loop that runs ticks and asks the AI, build order, and which stage the engine is currently at
+  - docs/engineArchitecture.md : how the engine works -- the stages from text to next document, the factories that validate while building, the expression compiler, the tick, and the decisions behind each
   - docs/codeStructure.md : every project, file and class -- what each one is for, which spec section it implements, and what calls it
   - docs/testing.md : the cli surface, the automatic suite (expression tables, unit, golden scenarios, invariants), the AI-driven exploration loop, and the promotion rule that connects them
   - docs/developmentProcess.md : how a non-trivial change is planned and executed -- step definition, class purity vocabulary, determinism guardrails, the objective/algorithm/architecture/testing/documentation planning phases, plan document format, and execution/escalation rules
