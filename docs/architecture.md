@@ -4,6 +4,8 @@ How the C# is organised, what depends on what, and in what order the engine gets
 
 docs/engineSpec.md is the authority on *what behaviour means*. This document is the authority on *how the code is shaped*. Where they disagree about behaviour, the spec wins.
 
+docs/codeStructure.md holds the contents — every project, file and class, and what calls what. This document holds the rules and the order they get built in.
+
 ## Current Stage
 
 **Stage 0 — no engine code exists.** Next work is Stage 1 (Numbers), §Build Order below.
@@ -14,21 +16,34 @@ Update this section when a stage completes. It is the first thing read by anyone
 
 ## Overview
 
-The engine is a deterministic function from a JSON document to a JSON document.
+The engine is one function. State and actions in, new state and whatever needs answering out.
 
 ```
-document.json ──> Load ──> World ──> Tick xN ──> Serialize ──> document.json
+Engine.Run(string state, string[] actions) -> EngineResult
+EngineResult = { string State, Wake[] Wakes, Notice[] Notices }
 ```
 
-Everything else is a host calling into that. There are three, and they share one core:
+It never pauses mid-tick. It finishes the tick, then reports what needs an answer — §5 line 515 calls phase 8 Wakes. An answer comes back as an action on the next call.
 
-| Host | Entry | Uses |
-|---|---|---|
-| **Game / production** | your own loop | `Engine.Load` once, `Engine.Tick` many, `Engine.Serialize` on save |
-| **CLI** | `PaxEngine.Cli/Program.cs` | `Commands.Run(args)`, prints what it returns |
-| **Tests** | xunit | `Commands.Run(args)` in-process, or `Engine` directly |
+The AI sits outside. The engine cannot call a model, because it holds no reference to anything that could.
 
-Two shapes exist because they have different costs. A game holds a `World` across ticks and serialises only when saving. The CLI and the tests are one-shot: text in, text out.
+```
+PaxEngine  <-- PaxSession --> PaxAi
+                   ^
+          +--------+--------+
+          |                 |
+   PaxEngine.Cli        PaxServer
+```
+
+| Project | Purpose |
+|---|---|
+| `PaxEngine` | the simulation. no network, no AI, no file reading |
+| `PaxAi` | prompts, the model call, reading the reply |
+| `PaxSession` | the loop: tick until a wake appears, ask, feed the answer back |
+| `PaxEngine.Cli` | runs a scenario from the command line |
+| `PaxServer` | the same loop, over HTTP |
+
+Tests replace `PaxAi` with a fake that reads answers from a file, so no test touches the network.
 
 ---
 
@@ -42,7 +57,8 @@ Dependencies point one way. A lower layer never references a higher one.
 | **Expr** | lexer, parser, AST, evaluator | Core |
 | **Model** | nodes, declarations, world, document load | Core, Expr |
 | **Runtime** | tick, phases, writes, change | Core, Expr, Model |
-| **Cli** | argument parsing, output formatting | all |
+
+Outside `PaxEngine`, the same rule runs across projects: `PaxSession` may reference `PaxEngine` and `PaxAi`; neither of those may reference anything. `PaxEngine` references only the .NET base library.
 
 **The evaluator takes a world as a parameter; it is not part of the world.** A `partial class World` spanning both Model and Expr welds the two layers together and leaves neither testable alone.
 
@@ -55,16 +71,19 @@ If a layering violation is ever committed, split `PaxEngine` into per-layer asse
 ```
 engine C#/
   PaxEngine.sln
-  PaxEngine/                  class library -- the engine
-    Core/
-    Expr/
-    Model/
-    Runtime/
-  PaxEngine.Cli/              console app -- the harness surface
+  PaxEngine/                  the simulation
+    Core/  Expr/  Model/  Runtime/
+  PaxAi/                      prompts, model call, reading the reply
+  PaxSession/                 the loop
+  PaxEngine.Cli/              console host
+  PaxServer/                  web api host
   PaxEngine.Tests/            xunit
+  PaxSession.Tests/           xunit, fake AI
+  PaxServer.Tests/            xunit, in-memory host
   tests/
     fixtures/                 small hand-written worlds
     scenarios/                golden-file scenarios
+    answers/                  canned AI replies for the fake
   scratch/                    agent exploration, git-ignored
   docs/
   exemple.json
@@ -73,23 +92,37 @@ engine C#/
 
 `PaxEngine.Cli` is its own project so the ability to run the engine does not live inside the test project, where nothing else can reach it.
 
+What each file and class inside these is for: docs/codeStructure.md.
+
 ---
 
-## The Three Hosts
+## The Hosts
 
-### Engine API
+### The engine is one method
 
 ```csharp
 public static class Engine
 {
-    public static LoadResult Load(string documentJson);
-    public static void       Tick(World world, int count = 1);
-    public static string     Serialize(World world);
-    public static RunResult  Run(string documentJson, int ticks);   // one-shot: text in, text out
+    public static EngineResult Run(string state, string[] actions);
 }
+
+public sealed record EngineResult(string State, Wake[] Wakes, Notice[] Notices);
 ```
 
-`LoadResult` carries a nullable `World` and the `Diagnostics`; `Ok` is false when any `LoadError` was raised.
+A document that cannot run throws (§15 line 1379). Refused writes and runtime notices come back in `Notices` (§15 lines 1397 and 1408). Running out of money is neither — the flow happens, the payer goes negative, a hook fires (§8 line 805).
+
+### The loop
+
+```
+repeat:
+    result = Engine.Run(state, actions)
+    state  = result.State
+    if no wakes and ticks remain:  actions = []  and go again
+    if no wakes:                   stop
+    actions = ai.Answer(result.Wakes)
+```
+
+`PaxSession` owns this. `PaxEngine.Cli` and `PaxServer` both call it. Tests call it with a fake AI.
 
 ### Commands return text, they do not print
 
