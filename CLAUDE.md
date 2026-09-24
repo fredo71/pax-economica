@@ -1,13 +1,14 @@
 introduction : this project is a simulation engine in C# for Pax Economica. the entire state of a run is one JSON document -- the engine loads it, ticks it, and writes it back out.
 
 you can find in the docs for the following:
+  - docs/paxServer.md : the web page -- a map anyone with the link can open. the current work: start here. its "Which docs still apply" table says which of the docs below are on hold
   - docs/engineSpec.md : the language itself -- expressions, values, holders, writes, change, entities, agency, the AI, spans. the authority on what any behaviour *means*
   - docs/architecture.md : layering, the projects and how they fit together, the loop that runs ticks and asks the AI, build order, and which stage the engine is currently at
   - docs/engineArchitecture.md : how the engine works -- the stages from text to next document, the factories that validate while building, the expression compiler, the tick, and the decisions behind each
   - docs/codeStructure.md : every project, file and class -- what each one is for, which spec section it implements, and what calls it
   - docs/testing.md : the cli surface, the automatic suite (expression tables, unit, golden scenarios, invariants), the AI-driven exploration loop, and the promotion rule that connects them
   - docs/developmentProcess.md : how a non-trivial change is planned and executed -- step definition, class purity vocabulary, determinism guardrails, the objective/algorithm/architecture/testing/documentation planning phases, plan document format, and execution/escalation rules
-  - exemple.json : a full worked document, kept at the root. integration fixture, never a unit fixture
+  - exemple/exemple.json : a full worked document. integration fixture, never a unit fixture
 
 ## Rules to Follow
 
@@ -27,6 +28,13 @@ you can find in the docs for the following:
   - the same rule applies to every name in the project, not just variables: classes, types, methods, files and folders. no truncation and no acronyms -- write EnumDeclaration not EnumDecl, Expressions/ not Expr/, SyntaxNode not Ast, DeclaredType not VType, DocumentPath not DocPath. a reader who has not seen the word before must be able to say it out loud and guess what it is.
   - an acronym is only allowed when the user already uses it in conversation about this project (AI, JSON, CLI). a name invented for the code never gets one.
   - a type name is never shadowed by a field name in scope. a static helper class `Doc` alongside a field `World.Doc` forces every call to be written `PaxEngine.Doc.Obj(...)` and silently breaks the moment one is missed. give helper classes names that cannot be shadowed (e.g. JsonFields).
+
+### Readability (every language)
+
+  - every rule in this file applies to every language in the repo -- C#, TypeScript, and local scripts alike
+  - one operation per line: give each intermediate result a named variable instead of chaining lookups, calls and object-building into one expression. the names are the explanation (e.g. `bool wasStillPending = pending.Remove(item);` then `if (!wasStillPending && ...)`)
+  - no magic values inline: a number, colour or string that means something gets a named constant (e.g. `MinimumInstanceCapacity = 64`, not a bare 64). a value already labelled by the key it sits under (`weight: 1` inside a named style object) counts as named
+  - show types the reader cannot see at a glance. in TypeScript, annotate every declaration whose type is not obvious from its own line, and never let `any` spread: check untyped data (parsed JSON) where it arrives and give it a real type there
 
 ### Comments
 
