@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    // TypeScript 7 no longer picks up installed @types packages on its own
+    "types": ["leaflet", "geojson"],
+    "sourceMap": true,
+    "rootDir": "Scripts",
+    "outDir": "wwwroot"
+  },
+  "include": ["Scripts"]
+}

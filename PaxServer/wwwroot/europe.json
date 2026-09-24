@@ -1,0 +1,7155 @@
+{
+    "Actor": {
+        "alb": {
+            "Name": "Albania",
+            "Colour": "#e15ba4",
+            "Institution": {},
+            "Entity": {}
+        },
+        "and": {
+            "Name": "Andorra",
+            "Colour": "#67b5d5",
+            "Institution": {},
+            "Entity": {}
+        },
+        "arm": {
+            "Name": "Armenia",
+            "Colour": "#c09235",
+            "Institution": {},
+            "Entity": {}
+        },
+        "aut": {
+            "Name": "Austria",
+            "Colour": "#cf266c",
+            "Institution": {},
+            "Entity": {}
+        },
+        "aze": {
+            "Name": "Azerbaijan",
+            "Colour": "#67d5a3",
+            "Institution": {},
+            "Entity": {}
+        },
+        "bel": {
+            "Name": "Belgium",
+            "Colour": "#cf8a26",
+            "Institution": {},
+            "Entity": {}
+        },
+        "bgr": {
+            "Name": "Bulgaria",
+            "Colour": "#96cf26",
+            "Institution": {},
+            "Entity": {}
+        },
+        "bih": {
+            "Name": "Bosnia and Herzegovina",
+            "Colour": "#beca72",
+            "Institution": {},
+            "Entity": {}
+        },
+        "blr": {
+            "Name": "Belarus",
+            "Colour": "#c5e15b",
+            "Institution": {},
+            "Entity": {}
+        },
+        "che": {
+            "Name": "Switzerland",
+            "Colour": "#435eb1",
+            "Institution": {},
+            "Entity": {}
+        },
+        "cyp": {
+            "Name": "Cyprus",
+            "Colour": "#437ab1",
+            "Institution": {},
+            "Entity": {}
+        },
+        "cze": {
+            "Name": "Czech Republic",
+            "Colour": "#ba5be1",
+            "Institution": {},
+            "Entity": {}
+        },
+        "deu": {
+            "Name": "Germany",
+            "Colour": "#67d587",
+            "Institution": {},
+            "Entity": {}
+        },
+        "dnk": {
+            "Name": "Denmark",
+            "Colour": "#e15b81",
+            "Institution": {},
+            "Entity": {}
+        },
+        "esp": {
+            "Name": "Spain",
+            "Colour": "#62c035",
+            "Institution": {},
+            "Entity": {}
+        },
+        "est": {
+            "Name": "Estonia",
+            "Colour": "#99d567",
+            "Institution": {},
+            "Entity": {}
+        },
+        "fin": {
+            "Name": "Finland",
+            "Colour": "#35a9c0",
+            "Institution": {},
+            "Entity": {}
+        },
+        "fra": {
+            "Name": "France",
+            "Colour": "#b426cf",
+            "Institution": {},
+            "Entity": {}
+        },
+        "fro": {
+            "Name": "Faroe Islands",
+            "Colour": "#9372ca",
+            "Institution": {},
+            "Entity": {}
+        },
+        "gbr": {
+            "Name": "United Kingdom",
+            "Colour": "#72caa9",
+            "Institution": {},
+            "Entity": {}
+        },
+        "geo": {
+            "Name": "Georgia",
+            "Colour": "#d567d0",
+            "Institution": {},
+            "Entity": {}
+        },
+        "ggy": {
+            "Name": "Guernsey",
+            "Colour": "#ca7e72",
+            "Institution": {},
+            "Entity": {}
+        },
+        "gib": {
+            "Name": "Gibraltar",
+            "Colour": "#8867d5",
+            "Institution": {},
+            "Entity": {}
+        },
+        "grc": {
+            "Name": "Greece",
+            "Colour": "#b15f43",
+            "Institution": {},
+            "Entity": {}
+        },
+        "hrv": {
+            "Name": "Croatia",
+            "Colour": "#cf5e26",
+            "Institution": {},
+            "Entity": {}
+        },
+        "hun": {
+            "Name": "Hungary",
+            "Colour": "#26cf34",
+            "Institution": {},
+            "Entity": {}
+        },
+        "imn": {
+            "Name": "Isle of Man",
+            "Colour": "#e1995b",
+            "Institution": {},
+            "Entity": {}
+        },
+        "irl": {
+            "Name": "Ireland",
+            "Colour": "#b14396",
+            "Institution": {},
+            "Entity": {}
+        },
+        "isl": {
+            "Name": "Iceland",
+            "Colour": "#43b196",
+            "Institution": {},
+            "Entity": {}
+        },
+        "ita": {
+            "Name": "Italy",
+            "Colour": "#5be178",
+            "Institution": {},
+            "Entity": {}
+        },
+        "jey": {
+            "Name": "Jersey",
+            "Colour": "#7293ca",
+            "Institution": {},
+            "Entity": {}
+        },
+        "kos": {
+            "Name": "Kosovo",
+            "Colour": "#b1b143",
+            "Institution": {},
+            "Entity": {}
+        },
+        "lie": {
+            "Name": "Liechtenstein",
+            "Colour": "#d5bf67",
+            "Institution": {},
+            "Entity": {}
+        },
+        "ltu": {
+            "Name": "Lithuania",
+            "Colour": "#43b144",
+            "Institution": {},
+            "Entity": {}
+        },
+        "lux": {
+            "Name": "Luxembourg",
+            "Colour": "#3585c0",
+            "Institution": {},
+            "Entity": {}
+        },
+        "lva": {
+            "Name": "Latvia",
+            "Colour": "#5b60e1",
+            "Institution": {},
+            "Entity": {}
+        },
+        "mco": {
+            "Name": "Monaco",
+            "Colour": "#7dca72",
+            "Institution": {},
+            "Entity": {}
+        },
+        "mda": {
+            "Name": "Moldova",
+            "Colour": "#5fb143",
+            "Institution": {},
+            "Entity": {}
+        },
+        "mkd": {
+            "Name": "Macedonia",
+            "Colour": "#26c0cf",
+            "Institution": {},
+            "Entity": {}
+        },
+        "mlt": {
+            "Name": "Malta",
+            "Colour": "#72cabf",
+            "Institution": {},
+            "Entity": {}
+        },
+        "mne": {
+            "Name": "Montenegro",
+            "Colour": "#35c06f",
+            "Institution": {},
+            "Entity": {}
+        },
+        "nld": {
+            "Name": "Netherlands",
+            "Colour": "#b535c0",
+            "Institution": {},
+            "Entity": {}
+        },
+        "nor": {
+            "Name": "Norway",
+            "Colour": "#a3e15b",
+            "Institution": {},
+            "Entity": {}
+        },
+        "pol": {
+            "Name": "Poland",
+            "Colour": "#2642cf",
+            "Institution": {},
+            "Entity": {}
+        },
+        "prt": {
+            "Name": "Portugal",
+            "Colour": "#7b43b1",
+            "Institution": {},
+            "Entity": {}
+        },
+        "rou": {
+            "Name": "Romania",
+            "Colour": "#c03540",
+            "Institution": {},
+            "Entity": {}
+        },
+        "rus": {
+            "Name": "Russia",
+            "Colour": "#b14343",
+            "Institution": {},
+            "Entity": {}
+        },
+        "smr": {
+            "Name": "San Marino",
+            "Colour": "#d5677e",
+            "Institution": {},
+            "Entity": {}
+        },
+        "srb": {
+            "Name": "Republic of Serbia",
+            "Colour": "#8926cf",
+            "Institution": {},
+            "Entity": {}
+        },
+        "svk": {
+            "Name": "Slovakia",
+            "Colour": "#cabf72",
+            "Institution": {},
+            "Entity": {}
+        },
+        "svn": {
+            "Name": "Slovenia",
+            "Colour": "#6c67d5",
+            "Institution": {},
+            "Entity": {}
+        },
+        "swe": {
+            "Name": "Sweden",
+            "Colour": "#c035a8",
+            "Institution": {},
+            "Entity": {}
+        },
+        "tur": {
+            "Name": "Turkey",
+            "Colour": "#4c35c0",
+            "Institution": {},
+            "Entity": {}
+        },
+        "ukr": {
+            "Name": "Ukraine",
+            "Colour": "#5be1dc",
+            "Institution": {},
+            "Entity": {}
+        },
+        "vat": {
+            "Name": "Vatican",
+            "Colour": "#ca72a9",
+            "Institution": {},
+            "Entity": {}
+        }
+    },
+    "Provinces": {
+        "ad_06": {
+            "Name": "Andorra",
+            "Neighbors": [
+                "es_l",
+                "fr_11",
+                "fr_31"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "and",
+                "calculated_value": "and"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "al_06": {
+            "Name": "Korçë",
+            "Neighbors": [
+                "al_10",
+                "gr_c",
+                "mk_62"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "alb",
+                "calculated_value": "alb"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "al_10": {
+            "Name": "Shkodër",
+            "Neighbors": [
+                "al_06",
+                "me_12",
+                "mk_62",
+                "xk_x18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "alb",
+                "calculated_value": "alb"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "am_gr": {
+            "Name": "Gegharkunik",
+            "Neighbors": [
+                "am_lo",
+                "az_bab",
+                "az_kal",
+                "tr_04"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "arm",
+                "calculated_value": "arm"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "am_lo": {
+            "Name": "Lori",
+            "Neighbors": [
+                "am_gr",
+                "az_kal",
+                "ge_sj",
+                "tr_04",
+                "tr_36"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "arm",
+                "calculated_value": "arm"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "at_3": {
+            "Name": "Niederösterreich",
+            "Neighbors": [
+                "at_4",
+                "at_6",
+                "cz_jc",
+                "hu_ve",
+                "si_048",
+                "sk_ni"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aut",
+                "calculated_value": "aut"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "at_4": {
+            "Name": "Oberösterreich",
+            "Neighbors": [
+                "at_3",
+                "at_6",
+                "at_7",
+                "cz_jc",
+                "de_by",
+                "it_bz"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aut",
+                "calculated_value": "aut"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "at_6": {
+            "Name": "Steiermark",
+            "Neighbors": [
+                "at_3",
+                "at_4",
+                "at_7",
+                "it_ud",
+                "si_048"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aut",
+                "calculated_value": "aut"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "at_7": {
+            "Name": "Tirol",
+            "Neighbors": [
+                "at_4",
+                "at_6",
+                "ch_gr",
+                "de_bw",
+                "de_by",
+                "it_bz",
+                "it_ud",
+                "li_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aut",
+                "calculated_value": "aut"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "az_bab": {
+            "Name": "Naxçıvan Autonomous Republic",
+            "Neighbors": [
+                "am_gr",
+                "tr_04"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aze",
+                "calculated_value": "aze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "az_hac": {
+            "Name": "Hajigabul",
+            "Neighbors": [
+                "az_imi",
+                "az_qba"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aze",
+                "calculated_value": "aze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "az_imi": {
+            "Name": "Şəki",
+            "Neighbors": [
+                "az_hac",
+                "az_kal",
+                "az_qba",
+                "ge_ka",
+                "ru_da"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aze",
+                "calculated_value": "aze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "az_kal": {
+            "Name": "Ganja-Gazakh Economic Region",
+            "Neighbors": [
+                "am_gr",
+                "am_lo",
+                "az_imi",
+                "ge_ka",
+                "ge_sj"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aze",
+                "calculated_value": "aze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "az_qba": {
+            "Name": "Guba-Khachmaz Economic Region",
+            "Neighbors": [
+                "az_hac",
+                "az_imi",
+                "ru_da"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "aze",
+                "calculated_value": "aze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ba_x02": {
+            "Name": "Banja Luka",
+            "Neighbors": [
+                "ba_x07",
+                "bih_2228",
+                "hr_03",
+                "hr_13",
+                "hr_14",
+                "rs_11"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bih",
+                "calculated_value": "bih"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ba_x07": {
+            "Name": "Trebinje",
+            "Neighbors": [
+                "ba_x02",
+                "bih_2228",
+                "hr_13",
+                "me_12",
+                "rs_11",
+                "rs_16"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bih",
+                "calculated_value": "bih"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "be_vwv": {
+            "Name": "Flemish",
+            "Neighbors": [
+                "be_wlx",
+                "fr_62",
+                "nl_nb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bel",
+                "calculated_value": "bel"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "be_wlx": {
+            "Name": "Walloon",
+            "Neighbors": [
+                "be_vwv",
+                "de_nw",
+                "de_rp",
+                "fr_02",
+                "fr_55",
+                "fr_57",
+                "fr_62",
+                "lu_d",
+                "nl_nb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bel",
+                "calculated_value": "bel"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "bg_02": {
+            "Name": "Burgas",
+            "Neighbors": [
+                "bg_04",
+                "ro_ct",
+                "ro_tr",
+                "tr_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bgr",
+                "calculated_value": "bgr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "bg_04": {
+            "Name": "Veliko Tarnovo",
+            "Neighbors": [
+                "bg_02",
+                "bg_15",
+                "bg_16",
+                "ro_tr",
+                "tr_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bgr",
+                "calculated_value": "bgr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "bg_15": {
+            "Name": "Pleven",
+            "Neighbors": [
+                "bg_04",
+                "bg_16",
+                "bg_23",
+                "ro_dj",
+                "ro_gj",
+                "ro_tr",
+                "rs_11",
+                "rs_15"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bgr",
+                "calculated_value": "bgr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "bg_16": {
+            "Name": "Plovdiv",
+            "Neighbors": [
+                "bg_04",
+                "bg_15",
+                "bg_23",
+                "gr_a",
+                "tr_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bgr",
+                "calculated_value": "bgr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "bg_23": {
+            "Name": "Sofia",
+            "Neighbors": [
+                "bg_15",
+                "bg_16",
+                "gr_a",
+                "gr_b",
+                "mk_62",
+                "rs_15"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bgr",
+                "calculated_value": "bgr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "bih_2228": {
+            "Name": "Federacija Bosna i Hercegovina",
+            "Neighbors": [
+                "ba_x02",
+                "ba_x07",
+                "hr_13"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "bih",
+                "calculated_value": "bih"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "by_br": {
+            "Name": "Brest",
+            "Neighbors": [
+                "by_ho",
+                "by_hr",
+                "by_mi",
+                "pl_lu",
+                "pl_pd",
+                "ua_07",
+                "ua_56"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "blr",
+                "calculated_value": "blr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "by_ho": {
+            "Name": "Gomel",
+            "Neighbors": [
+                "by_br",
+                "by_ma",
+                "by_mi",
+                "ru_bry",
+                "ua_18",
+                "ua_32",
+                "ua_56",
+                "ua_74"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "blr",
+                "calculated_value": "blr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "by_hr": {
+            "Name": "Grodno",
+            "Neighbors": [
+                "by_br",
+                "by_mi",
+                "by_vi",
+                "lt_vl",
+                "pl_pd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "blr",
+                "calculated_value": "blr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "by_ma": {
+            "Name": "Mogilev",
+            "Neighbors": [
+                "by_ho",
+                "by_mi",
+                "by_vi",
+                "ru_bry",
+                "ru_smo"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "blr",
+                "calculated_value": "blr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "by_mi": {
+            "Name": "Minsk",
+            "Neighbors": [
+                "by_br",
+                "by_ho",
+                "by_hr",
+                "by_ma",
+                "by_vi"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "blr",
+                "calculated_value": "blr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "by_vi": {
+            "Name": "Vitebsk",
+            "Neighbors": [
+                "by_hr",
+                "by_ma",
+                "by_mi",
+                "lt_vl",
+                "lv_047",
+                "ru_psk",
+                "ru_smo"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "blr",
+                "calculated_value": "blr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ch_be": {
+            "Name": "Bern",
+            "Neighbors": [
+                "ch_gr",
+                "de_bw",
+                "fr_01",
+                "fr_57",
+                "fr_70",
+                "fr_73",
+                "it_to"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "che",
+                "calculated_value": "che"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ch_gr": {
+            "Name": "Graubünden",
+            "Neighbors": [
+                "at_7",
+                "ch_be",
+                "de_bw",
+                "it_bs",
+                "it_bz",
+                "it_to",
+                "li_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "che",
+                "calculated_value": "che"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "cy_01": {
+            "Name": "Cyprus",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "cyp",
+                "calculated_value": "cyp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "cz_jc": {
+            "Name": "Jihočeský",
+            "Neighbors": [
+                "at_3",
+                "at_4",
+                "cz_mo",
+                "cz_pl",
+                "cz_st",
+                "de_by",
+                "sk_bc",
+                "sk_ni"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "cze",
+                "calculated_value": "cze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "cz_mo": {
+            "Name": "Moravskoslezský",
+            "Neighbors": [
+                "cz_jc",
+                "cz_st",
+                "de_sn",
+                "pl_ds",
+                "pl_sl",
+                "sk_bc"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "cze",
+                "calculated_value": "cze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "cz_pl": {
+            "Name": "Plzeňský",
+            "Neighbors": [
+                "cz_jc",
+                "cz_st",
+                "de_by",
+                "de_sn"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "cze",
+                "calculated_value": "cze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "cz_st": {
+            "Name": "Středočeský",
+            "Neighbors": [
+                "cz_jc",
+                "cz_mo",
+                "cz_pl",
+                "de_sn"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "cze",
+                "calculated_value": "cze"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_bb": {
+            "Name": "Brandenburg",
+            "Neighbors": [
+                "de_mv",
+                "de_ni",
+                "de_sn",
+                "de_st",
+                "pl_lb",
+                "pl_zp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_bw": {
+            "Name": "Baden-Württemberg",
+            "Neighbors": [
+                "at_7",
+                "ch_be",
+                "ch_gr",
+                "de_by",
+                "de_he",
+                "de_rp",
+                "fr_57"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_by": {
+            "Name": "Bayern",
+            "Neighbors": [
+                "at_4",
+                "at_7",
+                "cz_jc",
+                "cz_pl",
+                "de_bw",
+                "de_he",
+                "de_sn",
+                "de_th"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_he": {
+            "Name": "Hessen",
+            "Neighbors": [
+                "de_bw",
+                "de_by",
+                "de_ni",
+                "de_nw",
+                "de_rp",
+                "de_th"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_mv": {
+            "Name": "Mecklenburg-Vorpommern",
+            "Neighbors": [
+                "de_bb",
+                "de_ni",
+                "de_sh",
+                "pl_zp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_ni": {
+            "Name": "Niedersachsen",
+            "Neighbors": [
+                "de_bb",
+                "de_he",
+                "de_mv",
+                "de_nw",
+                "de_sh",
+                "de_st",
+                "de_th",
+                "nl_fr",
+                "nl_ge"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_nw": {
+            "Name": "Nordrhein-Westfalen",
+            "Neighbors": [
+                "be_wlx",
+                "de_he",
+                "de_ni",
+                "de_rp",
+                "nl_ge",
+                "nl_nb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_rp": {
+            "Name": "Rheinland-Pfalz",
+            "Neighbors": [
+                "be_wlx",
+                "de_bw",
+                "de_he",
+                "de_nw",
+                "fr_57",
+                "lu_d"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_sh": {
+            "Name": "Schleswig-Holstein",
+            "Neighbors": [
+                "de_mv",
+                "de_ni",
+                "dk_83"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_sn": {
+            "Name": "Sachsen",
+            "Neighbors": [
+                "cz_mo",
+                "cz_pl",
+                "cz_st",
+                "de_bb",
+                "de_by",
+                "de_st",
+                "de_th",
+                "pl_ds",
+                "pl_lb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_st": {
+            "Name": "Sachsen-Anhalt",
+            "Neighbors": [
+                "de_bb",
+                "de_ni",
+                "de_sn",
+                "de_th"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "de_th": {
+            "Name": "Thüringen",
+            "Neighbors": [
+                "de_by",
+                "de_he",
+                "de_ni",
+                "de_sn",
+                "de_st"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "deu",
+                "calculated_value": "deu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "dk_82": {
+            "Name": "Midtjylland",
+            "Neighbors": [
+                "dk_83"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "dnk",
+                "calculated_value": "dnk"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "dk_83": {
+            "Name": "Syddanmark",
+            "Neighbors": [
+                "de_sh",
+                "dk_82"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "dnk",
+                "calculated_value": "dnk"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "dk_85": {
+            "Name": "Sjaælland",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "dnk",
+                "calculated_value": "dnk"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ee_37": {
+            "Name": "Harju",
+            "Neighbors": [
+                "ee_67",
+                "ru_len",
+                "ru_psk"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "est",
+                "calculated_value": "est"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ee_67": {
+            "Name": "Pärnu",
+            "Neighbors": [
+                "ee_37",
+                "lv_054",
+                "lv_059",
+                "ru_psk"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "est",
+                "calculated_value": "est"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ee_74": {
+            "Name": "Saare",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "est",
+                "calculated_value": "est"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_ab": {
+            "Name": "Albacete",
+            "Neighbors": [
+                "es_cr",
+                "es_cu",
+                "es_gr",
+                "es_j",
+                "es_v"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_b": {
+            "Name": "Barcelona",
+            "Neighbors": [
+                "es_l",
+                "fr_11"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_ba": {
+            "Name": "Badajoz",
+            "Neighbors": [
+                "es_cc",
+                "es_co",
+                "es_cr",
+                "es_se",
+                "es_to",
+                "pt_02",
+                "pt_07"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_bu": {
+            "Name": "Burgos",
+            "Neighbors": [
+                "es_le",
+                "es_o",
+                "es_so",
+                "es_va",
+                "fr_40"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_ca": {
+            "Name": "Cádiz",
+            "Neighbors": [
+                "es_co",
+                "es_gr",
+                "es_se",
+                "gi_x01"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_cc": {
+            "Name": "Cáceres",
+            "Neighbors": [
+                "es_ba",
+                "es_sa",
+                "es_to",
+                "pt_05",
+                "pt_07",
+                "pt_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_co": {
+            "Name": "Córdoba",
+            "Neighbors": [
+                "es_ba",
+                "es_ca",
+                "es_cr",
+                "es_gr",
+                "es_j",
+                "es_se"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_cr": {
+            "Name": "Ciudad Real",
+            "Neighbors": [
+                "es_ab",
+                "es_ba",
+                "es_co",
+                "es_cu",
+                "es_j",
+                "es_to"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_cu": {
+            "Name": "Cuenca",
+            "Neighbors": [
+                "es_ab",
+                "es_cr",
+                "es_te",
+                "es_to",
+                "es_v"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_gr": {
+            "Name": "Granada",
+            "Neighbors": [
+                "es_ab",
+                "es_ca",
+                "es_co",
+                "es_j"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_hu": {
+            "Name": "Huesca",
+            "Neighbors": [
+                "es_l",
+                "es_so",
+                "es_z",
+                "fr_31",
+                "fr_40"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_j": {
+            "Name": "Jaén",
+            "Neighbors": [
+                "es_ab",
+                "es_co",
+                "es_cr",
+                "es_gr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_l": {
+            "Name": "Lérida",
+            "Neighbors": [
+                "ad_06",
+                "es_b",
+                "es_hu",
+                "es_te",
+                "es_v",
+                "es_z",
+                "fr_11",
+                "fr_31"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_le": {
+            "Name": "León",
+            "Neighbors": [
+                "es_bu",
+                "es_lu",
+                "es_o",
+                "es_or",
+                "es_sa",
+                "es_va",
+                "pt_04"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_lu": {
+            "Name": "Lugo",
+            "Neighbors": [
+                "es_le",
+                "es_o",
+                "es_or"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_o": {
+            "Name": "Asturias",
+            "Neighbors": [
+                "es_bu",
+                "es_le",
+                "es_lu"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_or": {
+            "Name": "Orense",
+            "Neighbors": [
+                "es_le",
+                "es_lu",
+                "pt_04"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_pm": {
+            "Name": "Baleares",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_sa": {
+            "Name": "Salamanca",
+            "Neighbors": [
+                "es_cc",
+                "es_le",
+                "es_to",
+                "es_va",
+                "pt_04",
+                "pt_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_se": {
+            "Name": "Sevilla",
+            "Neighbors": [
+                "es_ba",
+                "es_ca",
+                "es_co",
+                "pt_02"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_so": {
+            "Name": "Soria",
+            "Neighbors": [
+                "es_bu",
+                "es_hu",
+                "es_te",
+                "es_va",
+                "es_z",
+                "fr_40"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_te": {
+            "Name": "Teruel",
+            "Neighbors": [
+                "es_cu",
+                "es_l",
+                "es_so",
+                "es_to",
+                "es_v",
+                "es_va",
+                "es_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_to": {
+            "Name": "Toledo",
+            "Neighbors": [
+                "es_ba",
+                "es_cc",
+                "es_cr",
+                "es_cu",
+                "es_sa",
+                "es_te",
+                "es_va"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_v": {
+            "Name": "Valenciana",
+            "Neighbors": [
+                "es_ab",
+                "es_cu",
+                "es_l",
+                "es_te"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_va": {
+            "Name": "Valladolid",
+            "Neighbors": [
+                "es_bu",
+                "es_le",
+                "es_sa",
+                "es_so",
+                "es_te",
+                "es_to"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "es_z": {
+            "Name": "Zaragoza",
+            "Neighbors": [
+                "es_hu",
+                "es_l",
+                "es_so",
+                "es_te"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "esp",
+                "calculated_value": "esp"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_02": {
+            "Name": "South Karelia",
+            "Neighbors": [
+                "fi_04",
+                "fi_13",
+                "fi_18",
+                "ru_kr",
+                "ru_len"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_03": {
+            "Name": "Southern Ostrobothnia",
+            "Neighbors": [
+                "fi_08",
+                "fi_11",
+                "fi_14"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_04": {
+            "Name": "Southern Savonia",
+            "Neighbors": [
+                "fi_02",
+                "fi_08",
+                "fi_13",
+                "fi_15",
+                "fi_18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_05": {
+            "Name": "Kainuu",
+            "Neighbors": [
+                "fi_13",
+                "fi_14",
+                "fi_15",
+                "ru_kr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_08": {
+            "Name": "Central Finland",
+            "Neighbors": [
+                "fi_03",
+                "fi_04",
+                "fi_11",
+                "fi_14",
+                "fi_15",
+                "fi_18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_10": {
+            "Name": "Lapland",
+            "Neighbors": [
+                "fi_14",
+                "no_19",
+                "no_20",
+                "ru_kr",
+                "ru_mur",
+                "se_bd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_11": {
+            "Name": "Pirkanmaa",
+            "Neighbors": [
+                "fi_03",
+                "fi_08",
+                "fi_18",
+                "fi_19"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_13": {
+            "Name": "North Karelia",
+            "Neighbors": [
+                "fi_02",
+                "fi_04",
+                "fi_05",
+                "fi_15",
+                "ru_kr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_14": {
+            "Name": "Northern Ostrobothnia",
+            "Neighbors": [
+                "fi_03",
+                "fi_05",
+                "fi_08",
+                "fi_10",
+                "fi_15",
+                "ru_kr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_15": {
+            "Name": "Northern Savonia",
+            "Neighbors": [
+                "fi_04",
+                "fi_05",
+                "fi_08",
+                "fi_13",
+                "fi_14"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_18": {
+            "Name": "Uusimaa",
+            "Neighbors": [
+                "fi_02",
+                "fi_04",
+                "fi_08",
+                "fi_11",
+                "fi_19"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fi_19": {
+            "Name": "Finland Proper",
+            "Neighbors": [
+                "fi_11",
+                "fi_18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fin",
+                "calculated_value": "fin"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fo_x00": {
+            "Name": "Faroe Islands",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fro",
+                "calculated_value": "fro"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_01": {
+            "Name": "Ain",
+            "Neighbors": [
+                "ch_be",
+                "fr_21",
+                "fr_34",
+                "fr_38",
+                "fr_63",
+                "fr_70",
+                "fr_73"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_02": {
+            "Name": "Hauts-de-France",
+            "Neighbors": [
+                "be_wlx",
+                "fr_51",
+                "fr_55",
+                "fr_62",
+                "fr_76",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_04": {
+            "Name": "Provence-Alpes-Côte-d'Azur",
+            "Neighbors": [
+                "fr_38",
+                "fr_73",
+                "it_cn",
+                "it_to",
+                "mc_x01"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_11": {
+            "Name": "Aude",
+            "Neighbors": [
+                "ad_06",
+                "es_b",
+                "es_l",
+                "fr_12",
+                "fr_31",
+                "fr_34"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_12": {
+            "Name": "Aveyron",
+            "Neighbors": [
+                "fr_11",
+                "fr_19",
+                "fr_31",
+                "fr_33",
+                "fr_34",
+                "fr_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_17": {
+            "Name": "Charente-Maritime",
+            "Neighbors": [
+                "fr_19",
+                "fr_33",
+                "fr_49",
+                "fr_86"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_18": {
+            "Name": "Cher",
+            "Neighbors": [
+                "fr_19",
+                "fr_45",
+                "fr_63",
+                "fr_86",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_19": {
+            "Name": "Corrèze",
+            "Neighbors": [
+                "fr_12",
+                "fr_17",
+                "fr_18",
+                "fr_33",
+                "fr_63",
+                "fr_86"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_21": {
+            "Name": "Côte-d'Or",
+            "Neighbors": [
+                "fr_01",
+                "fr_51",
+                "fr_63",
+                "fr_70",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_22": {
+            "Name": "Côtes-d'Armor",
+            "Neighbors": [
+                "fr_56"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_2b": {
+            "Name": "Corse",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_31": {
+            "Name": "Haute-Garonne",
+            "Neighbors": [
+                "ad_06",
+                "es_hu",
+                "es_l",
+                "fr_11",
+                "fr_12",
+                "fr_33",
+                "fr_40"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_33": {
+            "Name": "Gironde",
+            "Neighbors": [
+                "fr_12",
+                "fr_17",
+                "fr_19",
+                "fr_31",
+                "fr_40"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_34": {
+            "Name": "Hérault",
+            "Neighbors": [
+                "fr_01",
+                "fr_11",
+                "fr_12",
+                "fr_38",
+                "fr_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_38": {
+            "Name": "Isère",
+            "Neighbors": [
+                "fr_01",
+                "fr_04",
+                "fr_34",
+                "fr_73"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_40": {
+            "Name": "Landes",
+            "Neighbors": [
+                "es_bu",
+                "es_hu",
+                "es_so",
+                "fr_31",
+                "fr_33"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_45": {
+            "Name": "Centre-Val de Loire",
+            "Neighbors": [
+                "fr_18",
+                "fr_49",
+                "fr_56",
+                "fr_61",
+                "fr_76",
+                "fr_86",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_49": {
+            "Name": "Pays de la Loire",
+            "Neighbors": [
+                "fr_17",
+                "fr_45",
+                "fr_56",
+                "fr_86"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_51": {
+            "Name": "Marne",
+            "Neighbors": [
+                "fr_02",
+                "fr_21",
+                "fr_55",
+                "fr_57",
+                "fr_70",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_55": {
+            "Name": "Meuse",
+            "Neighbors": [
+                "be_wlx",
+                "fr_02",
+                "fr_51",
+                "fr_57"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_56": {
+            "Name": "Bretagne",
+            "Neighbors": [
+                "fr_22",
+                "fr_45",
+                "fr_49",
+                "fr_61"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_57": {
+            "Name": "Moselle",
+            "Neighbors": [
+                "be_wlx",
+                "ch_be",
+                "de_bw",
+                "de_rp",
+                "fr_51",
+                "fr_55",
+                "fr_70",
+                "lu_d"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_61": {
+            "Name": "Normandie",
+            "Neighbors": [
+                "fr_45",
+                "fr_56",
+                "fr_76"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_62": {
+            "Name": "Pas-de-Calais",
+            "Neighbors": [
+                "be_vwv",
+                "be_wlx",
+                "fr_02"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_63": {
+            "Name": "Puy-de-Dôme",
+            "Neighbors": [
+                "fr_01",
+                "fr_12",
+                "fr_18",
+                "fr_19",
+                "fr_21",
+                "fr_34",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_70": {
+            "Name": "Haute-Saône",
+            "Neighbors": [
+                "ch_be",
+                "fr_01",
+                "fr_21",
+                "fr_51",
+                "fr_57"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_73": {
+            "Name": "Savoie",
+            "Neighbors": [
+                "ch_be",
+                "fr_01",
+                "fr_04",
+                "fr_38",
+                "it_to"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_76": {
+            "Name": "Seine-Maritime",
+            "Neighbors": [
+                "fr_02",
+                "fr_45",
+                "fr_61",
+                "fr_89"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_86": {
+            "Name": "Vienne",
+            "Neighbors": [
+                "fr_17",
+                "fr_18",
+                "fr_19",
+                "fr_45",
+                "fr_49"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "fr_89": {
+            "Name": "Yonne",
+            "Neighbors": [
+                "fr_02",
+                "fr_18",
+                "fr_21",
+                "fr_45",
+                "fr_51",
+                "fr_63",
+                "fr_76"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "fra",
+                "calculated_value": "fra"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_abd": {
+            "Name": "Aberdeenshire",
+            "Neighbors": [
+                "gb_agb",
+                "gb_hld"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_agb": {
+            "Name": "Eastern",
+            "Neighbors": [
+                "gb_abd",
+                "gb_cma",
+                "gb_dgy",
+                "gb_hld",
+                "gb_nyk"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_cma": {
+            "Name": "North West",
+            "Neighbors": [
+                "gb_agb",
+                "gb_dgy",
+                "gb_lin",
+                "gb_nyk",
+                "gb_pow",
+                "gb_shr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_dev": {
+            "Name": "South West",
+            "Neighbors": [
+                "gb_ham",
+                "gb_pow",
+                "gb_shr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_dgy": {
+            "Name": "South Western",
+            "Neighbors": [
+                "gb_agb",
+                "gb_cma"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_fer": {
+            "Name": "Northern Ireland",
+            "Neighbors": [
+                "ie_mo"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_ham": {
+            "Name": "South East",
+            "Neighbors": [
+                "gb_dev",
+                "gb_lin",
+                "gb_nfk",
+                "gb_shr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_hld": {
+            "Name": "Highland",
+            "Neighbors": [
+                "gb_abd",
+                "gb_agb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_lin": {
+            "Name": "East Midlands",
+            "Neighbors": [
+                "gb_cma",
+                "gb_ham",
+                "gb_nfk",
+                "gb_nyk",
+                "gb_shr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_nfk": {
+            "Name": "East",
+            "Neighbors": [
+                "gb_ham",
+                "gb_lin"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_nyk": {
+            "Name": "Yorkshire and the Humber",
+            "Neighbors": [
+                "gb_agb",
+                "gb_cma",
+                "gb_lin"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_pow": {
+            "Name": "East Wales",
+            "Neighbors": [
+                "gb_cma",
+                "gb_dev",
+                "gb_shr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gb_shr": {
+            "Name": "West Midlands",
+            "Neighbors": [
+                "gb_cma",
+                "gb_dev",
+                "gb_ham",
+                "gb_lin",
+                "gb_pow"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gbr",
+                "calculated_value": "gbr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ge_ab": {
+            "Name": "Abkhazia",
+            "Neighbors": [
+                "ge_ka",
+                "ge_sj",
+                "ru_kb",
+                "ru_kc",
+                "ru_kda"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "geo",
+                "calculated_value": "geo"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ge_ka": {
+            "Name": "Kakheti",
+            "Neighbors": [
+                "az_imi",
+                "az_kal",
+                "ge_ab",
+                "ge_sj",
+                "ru_ce",
+                "ru_da",
+                "ru_kb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "geo",
+                "calculated_value": "geo"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ge_sj": {
+            "Name": "Samtskhe-Javakheti",
+            "Neighbors": [
+                "am_lo",
+                "az_kal",
+                "ge_ab",
+                "ge_ka",
+                "tr_36"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "geo",
+                "calculated_value": "geo"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gg_x01": {
+            "Name": "Guernsey",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ggy",
+                "calculated_value": "ggy"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gi_x01": {
+            "Name": "Gibraltar",
+            "Neighbors": [
+                "es_ca"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "gib",
+                "calculated_value": "gib"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_a": {
+            "Name": "Anatoliki Makedonia kai Thraki",
+            "Neighbors": [
+                "bg_16",
+                "bg_23",
+                "gr_b",
+                "tr_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_b": {
+            "Name": "Kentriki Makedonia",
+            "Neighbors": [
+                "bg_23",
+                "gr_a",
+                "gr_c",
+                "gr_e",
+                "mk_62"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_c": {
+            "Name": "Dytiki Makedonia",
+            "Neighbors": [
+                "al_06",
+                "gr_b",
+                "gr_e",
+                "gr_h",
+                "mk_62"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_e": {
+            "Name": "Thessalia",
+            "Neighbors": [
+                "gr_b",
+                "gr_c",
+                "gr_h"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_h": {
+            "Name": "Stereá Elláda",
+            "Neighbors": [
+                "gr_c",
+                "gr_e",
+                "gr_j"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_j": {
+            "Name": "Peloponnisos",
+            "Neighbors": [
+                "gr_h"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_l": {
+            "Name": "Notio Aigaio",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "gr_m": {
+            "Name": "Kriti",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "grc",
+                "calculated_value": "grc"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hr_03": {
+            "Name": "Sisacko-Moslavacka",
+            "Neighbors": [
+                "ba_x02",
+                "hr_13",
+                "hr_14",
+                "hu_so",
+                "hu_ve",
+                "si_048"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hrv",
+                "calculated_value": "hrv"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hr_13": {
+            "Name": "Zadarska",
+            "Neighbors": [
+                "ba_x02",
+                "ba_x07",
+                "bih_2228",
+                "hr_03",
+                "me_12"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hrv",
+                "calculated_value": "hrv"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hr_14": {
+            "Name": "Osjecko-Baranjska",
+            "Neighbors": [
+                "ba_x02",
+                "hr_03",
+                "hu_bk",
+                "hu_so",
+                "rs_06",
+                "rs_11"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hrv",
+                "calculated_value": "hrv"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hu_bk": {
+            "Name": "Great Southern Plain",
+            "Neighbors": [
+                "hr_14",
+                "hu_bz",
+                "hu_hb",
+                "hu_so",
+                "hu_ve",
+                "ro_ar",
+                "ro_tm",
+                "rs_06",
+                "sk_ni"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hun",
+                "calculated_value": "hun"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hu_bz": {
+            "Name": "Northern Hungary",
+            "Neighbors": [
+                "hu_bk",
+                "hu_hb",
+                "sk_bc",
+                "sk_ni",
+                "sk_pv",
+                "ua_21"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hun",
+                "calculated_value": "hun"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hu_hb": {
+            "Name": "Northern Great Plain",
+            "Neighbors": [
+                "hu_bk",
+                "hu_bz",
+                "ro_ar",
+                "ro_cj",
+                "ua_21"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hun",
+                "calculated_value": "hun"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hu_so": {
+            "Name": "Southern Transdanubia",
+            "Neighbors": [
+                "hr_03",
+                "hr_14",
+                "hu_bk",
+                "hu_ve"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hun",
+                "calculated_value": "hun"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "hu_ve": {
+            "Name": "Central Transdanubia",
+            "Neighbors": [
+                "at_3",
+                "hr_03",
+                "hu_bk",
+                "hu_so",
+                "si_048",
+                "sk_ni"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "hun",
+                "calculated_value": "hun"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ie_ce": {
+            "Name": "South-East",
+            "Neighbors": [
+                "ie_ky",
+                "ie_mh",
+                "ie_mo"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "irl",
+                "calculated_value": "irl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ie_ky": {
+            "Name": "South-West",
+            "Neighbors": [
+                "ie_ce"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "irl",
+                "calculated_value": "irl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ie_mh": {
+            "Name": "Midlands",
+            "Neighbors": [
+                "ie_ce",
+                "ie_mo"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "irl",
+                "calculated_value": "irl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ie_mo": {
+            "Name": "West",
+            "Neighbors": [
+                "gb_fer",
+                "ie_ce",
+                "ie_mh"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "irl",
+                "calculated_value": "irl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "im_x01": {
+            "Name": "Isle of Man",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "imn",
+                "calculated_value": "imn"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "is_3": {
+            "Name": "Vesturland",
+            "Neighbors": [
+                "is_5",
+                "is_8"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "isl",
+                "calculated_value": "isl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "is_5": {
+            "Name": "Norðurland vestra",
+            "Neighbors": [
+                "is_3",
+                "is_6",
+                "is_8"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "isl",
+                "calculated_value": "isl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "is_6": {
+            "Name": "Norðurland eystra",
+            "Neighbors": [
+                "is_5",
+                "is_7",
+                "is_8"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "isl",
+                "calculated_value": "isl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "is_7": {
+            "Name": "Austurland",
+            "Neighbors": [
+                "is_6",
+                "is_8"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "isl",
+                "calculated_value": "isl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "is_8": {
+            "Name": "Suðurland",
+            "Neighbors": [
+                "is_3",
+                "is_5",
+                "is_6",
+                "is_7"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "isl",
+                "calculated_value": "isl"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_aq": {
+            "Name": "Abruzzo",
+            "Neighbors": [
+                "it_pg",
+                "it_rm",
+                "it_sa"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_bo": {
+            "Name": "Emilia-Romagna",
+            "Neighbors": [
+                "it_bs",
+                "it_cn",
+                "it_gr",
+                "it_pg",
+                "it_ud",
+                "sm_06"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_bs": {
+            "Name": "Lombardia",
+            "Neighbors": [
+                "ch_gr",
+                "it_bo",
+                "it_bz",
+                "it_cn",
+                "it_to",
+                "it_ud"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_bz": {
+            "Name": "Trentino-Alto Adige",
+            "Neighbors": [
+                "at_4",
+                "at_7",
+                "ch_gr",
+                "it_bs",
+                "it_ud"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_ca": {
+            "Name": "Sardegna",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_cn": {
+            "Name": "Cuneo",
+            "Neighbors": [
+                "fr_04",
+                "it_bo",
+                "it_bs",
+                "it_gr",
+                "it_to"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_cs": {
+            "Name": "Calabria",
+            "Neighbors": [
+                "it_fg",
+                "it_sa"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_fg": {
+            "Name": "Apulia",
+            "Neighbors": [
+                "it_cs",
+                "it_sa"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_gr": {
+            "Name": "Toscana",
+            "Neighbors": [
+                "it_bo",
+                "it_cn",
+                "it_pg",
+                "it_rm"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_pa": {
+            "Name": "Sicily",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_pg": {
+            "Name": "Marche",
+            "Neighbors": [
+                "it_aq",
+                "it_bo",
+                "it_gr",
+                "it_rm",
+                "sm_06"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_rm": {
+            "Name": "Lazio",
+            "Neighbors": [
+                "it_aq",
+                "it_gr",
+                "it_pg",
+                "it_sa",
+                "va_x01"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_sa": {
+            "Name": "Campania",
+            "Neighbors": [
+                "it_aq",
+                "it_cs",
+                "it_fg",
+                "it_rm"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_to": {
+            "Name": "Turin",
+            "Neighbors": [
+                "ch_be",
+                "ch_gr",
+                "fr_04",
+                "fr_73",
+                "it_bs",
+                "it_cn"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "it_ud": {
+            "Name": "Veneto",
+            "Neighbors": [
+                "at_6",
+                "at_7",
+                "it_bo",
+                "it_bs",
+                "it_bz",
+                "si_048"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ita",
+                "calculated_value": "ita"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "je_x01": {
+            "Name": "Jersey",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "jey",
+                "calculated_value": "jey"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "li_09": {
+            "Name": "Liechtenstein",
+            "Neighbors": [
+                "at_7",
+                "ch_gr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "lie",
+                "calculated_value": "lie"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lt_kl": {
+            "Name": "Klaipedos",
+            "Neighbors": [
+                "lt_ku",
+                "lt_sa",
+                "lv_050",
+                "ru_kgd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ltu",
+                "calculated_value": "ltu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lt_ku": {
+            "Name": "Kauno",
+            "Neighbors": [
+                "lt_kl",
+                "lt_sa",
+                "lt_vl",
+                "pl_pd",
+                "pl_wn",
+                "ru_kgd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ltu",
+                "calculated_value": "ltu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lt_sa": {
+            "Name": "Šiauliai",
+            "Neighbors": [
+                "lt_kl",
+                "lt_ku",
+                "lt_vl",
+                "lv_047",
+                "lv_050",
+                "lv_054"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ltu",
+                "calculated_value": "ltu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lt_vl": {
+            "Name": "Vilniaus",
+            "Neighbors": [
+                "by_hr",
+                "by_vi",
+                "lt_ku",
+                "lt_sa",
+                "lv_047",
+                "pl_pd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ltu",
+                "calculated_value": "ltu"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lu_d": {
+            "Name": "Luxembourg",
+            "Neighbors": [
+                "be_wlx",
+                "de_rp",
+                "fr_57"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "lux",
+                "calculated_value": "lux"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lv_047": {
+            "Name": "Latgale",
+            "Neighbors": [
+                "by_vi",
+                "lt_sa",
+                "lt_vl",
+                "lv_054",
+                "lv_059",
+                "ru_psk"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "lva",
+                "calculated_value": "lva"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lv_050": {
+            "Name": "Kurzeme",
+            "Neighbors": [
+                "lt_kl",
+                "lt_sa",
+                "lv_054"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "lva",
+                "calculated_value": "lva"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lv_054": {
+            "Name": "Zemgale",
+            "Neighbors": [
+                "ee_67",
+                "lt_sa",
+                "lv_047",
+                "lv_050",
+                "lv_059"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "lva",
+                "calculated_value": "lva"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "lv_059": {
+            "Name": "Vidzeme",
+            "Neighbors": [
+                "ee_67",
+                "lv_047",
+                "lv_054",
+                "ru_psk"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "lva",
+                "calculated_value": "lva"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "mc_x01": {
+            "Name": "Monaco",
+            "Neighbors": [
+                "fr_04"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "mco",
+                "calculated_value": "mco"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "md_fa": {
+            "Name": "Făleşti",
+            "Neighbors": [
+                "md_ga",
+                "ro_is",
+                "ro_sv",
+                "ua_05",
+                "ua_26",
+                "ua_51"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "mda",
+                "calculated_value": "mda"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "md_ga": {
+            "Name": "Comrat",
+            "Neighbors": [
+                "md_fa",
+                "ro_is",
+                "ua_51"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "mda",
+                "calculated_value": "mda"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "me_12": {
+            "Name": "Montenegro",
+            "Neighbors": [
+                "al_10",
+                "ba_x07",
+                "hr_13",
+                "rs_16",
+                "xk_x18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "mne",
+                "calculated_value": "mne"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "mk_62": {
+            "Name": "Macedonia",
+            "Neighbors": [
+                "al_06",
+                "al_10",
+                "bg_23",
+                "gr_b",
+                "gr_c",
+                "rs_15",
+                "xk_x18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "mkd",
+                "calculated_value": "mkd"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "mt_30": {
+            "Name": "Malta",
+            "Neighbors": [],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "mlt",
+                "calculated_value": "mlt"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "nl_fr": {
+            "Name": "Friesland",
+            "Neighbors": [
+                "de_ni",
+                "nl_ge"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nld",
+                "calculated_value": "nld"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "nl_ge": {
+            "Name": "Gelderland",
+            "Neighbors": [
+                "de_ni",
+                "de_nw",
+                "nl_fr",
+                "nl_nb"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nld",
+                "calculated_value": "nld"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "nl_nb": {
+            "Name": "Noord-Brabant",
+            "Neighbors": [
+                "be_vwv",
+                "be_wlx",
+                "de_nw",
+                "nl_ge"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nld",
+                "calculated_value": "nld"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_04": {
+            "Name": "Hedmark",
+            "Neighbors": [
+                "no_05",
+                "no_06",
+                "no_16",
+                "se_s",
+                "se_w",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_05": {
+            "Name": "Oppland",
+            "Neighbors": [
+                "no_04",
+                "no_06",
+                "no_14",
+                "no_15",
+                "no_16"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_06": {
+            "Name": "Buskerud",
+            "Neighbors": [
+                "no_04",
+                "no_05",
+                "no_08",
+                "no_12",
+                "no_14",
+                "se_o",
+                "se_s"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_08": {
+            "Name": "Telemark",
+            "Neighbors": [
+                "no_06",
+                "no_09",
+                "no_12"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_09": {
+            "Name": "Aust-Agder",
+            "Neighbors": [
+                "no_08",
+                "no_12"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_12": {
+            "Name": "Hordaland",
+            "Neighbors": [
+                "no_06",
+                "no_08",
+                "no_09",
+                "no_14"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_14": {
+            "Name": "Sogn og Fjordane",
+            "Neighbors": [
+                "no_05",
+                "no_06",
+                "no_12",
+                "no_15"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_15": {
+            "Name": "Møre og Romsdal",
+            "Neighbors": [
+                "no_05",
+                "no_14",
+                "no_16"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_16": {
+            "Name": "Sør-Trøndelag",
+            "Neighbors": [
+                "no_04",
+                "no_05",
+                "no_15",
+                "no_17",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_17": {
+            "Name": "Nord-Trøndelag",
+            "Neighbors": [
+                "no_16",
+                "no_18",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_18": {
+            "Name": "Nordland",
+            "Neighbors": [
+                "no_17",
+                "no_19",
+                "se_ac",
+                "se_bd",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_19": {
+            "Name": "Troms",
+            "Neighbors": [
+                "fi_10",
+                "no_18",
+                "no_20",
+                "se_bd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "no_20": {
+            "Name": "Finnmark",
+            "Neighbors": [
+                "fi_10",
+                "no_19",
+                "ru_mur"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "nor",
+                "calculated_value": "nor"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_ds": {
+            "Name": "Lower Silesian",
+            "Neighbors": [
+                "cz_mo",
+                "de_sn",
+                "pl_lb",
+                "pl_sl",
+                "pl_wp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_kp": {
+            "Name": "Kuyavian-Pomeranian",
+            "Neighbors": [
+                "pl_ld",
+                "pl_mz",
+                "pl_pm",
+                "pl_wn",
+                "pl_wp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_lb": {
+            "Name": "Lubusz",
+            "Neighbors": [
+                "de_bb",
+                "de_sn",
+                "pl_ds",
+                "pl_wp",
+                "pl_zp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_ld": {
+            "Name": "Łódź",
+            "Neighbors": [
+                "pl_kp",
+                "pl_ma",
+                "pl_mz",
+                "pl_sl",
+                "pl_wp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_lu": {
+            "Name": "Lublin",
+            "Neighbors": [
+                "by_br",
+                "pl_ma",
+                "pl_mz",
+                "pl_pd",
+                "pl_pk",
+                "ua_07",
+                "ua_46"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_ma": {
+            "Name": "Lesser Poland",
+            "Neighbors": [
+                "pl_ld",
+                "pl_lu",
+                "pl_mz",
+                "pl_pk",
+                "pl_sl",
+                "sk_bc",
+                "sk_pv"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_mz": {
+            "Name": "Masovian",
+            "Neighbors": [
+                "pl_kp",
+                "pl_ld",
+                "pl_lu",
+                "pl_ma",
+                "pl_pd",
+                "pl_wn"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_pd": {
+            "Name": "Podlachian",
+            "Neighbors": [
+                "by_br",
+                "by_hr",
+                "lt_ku",
+                "lt_vl",
+                "pl_lu",
+                "pl_mz",
+                "pl_wn"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_pk": {
+            "Name": "Subcarpathian",
+            "Neighbors": [
+                "pl_lu",
+                "pl_ma",
+                "sk_pv",
+                "ua_21",
+                "ua_46"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_pm": {
+            "Name": "Pomeranian",
+            "Neighbors": [
+                "pl_kp",
+                "pl_wn",
+                "pl_wp",
+                "pl_zp",
+                "ru_kgd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_sl": {
+            "Name": "Silesian",
+            "Neighbors": [
+                "cz_mo",
+                "pl_ds",
+                "pl_ld",
+                "pl_ma",
+                "pl_wp",
+                "sk_bc"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_wn": {
+            "Name": "Warmian-Masurian",
+            "Neighbors": [
+                "lt_ku",
+                "pl_kp",
+                "pl_mz",
+                "pl_pd",
+                "pl_pm",
+                "ru_kgd"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_wp": {
+            "Name": "Greater Poland",
+            "Neighbors": [
+                "pl_ds",
+                "pl_kp",
+                "pl_lb",
+                "pl_ld",
+                "pl_pm",
+                "pl_sl",
+                "pl_zp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pl_zp": {
+            "Name": "West Pomeranian",
+            "Neighbors": [
+                "de_bb",
+                "de_mv",
+                "pl_lb",
+                "pl_pm",
+                "pl_wp"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "pol",
+                "calculated_value": "pol"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pt_02": {
+            "Name": "Beja",
+            "Neighbors": [
+                "es_ba",
+                "es_se",
+                "pt_05",
+                "pt_07"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "prt",
+                "calculated_value": "prt"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pt_04": {
+            "Name": "Norte",
+            "Neighbors": [
+                "es_le",
+                "es_or",
+                "es_sa",
+                "pt_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "prt",
+                "calculated_value": "prt"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pt_05": {
+            "Name": "Castelo Branco",
+            "Neighbors": [
+                "es_cc",
+                "pt_02",
+                "pt_07",
+                "pt_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "prt",
+                "calculated_value": "prt"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pt_07": {
+            "Name": "Évora",
+            "Neighbors": [
+                "es_ba",
+                "es_cc",
+                "pt_02",
+                "pt_05"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "prt",
+                "calculated_value": "prt"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "pt_09": {
+            "Name": "Guarda",
+            "Neighbors": [
+                "es_cc",
+                "es_sa",
+                "pt_04",
+                "pt_05"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "prt",
+                "calculated_value": "prt"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_ag": {
+            "Name": "Arges",
+            "Neighbors": [
+                "ro_bc",
+                "ro_dj",
+                "ro_hd",
+                "ro_is",
+                "ro_sv",
+                "ro_tl",
+                "ro_tr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_ar": {
+            "Name": "Arad",
+            "Neighbors": [
+                "hu_bk",
+                "hu_hb",
+                "ro_cj",
+                "ro_hd",
+                "ro_tm"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_bc": {
+            "Name": "Bacau",
+            "Neighbors": [
+                "ro_ag",
+                "ro_is",
+                "ro_sv"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_cj": {
+            "Name": "Cluj",
+            "Neighbors": [
+                "hu_hb",
+                "ro_ar",
+                "ro_hd",
+                "ro_sv",
+                "ua_21",
+                "ua_26"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_ct": {
+            "Name": "Constanta",
+            "Neighbors": [
+                "bg_02",
+                "ro_tl",
+                "ro_tr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_dj": {
+            "Name": "Dolj",
+            "Neighbors": [
+                "bg_15",
+                "ro_ag",
+                "ro_gj",
+                "ro_hd",
+                "ro_tr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_gj": {
+            "Name": "Gorj",
+            "Neighbors": [
+                "bg_15",
+                "ro_dj",
+                "ro_hd",
+                "ro_tm",
+                "rs_11"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_hd": {
+            "Name": "Hunedoara",
+            "Neighbors": [
+                "ro_ag",
+                "ro_ar",
+                "ro_cj",
+                "ro_dj",
+                "ro_gj",
+                "ro_sv",
+                "ro_tm"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_is": {
+            "Name": "Iasi",
+            "Neighbors": [
+                "md_fa",
+                "md_ga",
+                "ro_ag",
+                "ro_bc",
+                "ro_sv",
+                "ro_tl",
+                "ua_51"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_sv": {
+            "Name": "Suceava",
+            "Neighbors": [
+                "md_fa",
+                "ro_ag",
+                "ro_bc",
+                "ro_cj",
+                "ro_hd",
+                "ro_is",
+                "ua_26"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_tl": {
+            "Name": "Tulcea",
+            "Neighbors": [
+                "ro_ag",
+                "ro_ct",
+                "ro_is",
+                "ro_tr",
+                "ua_51"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_tm": {
+            "Name": "Timis",
+            "Neighbors": [
+                "hu_bk",
+                "ro_ar",
+                "ro_gj",
+                "ro_hd",
+                "rs_06",
+                "rs_11"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ro_tr": {
+            "Name": "Teleorman",
+            "Neighbors": [
+                "bg_02",
+                "bg_04",
+                "bg_15",
+                "ro_ag",
+                "ro_ct",
+                "ro_dj",
+                "ro_tl"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rou",
+                "calculated_value": "rou"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "rs_06": {
+            "Name": "Južno-Backi",
+            "Neighbors": [
+                "hr_14",
+                "hu_bk",
+                "ro_tm",
+                "rs_11"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "srb",
+                "calculated_value": "srb"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "rs_11": {
+            "Name": "Branicevski",
+            "Neighbors": [
+                "ba_x02",
+                "ba_x07",
+                "bg_15",
+                "hr_14",
+                "ro_gj",
+                "ro_tm",
+                "rs_06",
+                "rs_15",
+                "rs_16"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "srb",
+                "calculated_value": "srb"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "rs_15": {
+            "Name": "Zajecarski",
+            "Neighbors": [
+                "bg_15",
+                "bg_23",
+                "mk_62",
+                "rs_11",
+                "rs_16",
+                "xk_x18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "srb",
+                "calculated_value": "srb"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "rs_16": {
+            "Name": "Zlatiborski",
+            "Neighbors": [
+                "ba_x07",
+                "me_12",
+                "rs_11",
+                "rs_15",
+                "xk_x18"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "srb",
+                "calculated_value": "srb"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ark": {
+            "Name": "Arkhangel'sk",
+            "Neighbors": [
+                "ru_kir",
+                "ru_ko",
+                "ru_kr",
+                "ru_nen",
+                "ru_vlg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ast": {
+            "Name": "Astrakhan'",
+            "Neighbors": [
+                "ru_kl",
+                "ru_vgg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ba": {
+            "Name": "Bashkortostan",
+            "Neighbors": [
+                "ru_ore",
+                "ru_per",
+                "ru_ta",
+                "ru_ud"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_bel": {
+            "Name": "Belgorod",
+            "Neighbors": [
+                "ru_krs",
+                "ru_vor",
+                "ua_09",
+                "ua_59",
+                "ua_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_bry": {
+            "Name": "Bryansk",
+            "Neighbors": [
+                "by_ho",
+                "by_ma",
+                "ru_klu",
+                "ru_krs",
+                "ru_orl",
+                "ru_smo",
+                "ua_59",
+                "ua_74"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ce": {
+            "Name": "Chechnya",
+            "Neighbors": [
+                "ge_ka",
+                "ru_da",
+                "ru_kb",
+                "ru_sta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_cu": {
+            "Name": "Chuvash",
+            "Neighbors": [
+                "ru_me",
+                "ru_mo",
+                "ru_niz",
+                "ru_ta",
+                "ru_uly"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_da": {
+            "Name": "Dagestan",
+            "Neighbors": [
+                "az_imi",
+                "az_qba",
+                "ge_ka",
+                "ru_ce",
+                "ru_kl",
+                "ru_sta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_iva": {
+            "Name": "Ivanovo",
+            "Neighbors": [
+                "ru_kos",
+                "ru_niz",
+                "ru_vla",
+                "ru_yar"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kb": {
+            "Name": "Kabardin-Balkar",
+            "Neighbors": [
+                "ge_ab",
+                "ge_ka",
+                "ru_ce",
+                "ru_kc",
+                "ru_sta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kc": {
+            "Name": "Karachay-Cherkess",
+            "Neighbors": [
+                "ge_ab",
+                "ru_kb",
+                "ru_kda",
+                "ru_sta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kda": {
+            "Name": "Krasnodar",
+            "Neighbors": [
+                "ge_ab",
+                "ru_kc",
+                "ru_ros",
+                "ru_sta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kgd": {
+            "Name": "Kaliningrad",
+            "Neighbors": [
+                "lt_kl",
+                "lt_ku",
+                "pl_pm",
+                "pl_wn"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kir": {
+            "Name": "Kirov",
+            "Neighbors": [
+                "ru_ark",
+                "ru_ko",
+                "ru_kos",
+                "ru_me",
+                "ru_niz",
+                "ru_per",
+                "ru_ta",
+                "ru_ud",
+                "ru_vlg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kl": {
+            "Name": "Kalmyk",
+            "Neighbors": [
+                "ru_ast",
+                "ru_da",
+                "ru_ros",
+                "ru_sta",
+                "ru_vgg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_klu": {
+            "Name": "Kaluga",
+            "Neighbors": [
+                "ru_bry",
+                "ru_mow",
+                "ru_orl",
+                "ru_smo",
+                "ru_tul"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ko": {
+            "Name": "Komi",
+            "Neighbors": [
+                "ru_ark",
+                "ru_kir",
+                "ru_nen",
+                "ru_per"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kos": {
+            "Name": "Kostroma",
+            "Neighbors": [
+                "ru_iva",
+                "ru_kir",
+                "ru_niz",
+                "ru_vlg",
+                "ru_yar"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_kr": {
+            "Name": "Karelia",
+            "Neighbors": [
+                "fi_02",
+                "fi_05",
+                "fi_10",
+                "fi_13",
+                "fi_14",
+                "ru_ark",
+                "ru_len",
+                "ru_mur",
+                "ru_vlg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_krs": {
+            "Name": "Kursk",
+            "Neighbors": [
+                "ru_bel",
+                "ru_bry",
+                "ru_lip",
+                "ru_orl",
+                "ru_vor",
+                "ua_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_len": {
+            "Name": "Leningrad",
+            "Neighbors": [
+                "ee_37",
+                "fi_02",
+                "ru_kr",
+                "ru_ngr",
+                "ru_psk",
+                "ru_vlg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_lip": {
+            "Name": "Lipetsk",
+            "Neighbors": [
+                "ru_krs",
+                "ru_orl",
+                "ru_rya",
+                "ru_tam",
+                "ru_tul",
+                "ru_vor"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_me": {
+            "Name": "Mariy-El",
+            "Neighbors": [
+                "ru_cu",
+                "ru_kir",
+                "ru_niz",
+                "ru_ta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_mo": {
+            "Name": "Mordovia",
+            "Neighbors": [
+                "ru_cu",
+                "ru_niz",
+                "ru_pnz",
+                "ru_rya",
+                "ru_uly"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_mow": {
+            "Name": "Moskovskaya",
+            "Neighbors": [
+                "ru_klu",
+                "ru_rya",
+                "ru_smo",
+                "ru_tul",
+                "ru_tve",
+                "ru_vla",
+                "ru_yar"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_mur": {
+            "Name": "Murmansk",
+            "Neighbors": [
+                "fi_10",
+                "no_20",
+                "ru_kr"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_nen": {
+            "Name": "Nenets",
+            "Neighbors": [
+                "ru_ark",
+                "ru_ko"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ngr": {
+            "Name": "Novgorod",
+            "Neighbors": [
+                "ru_len",
+                "ru_psk",
+                "ru_tve",
+                "ru_vlg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_niz": {
+            "Name": "Nizhegorod",
+            "Neighbors": [
+                "ru_cu",
+                "ru_iva",
+                "ru_kir",
+                "ru_kos",
+                "ru_me",
+                "ru_mo",
+                "ru_rya",
+                "ru_vla"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ore": {
+            "Name": "Orenburg",
+            "Neighbors": [
+                "ru_ba",
+                "ru_sam",
+                "ru_ta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_orl": {
+            "Name": "Orel",
+            "Neighbors": [
+                "ru_bry",
+                "ru_klu",
+                "ru_krs",
+                "ru_lip",
+                "ru_tul"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_per": {
+            "Name": "Perm'",
+            "Neighbors": [
+                "ru_ba",
+                "ru_kir",
+                "ru_ko",
+                "ru_ud"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_pnz": {
+            "Name": "Penza",
+            "Neighbors": [
+                "ru_mo",
+                "ru_rya",
+                "ru_sar",
+                "ru_tam",
+                "ru_uly"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_psk": {
+            "Name": "Pskov",
+            "Neighbors": [
+                "by_vi",
+                "ee_37",
+                "ee_67",
+                "lv_047",
+                "lv_059",
+                "ru_len",
+                "ru_ngr",
+                "ru_smo",
+                "ru_tve"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ros": {
+            "Name": "Rostov",
+            "Neighbors": [
+                "ru_kda",
+                "ru_kl",
+                "ru_sta",
+                "ru_vgg",
+                "ru_vor",
+                "ua_09",
+                "ua_14"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_rya": {
+            "Name": "Ryazan'",
+            "Neighbors": [
+                "ru_lip",
+                "ru_mo",
+                "ru_mow",
+                "ru_niz",
+                "ru_pnz",
+                "ru_tam",
+                "ru_tul",
+                "ru_vla"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_sam": {
+            "Name": "Samara",
+            "Neighbors": [
+                "ru_ore",
+                "ru_sar",
+                "ru_ta",
+                "ru_uly"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_sar": {
+            "Name": "Saratov",
+            "Neighbors": [
+                "ru_pnz",
+                "ru_sam",
+                "ru_tam",
+                "ru_uly",
+                "ru_vgg",
+                "ru_vor"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_smo": {
+            "Name": "Smolensk",
+            "Neighbors": [
+                "by_ma",
+                "by_vi",
+                "ru_bry",
+                "ru_klu",
+                "ru_mow",
+                "ru_psk",
+                "ru_tve"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_sta": {
+            "Name": "Stavropol'",
+            "Neighbors": [
+                "ru_ce",
+                "ru_da",
+                "ru_kb",
+                "ru_kc",
+                "ru_kda",
+                "ru_kl",
+                "ru_ros"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ta": {
+            "Name": "Tatarstan",
+            "Neighbors": [
+                "ru_ba",
+                "ru_cu",
+                "ru_kir",
+                "ru_me",
+                "ru_ore",
+                "ru_sam",
+                "ru_ud",
+                "ru_uly"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_tam": {
+            "Name": "Tambov",
+            "Neighbors": [
+                "ru_lip",
+                "ru_pnz",
+                "ru_rya",
+                "ru_sar",
+                "ru_vor"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_tul": {
+            "Name": "Tula",
+            "Neighbors": [
+                "ru_klu",
+                "ru_lip",
+                "ru_mow",
+                "ru_orl",
+                "ru_rya"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_tve": {
+            "Name": "Tver'",
+            "Neighbors": [
+                "ru_mow",
+                "ru_ngr",
+                "ru_psk",
+                "ru_smo",
+                "ru_vlg",
+                "ru_yar"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_ud": {
+            "Name": "Udmurt",
+            "Neighbors": [
+                "ru_ba",
+                "ru_kir",
+                "ru_per",
+                "ru_ta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_uly": {
+            "Name": "Ul'yanovsk",
+            "Neighbors": [
+                "ru_cu",
+                "ru_mo",
+                "ru_pnz",
+                "ru_sam",
+                "ru_sar",
+                "ru_ta"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_vgg": {
+            "Name": "Volgograd",
+            "Neighbors": [
+                "ru_ast",
+                "ru_kl",
+                "ru_ros",
+                "ru_sar",
+                "ru_vor"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_vla": {
+            "Name": "Vladimir",
+            "Neighbors": [
+                "ru_iva",
+                "ru_mow",
+                "ru_niz",
+                "ru_rya",
+                "ru_yar"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_vlg": {
+            "Name": "Vologda",
+            "Neighbors": [
+                "ru_ark",
+                "ru_kir",
+                "ru_kos",
+                "ru_kr",
+                "ru_len",
+                "ru_ngr",
+                "ru_tve",
+                "ru_yar"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_vor": {
+            "Name": "Voronezh",
+            "Neighbors": [
+                "ru_bel",
+                "ru_krs",
+                "ru_lip",
+                "ru_ros",
+                "ru_sar",
+                "ru_tam",
+                "ru_vgg",
+                "ua_09"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ru_yar": {
+            "Name": "Yaroslavl'",
+            "Neighbors": [
+                "ru_iva",
+                "ru_kos",
+                "ru_mow",
+                "ru_tve",
+                "ru_vla",
+                "ru_vlg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "rus",
+                "calculated_value": "rus"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_ac": {
+            "Name": "Västerbotten",
+            "Neighbors": [
+                "no_18",
+                "se_bd",
+                "se_y",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_bd": {
+            "Name": "Norrbotten",
+            "Neighbors": [
+                "fi_10",
+                "no_18",
+                "no_19",
+                "se_ac"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_c": {
+            "Name": "Uppsala",
+            "Neighbors": [
+                "se_t",
+                "se_x"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_e": {
+            "Name": "Östergötland",
+            "Neighbors": [
+                "se_g",
+                "se_h",
+                "se_o",
+                "se_t"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_g": {
+            "Name": "Kronoberg",
+            "Neighbors": [
+                "se_e",
+                "se_h",
+                "se_m",
+                "se_o"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_h": {
+            "Name": "Kalmar",
+            "Neighbors": [
+                "se_e",
+                "se_g"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_m": {
+            "Name": "Skåne",
+            "Neighbors": [
+                "se_g"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_o": {
+            "Name": "Västra Götaland",
+            "Neighbors": [
+                "no_06",
+                "se_e",
+                "se_g",
+                "se_s",
+                "se_t"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_s": {
+            "Name": "Värmland",
+            "Neighbors": [
+                "no_04",
+                "no_06",
+                "se_o",
+                "se_t",
+                "se_w"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_t": {
+            "Name": "Orebro",
+            "Neighbors": [
+                "se_c",
+                "se_e",
+                "se_o",
+                "se_s",
+                "se_w",
+                "se_x"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_w": {
+            "Name": "Dalarna",
+            "Neighbors": [
+                "no_04",
+                "se_s",
+                "se_t",
+                "se_x",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_x": {
+            "Name": "Gävleborg",
+            "Neighbors": [
+                "se_c",
+                "se_t",
+                "se_w",
+                "se_y",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_y": {
+            "Name": "Västernorrland",
+            "Neighbors": [
+                "se_ac",
+                "se_x",
+                "se_z"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "se_z": {
+            "Name": "Jämtland",
+            "Neighbors": [
+                "no_04",
+                "no_16",
+                "no_17",
+                "no_18",
+                "se_ac",
+                "se_w",
+                "se_x",
+                "se_y"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "swe",
+                "calculated_value": "swe"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "si_048": {
+            "Name": "Slovenia",
+            "Neighbors": [
+                "at_3",
+                "at_6",
+                "hr_03",
+                "hu_ve",
+                "it_ud"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "svn",
+                "calculated_value": "svn"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "sk_bc": {
+            "Name": "Banskobystrický",
+            "Neighbors": [
+                "cz_jc",
+                "cz_mo",
+                "hu_bz",
+                "pl_ma",
+                "pl_sl",
+                "sk_ni",
+                "sk_pv"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "svk",
+                "calculated_value": "svk"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "sk_ni": {
+            "Name": "Nitriansky",
+            "Neighbors": [
+                "at_3",
+                "cz_jc",
+                "hu_bk",
+                "hu_bz",
+                "hu_ve",
+                "sk_bc"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "svk",
+                "calculated_value": "svk"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "sk_pv": {
+            "Name": "Prešov",
+            "Neighbors": [
+                "hu_bz",
+                "pl_ma",
+                "pl_pk",
+                "sk_bc",
+                "ua_21"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "svk",
+                "calculated_value": "svk"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "sm_06": {
+            "Name": "San Marino",
+            "Neighbors": [
+                "it_bo",
+                "it_pg"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "smr",
+                "calculated_value": "smr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_01": {
+            "Name": "Adana",
+            "Neighbors": [
+                "tr_33",
+                "tr_38",
+                "tr_46"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_03": {
+            "Name": "Afyonkarahisar",
+            "Neighbors": [
+                "tr_26",
+                "tr_32",
+                "tr_42",
+                "tr_43",
+                "tr_45",
+                "tr_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_04": {
+            "Name": "Agri",
+            "Neighbors": [
+                "am_gr",
+                "am_lo",
+                "az_bab",
+                "tr_13",
+                "tr_25",
+                "tr_36",
+                "tr_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_06": {
+            "Name": "Ankara",
+            "Neighbors": [
+                "tr_14",
+                "tr_26",
+                "tr_37",
+                "tr_42",
+                "tr_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_07": {
+            "Name": "Antalya",
+            "Neighbors": [
+                "tr_32",
+                "tr_33",
+                "tr_42",
+                "tr_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_10": {
+            "Name": "Balikesir",
+            "Neighbors": [
+                "tr_16",
+                "tr_35",
+                "tr_43",
+                "tr_45",
+                "tr_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_13": {
+            "Name": "Bitlis",
+            "Neighbors": [
+                "tr_04",
+                "tr_21",
+                "tr_23",
+                "tr_25",
+                "tr_47",
+                "tr_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_14": {
+            "Name": "Bolu",
+            "Neighbors": [
+                "tr_06",
+                "tr_16",
+                "tr_26",
+                "tr_34",
+                "tr_37"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_16": {
+            "Name": "Bursa",
+            "Neighbors": [
+                "tr_10",
+                "tr_14",
+                "tr_26",
+                "tr_34",
+                "tr_43"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_21": {
+            "Name": "Diyarbakir",
+            "Neighbors": [
+                "tr_13",
+                "tr_23",
+                "tr_44",
+                "tr_47",
+                "tr_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_23": {
+            "Name": "Elazig",
+            "Neighbors": [
+                "tr_13",
+                "tr_21",
+                "tr_24",
+                "tr_25",
+                "tr_44"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_24": {
+            "Name": "Erzincan",
+            "Neighbors": [
+                "tr_23",
+                "tr_25",
+                "tr_28",
+                "tr_44",
+                "tr_58"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_25": {
+            "Name": "Erzurum",
+            "Neighbors": [
+                "tr_04",
+                "tr_13",
+                "tr_23",
+                "tr_24",
+                "tr_28",
+                "tr_36"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_26": {
+            "Name": "Eskisehir",
+            "Neighbors": [
+                "tr_03",
+                "tr_06",
+                "tr_14",
+                "tr_16",
+                "tr_42",
+                "tr_43"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_28": {
+            "Name": "Giresun",
+            "Neighbors": [
+                "tr_24",
+                "tr_25",
+                "tr_36",
+                "tr_58",
+                "tr_60"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_32": {
+            "Name": "Isparta",
+            "Neighbors": [
+                "tr_03",
+                "tr_07",
+                "tr_42",
+                "tr_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_33": {
+            "Name": "Mersin",
+            "Neighbors": [
+                "tr_01",
+                "tr_07",
+                "tr_38",
+                "tr_42"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_34": {
+            "Name": "Istanbul",
+            "Neighbors": [
+                "tr_14",
+                "tr_16",
+                "tr_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_35": {
+            "Name": "Izmir",
+            "Neighbors": [
+                "tr_10",
+                "tr_45",
+                "tr_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_36": {
+            "Name": "Kars",
+            "Neighbors": [
+                "am_lo",
+                "ge_sj",
+                "tr_04",
+                "tr_25",
+                "tr_28"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_37": {
+            "Name": "Kastamonu",
+            "Neighbors": [
+                "tr_06",
+                "tr_14",
+                "tr_55",
+                "tr_66",
+                "tr_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_38": {
+            "Name": "Kayseri",
+            "Neighbors": [
+                "tr_01",
+                "tr_33",
+                "tr_42",
+                "tr_46",
+                "tr_58",
+                "tr_66",
+                "tr_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_42": {
+            "Name": "Konya",
+            "Neighbors": [
+                "tr_03",
+                "tr_06",
+                "tr_07",
+                "tr_26",
+                "tr_32",
+                "tr_33",
+                "tr_38",
+                "tr_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_43": {
+            "Name": "Kütahya",
+            "Neighbors": [
+                "tr_03",
+                "tr_10",
+                "tr_16",
+                "tr_26",
+                "tr_45"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_44": {
+            "Name": "Malatya",
+            "Neighbors": [
+                "tr_21",
+                "tr_23",
+                "tr_24",
+                "tr_46",
+                "tr_58",
+                "tr_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_45": {
+            "Name": "Manisa",
+            "Neighbors": [
+                "tr_03",
+                "tr_10",
+                "tr_35",
+                "tr_43",
+                "tr_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_46": {
+            "Name": "K. Maras",
+            "Neighbors": [
+                "tr_01",
+                "tr_38",
+                "tr_44",
+                "tr_58",
+                "tr_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_47": {
+            "Name": "Mardin",
+            "Neighbors": [
+                "tr_13",
+                "tr_21",
+                "tr_63",
+                "tr_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_48": {
+            "Name": "Mugla",
+            "Neighbors": [
+                "tr_03",
+                "tr_07",
+                "tr_32",
+                "tr_35",
+                "tr_45"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_55": {
+            "Name": "Samsun",
+            "Neighbors": [
+                "tr_37",
+                "tr_60",
+                "tr_66"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_58": {
+            "Name": "Sivas",
+            "Neighbors": [
+                "tr_24",
+                "tr_28",
+                "tr_38",
+                "tr_44",
+                "tr_46",
+                "tr_60",
+                "tr_66"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_59": {
+            "Name": "Tekirdag",
+            "Neighbors": [
+                "bg_02",
+                "bg_04",
+                "bg_16",
+                "gr_a",
+                "tr_10",
+                "tr_34"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_60": {
+            "Name": "Tokat",
+            "Neighbors": [
+                "tr_28",
+                "tr_55",
+                "tr_58",
+                "tr_66"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_63": {
+            "Name": "Sanliurfa",
+            "Neighbors": [
+                "tr_21",
+                "tr_44",
+                "tr_46",
+                "tr_47"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_65": {
+            "Name": "Van",
+            "Neighbors": [
+                "tr_04",
+                "tr_13",
+                "tr_47"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_66": {
+            "Name": "Yozgat",
+            "Neighbors": [
+                "tr_37",
+                "tr_38",
+                "tr_55",
+                "tr_58",
+                "tr_60",
+                "tr_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "tr_68": {
+            "Name": "Aksaray",
+            "Neighbors": [
+                "tr_06",
+                "tr_37",
+                "tr_38",
+                "tr_42",
+                "tr_66"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "tur",
+                "calculated_value": "tur"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_05": {
+            "Name": "Vinnytsya",
+            "Neighbors": [
+                "md_fa",
+                "ua_18",
+                "ua_26",
+                "ua_32",
+                "ua_35",
+                "ua_51",
+                "ua_68",
+                "ua_71"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_07": {
+            "Name": "Volyn",
+            "Neighbors": [
+                "by_br",
+                "pl_lu",
+                "ua_46",
+                "ua_56"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_09": {
+            "Name": "Luhans'k",
+            "Neighbors": [
+                "ru_bel",
+                "ru_ros",
+                "ru_vor",
+                "ua_14",
+                "ua_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_12": {
+            "Name": "Dnipropetrovs'k",
+            "Neighbors": [
+                "ua_14",
+                "ua_23",
+                "ua_35",
+                "ua_48",
+                "ua_53",
+                "ua_63",
+                "ua_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_14": {
+            "Name": "Donets'k",
+            "Neighbors": [
+                "ru_ros",
+                "ua_09",
+                "ua_12",
+                "ua_23",
+                "ua_63"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_18": {
+            "Name": "Zhytomyr",
+            "Neighbors": [
+                "by_ho",
+                "ua_05",
+                "ua_32",
+                "ua_56",
+                "ua_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_21": {
+            "Name": "Transcarpathia",
+            "Neighbors": [
+                "hu_bz",
+                "hu_hb",
+                "pl_pk",
+                "ro_cj",
+                "sk_pv",
+                "ua_26",
+                "ua_46"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_23": {
+            "Name": "Zaporizhzhya",
+            "Neighbors": [
+                "ua_12",
+                "ua_14",
+                "ua_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_26": {
+            "Name": "Ivano-Frankivs'k",
+            "Neighbors": [
+                "md_fa",
+                "ro_cj",
+                "ro_sv",
+                "ua_05",
+                "ua_21",
+                "ua_46",
+                "ua_61",
+                "ua_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_32": {
+            "Name": "Kiev",
+            "Neighbors": [
+                "by_ho",
+                "ua_05",
+                "ua_18",
+                "ua_53",
+                "ua_71",
+                "ua_74"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_35": {
+            "Name": "Kirovohrad",
+            "Neighbors": [
+                "ua_05",
+                "ua_12",
+                "ua_48",
+                "ua_51",
+                "ua_53",
+                "ua_71"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_43": {
+            "Name": "Crimea",
+            "Neighbors": [
+                "ua_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_46": {
+            "Name": "L'viv",
+            "Neighbors": [
+                "pl_lu",
+                "pl_pk",
+                "ua_07",
+                "ua_21",
+                "ua_26",
+                "ua_56",
+                "ua_61"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_48": {
+            "Name": "Mykolayiv",
+            "Neighbors": [
+                "ua_12",
+                "ua_35",
+                "ua_51",
+                "ua_65"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_51": {
+            "Name": "Odessa",
+            "Neighbors": [
+                "md_fa",
+                "md_ga",
+                "ro_is",
+                "ro_tl",
+                "ua_05",
+                "ua_35",
+                "ua_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_53": {
+            "Name": "Poltava",
+            "Neighbors": [
+                "ua_12",
+                "ua_32",
+                "ua_35",
+                "ua_59",
+                "ua_63",
+                "ua_71",
+                "ua_74"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_56": {
+            "Name": "Rivne",
+            "Neighbors": [
+                "by_br",
+                "by_ho",
+                "ua_07",
+                "ua_18",
+                "ua_46",
+                "ua_61",
+                "ua_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_59": {
+            "Name": "Sumy",
+            "Neighbors": [
+                "ru_bel",
+                "ru_bry",
+                "ru_krs",
+                "ua_53",
+                "ua_63",
+                "ua_74"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_61": {
+            "Name": "Ternopil'",
+            "Neighbors": [
+                "ua_26",
+                "ua_46",
+                "ua_56",
+                "ua_68"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_63": {
+            "Name": "Kharkiv",
+            "Neighbors": [
+                "ru_bel",
+                "ua_09",
+                "ua_12",
+                "ua_14",
+                "ua_53",
+                "ua_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_65": {
+            "Name": "Kherson",
+            "Neighbors": [
+                "ua_12",
+                "ua_23",
+                "ua_43",
+                "ua_48"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_68": {
+            "Name": "Khmel'nyts'kyy",
+            "Neighbors": [
+                "ua_05",
+                "ua_18",
+                "ua_26",
+                "ua_56",
+                "ua_61"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_71": {
+            "Name": "Cherkasy",
+            "Neighbors": [
+                "ua_05",
+                "ua_32",
+                "ua_35",
+                "ua_53"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "ua_74": {
+            "Name": "Chernihiv",
+            "Neighbors": [
+                "by_ho",
+                "ru_bry",
+                "ua_32",
+                "ua_53",
+                "ua_59"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "ukr",
+                "calculated_value": "ukr"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "va_x01": {
+            "Name": "Vatican",
+            "Neighbors": [
+                "it_rm"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "vat",
+                "calculated_value": "vat"
+            },
+            "Modifier": {},
+            "Institution": {}
+        },
+        "xk_x18": {
+            "Name": "Kosovo",
+            "Neighbors": [
+                "al_10",
+                "me_12",
+                "mk_62",
+                "rs_15",
+                "rs_16"
+            ],
+            "owner": {
+                "Kind": "value",
+                "Type": "ref(actor)",
+                "Value": "kos",
+                "calculated_value": "kos"
+            },
+            "Modifier": {},
+            "Institution": {}
+        }
+    }
+}
