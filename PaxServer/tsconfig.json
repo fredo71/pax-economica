@@ -5,7 +5,15 @@
     "lib": ["ES2022", "DOM"],
     // TypeScript 7 no longer picks up installed @types packages on its own
     "types": ["leaflet", "geojson"],
+    // the browser loads the compiled files as modules. NodeNext makes the .js in imports (./game.js) mandatory:
+    // the looser "bundler" setting accepts ./game, which compiles and then fails in the browser
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    // Leaflet arrives as a plain <script> that sets the global L; modules may not use such globals without this
+    "allowUmdGlobalAccess": true,
     "sourceMap": true,
+    // the server only serves wwwroot, so the maps carry the TypeScript inside them for the browser's debugger
+    "inlineSources": true,
     "rootDir": "Scripts",
     "outDir": "wwwroot"
   },

@@ -1,6 +1,7 @@
 {
   "name": "pax-server",
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@types/geojson": "7946.0.16",
     "@types/leaflet": "1.9.22",

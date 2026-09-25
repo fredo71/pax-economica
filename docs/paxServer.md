@@ -80,8 +80,11 @@ Sending the whole game document is a first step only. It stops working once the 
 |---|---|---|
 | `Program.cs` | the server: hands out everything in `wwwroot/`, and `/` gives `index.html`. Registers `.geojson`, which it would otherwise refuse with a 404 | done |
 | `wwwroot/index.html` | the page: loads Leaflet, holds the map `<div>` | done |
-| `Scripts/map.ts` | loads the shapes and the game document, colours each province by its owner. Lists any id mismatch between the two files in the F12 console | done |
-| `wwwroot/map.js` | compiled from `Scripts/map.ts`. Never edit by hand; not committed | generated |
+| `Scripts/main.ts` | entry point: downloads both files, builds the game, draws it. Any failure shows as red text on the page and nothing is drawn | done |
+| `Scripts/game.ts` | the game as the page sees it (`Game`, `Province`, `Nation`, all readonly: built once, then only read). `buildGame` checks both files and links them; any problem stops the page with one message listing them all. It checks only what the page uses: value types and formula references are the C# engine's job. `serializeProvince` turns references back into ids | done |
+| `Scripts/map.ts` | draws every province coloured by its owner (wiping the previous drawing first); a click prints the province as raw text | done |
+| `Scripts/page.ts` | helpers for `index.html` itself, shared by the other modules (`findElement`) | done |
+| `wwwroot/*.js` | compiled from `Scripts/`, loaded by the browser as modules. Never edit by hand; not committed | generated |
 | `wwwroot/provinces.geojson` | the province shapes, each with only an `id` (`fr_75`). For now: 385 European provinces merged from Natural Earth admin-1 regions, one province per line, sorted by id. Made by the scripts in `tools/map/`, which are local only (ignored by git) | test data |
 | `wwwroot/europe.json` | the game document. For now only `Actor` (55 modern nations, each with a `Name` and a `Colour`) and `Provinces` (`Name`, `Neighbors`, `owner`). Generated once by `tools/map/makeScenario.js`, edited by hand from then on | test data |
 | `tsconfig.json` | TypeScript settings, shared by the build and the editor | done |
