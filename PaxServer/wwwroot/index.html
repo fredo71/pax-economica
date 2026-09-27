@@ -2,24 +2,13 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <style>
-    html, body, #map { height: 100%; margin: 0; }
-    #map { background: #a9cce3; }   /* the sea: no street map underneath */
-    .leaflet-interactive:focus { outline: none; }   /* browser focus box on clicked provinces */
-
-    /* floating text boxes; z-index lifts them above Leaflet's own layers */
-    .text-box {
-      position: absolute; top: 10px; right: 10px; z-index: 1000;
-      max-width: 40ch; max-height: 80%; overflow: auto;
-      margin: 0; padding: 8px 12px; background: white; border: 1px solid #333;
-      font-size: 13px; white-space: pre-wrap;
-    }
-    .text-box:empty { display: none; }
-    #error-text { color: #b22222; }
-  </style>
+  <link rel="stylesheet" href="styles/page.css">
+  <link rel="stylesheet" href="styles/map.css">
 </head>
 <body>
-  <div id="map"></div>
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
   <pre id="province-text" class="text-box"></pre>
   <pre id="error-text" class="text-box"></pre>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

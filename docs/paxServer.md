@@ -79,7 +79,8 @@ Sending the whole game document is a first step only. It stops working once the 
 | File | Job | State |
 |---|---|---|
 | `Program.cs` | the server: hands out everything in `wwwroot/`, and `/` gives `index.html`. Registers `.geojson`, which it would otherwise refuse with a 404 | done |
-| `wwwroot/index.html` | the page: loads Leaflet, holds the map `<div>` | done |
+| `wwwroot/index.html` | the page skeleton: loads Leaflet and the stylesheets, holds the map `<div>` and the text boxes | done |
+| `wwwroot/styles/` | one stylesheet per feature: `page.css` (whole page, text boxes), `map.css` (map, shapes, and the map container that keeps Leaflet's layers under everything else) | done |
 | `Scripts/main.ts` | entry point: downloads both files, builds the game, draws it. Any failure shows as red text on the page and nothing is drawn | done |
 | `Scripts/game.ts` | the game as the page sees it (`Game`, `Province`, `Nation`, all readonly: built once, then only read). Each province carries its institutions and their values (name, figure, description). `buildGame` checks both files and links them; any problem stops the page with one message listing them all. It checks only what the page uses: value types and formula references are the C# engine's job. `serializeProvince` turns references back into ids | done |
 | `Scripts/map.ts` | draws every province coloured by its owner (wiping the previous drawing first); a click prints the province as raw text | done |
