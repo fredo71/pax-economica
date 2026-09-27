@@ -1,5 +1,6 @@
+import { isLocal, showDebugText } from "./debugPanel.js";
 import { Game, buildGame } from "./game.js";
-import { createMap, drawGame } from "./map.js";
+import { createMap, drawGame, onProvinceClick } from "./map.js";
 import { findElement } from "./page.js";
 
 const shapesPath = "provinces.geojson";
@@ -15,10 +16,16 @@ async function start(): Promise<void> {
     const [shapesJson, gameDocumentJson] = await Promise.all([fetchJson(shapesPath), fetchJson(gameDocumentPath)]);
     const game: Game = buildGame(shapesJson, gameDocumentJson);
     const map: L.Map = createMap();
+    listenForProvinceClicks();
     drawGame(map, game);
   } catch (error) {
     showError(error);
   }
+}
+
+// the raw-text debug panel, only on the developer's machine
+function listenForProvinceClicks(): void {
+  if (isLocal()) onProvinceClick(showDebugText);
 }
 
 async function fetchJson(path: string): Promise<unknown> {

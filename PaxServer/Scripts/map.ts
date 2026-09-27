@@ -1,5 +1,7 @@
-import { Game, Province, SerializedProvince, ShapeGeometry, serializeProvince } from "./game.js";
+import { Game, Province, ShapeGeometry } from "./game.js";
 import { findElement } from "./page.js";
+
+type ProvinceClickListener = (province: Province) => void;
 
 // each drawn shape carries its Province, so styling and clicks need no lookup
 interface DrawnProperties {
@@ -8,10 +10,11 @@ interface DrawnProperties {
 type DrawnShape = GeoJSON.Feature<ShapeGeometry, DrawnProperties>;
 
 const mapElementId = "map";                     // the <div> in index.html
-const provinceTextElementId = "province-text";  // the <pre> in index.html
 const europeCentre: L.LatLngTuple = [50, 10];
 const startingZoom = 4;
-const jsonIndentSpaces = 2;
+
+// no +/- buttons: the panel covers the top-left corner they sit in. the wheel, double-click and pinch still zoom
+const mapOptions: L.MapOptions = { zoomControl: false };
 
 // every province shares these; only fillColor changes per province
 const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight: 1 };
@@ -19,9 +22,16 @@ const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight
 // the layer on screen, kept so the next drawGame can remove it before drawing again
 let provinceLayer: L.GeoJSON | undefined;
 
+// everyone told about a province click. the map never knows what they do with it
+const clickListeners: ProvinceClickListener[] = [];
+
+export function onProvinceClick(listener: ProvinceClickListener): void {
+  clickListeners.push(listener);
+}
+
 export function createMap(): L.Map {
   const container: HTMLElement = findElement(mapElementId);
-  const map: L.Map = L.map(container);
+  const map: L.Map = L.map(container, mapOptions);
   map.setView(europeCentre, startingZoom);
   return map;
 }
@@ -56,12 +66,11 @@ function provinceStyle(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>
 
 function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer): void {
   const province: Province = shape.properties.province;
-  drawnShape.on("click", () => showProvinceText(province));
+  drawnShape.on("click", () => announceClick(province));
 }
 
-// raw text for now, to check the click reaches the right data
-function showProvinceText(province: Province): void {
-  const textBox: HTMLElement = findElement(provinceTextElementId);
-  const printable: SerializedProvince = serializeProvince(province);
-  textBox.textContent = JSON.stringify(printable, null, jsonIndentSpaces);
+function announceClick(province: Province): void {
+  for (const listener of clickListeners) {
+    listener(province);
+  }
 }
