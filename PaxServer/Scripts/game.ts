@@ -15,6 +15,7 @@ export interface Province {
   readonly owner: Nation;
   readonly neighbours: readonly string[];   // province ids; objects would point at each other in circles
   readonly outline: ShapeGeometry;
+  readonly institutions: readonly Institution[];
 }
 
 export interface Game {
@@ -28,6 +29,17 @@ export interface SerializedProvince {
   readonly name: string;
   readonly owner: string;
   readonly neighbours: readonly string[];
+}
+
+export interface Value {
+  readonly name: string;                         // "gdp"
+  readonly figure: number | string | boolean;    // calculated_value
+  readonly description: string;                  // "" if the document has none
+}
+
+export interface Institution {
+  readonly name: string;
+  readonly values: readonly Value[];
 }
 
 // builds the Game from the two raw files; throws one error listing every problem found.
@@ -148,9 +160,11 @@ class GameBuilder {
       const outline: ShapeGeometry | undefined = this.findOutline(id);
       const owner: Nation | undefined = this.resolveOwner(id, entry);
       const neighbours: string[] | undefined = this.readNeighbours(id, entry);
-      if (!name || !outline || !owner || !neighbours) continue;
+      const institutions: Institution[] | undefined = this.readInstitutions(id, entry);
 
-      this.provinces.set(id, { id, name, owner, neighbours, outline });
+      if (!name || !outline || !owner || !neighbours || !institutions) continue;
+
+      this.provinces.set(id, { id, name, owner, neighbours, outline , institutions });
     }
   }
 
@@ -197,6 +211,56 @@ class GameBuilder {
     return undefined;
   }
 
+// a province without an Institution section simply has none; that is not a problem
+private readInstitutions(provinceId: string, entry: Record<string, unknown>): Institution[] | undefined {
+  const section: unknown = entry.Institution;                       // level 1: known key
+  if (section === undefined) return [];
+  if (!isRecord(section)) {
+    this.problems.push(`province ${provinceId} has an Institution entry that is not an object`);
+    return undefined;
+  }
+
+  const institutions: Institution[] = [];
+  for (const [institutionName, institution] of Object.entries(section)) {   // level 2: unknown keys
+    const values: Value[] | undefined = this.readValues(provinceId, institutionName, institution);
+    if (values) institutions.push({ name: institutionName, values });
+  }
+  return institutions;
+}
+
+  private readValues(provinceId: string, institutionName: string, institution: unknown): Value[] | undefined {
+    const valuesSection: unknown = isRecord(institution) ? institution.Values : undefined;   // level 3
+    if (!isRecord(valuesSection)) {
+      this.problems.push(`province ${provinceId}: ${institutionName} has no Values`);
+      return undefined;
+    }
+
+    const values: Value[] = [];
+    for (const [valueName, value] of Object.entries(valuesSection)) {
+      const parsedValue = this.readValue(provinceId, institutionName, valueName, value);
+      if (parsedValue) values.push(parsedValue);
+    }
+    return values;
+  }
+
+  // one entry of a Values section, as the engine stores it: { calculated_value, Description }
+  private readValue(provinceId: string, institutionName: string, valueName: string, value: unknown): Value | undefined {
+    if (!isRecord(value)) {
+      this.problems.push(`province ${provinceId}: ${institutionName}.${valueName} is not an object`);
+      return undefined;
+    }
+
+    const figure: unknown = value.calculated_value;
+    if (!isFigure(figure)) {
+      this.problems.push(`province ${provinceId}: ${institutionName}.${valueName} has no calculated_value`);
+      return undefined;
+    }
+
+    const description: unknown = value.Description;
+    return { name: valueName, figure, description: isText(description) ? description : "" };
+  }
+
+
   private checkShapesHaveEntries(provinceEntries: Record<string, unknown>): void {
     for (const id of this.outlines.keys()) {
       const hasEntry = Object.hasOwn(provinceEntries, id);
@@ -234,6 +298,10 @@ function isText(value: unknown): value is string {
 
 function isTextList(value: unknown): value is string[] {
   return Array.isArray(value) && value.every(isText);
+}
+
+function isFigure(value: unknown): value is number | string | boolean {
+  return typeof value === "number" || typeof value === "string" || typeof value === "boolean";
 }
 
 // asks the browser itself, so any colour it can draw is accepted ("#b426cf", "red", "rgb(...)") and typos are not
