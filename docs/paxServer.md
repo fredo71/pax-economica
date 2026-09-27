@@ -86,7 +86,7 @@ Sending the whole game document is a first step only. It stops working once the 
 | `Scripts/page.ts` | helpers for `index.html` itself, shared by the other modules (`findElement`) | done |
 | `wwwroot/*.js` | compiled from `Scripts/`, loaded by the browser as modules. Never edit by hand; not committed | generated |
 | `wwwroot/provinces.geojson` | the province shapes, each with only an `id` (`fr_75`). For now: 385 European provinces merged from Natural Earth admin-1 regions, one province per line, sorted by id. Made by the scripts in `tools/map/`, which are local only (ignored by git) | test data |
-| `wwwroot/europe.json` | the game document. For now only `Actor` (55 modern nations, each with a `Name` and a `Colour`) and `Provinces` (`Name`, `Neighbors`, `owner`). Generated once by `tools/map/makeScenario.js`, edited by hand from then on | test data |
+| `wwwroot/europe.json` | the game document: `Institution` (the economy declaration), `Actor` (55 modern nations, each with a `Name` and a `Colour`), `Provinces` (`Name`, `Neighbors`, `owner`, and the economy institution with `gdp` and `growth`) and `World` (`technology.tech`, which `gdp`'s formula reads). The institution and `World` are copied from exemple.json; `gdp` is made up from each province's area. Generated once by `tools/map/makeScenario.js`, edited by hand from then on | test data |
 | `tsconfig.json` | TypeScript settings, shared by the build and the editor | done |
 | `package.json` | TypeScript and Leaflet's type definitions, from npm | done |
 | `.vscode/tasks.json` (repo root) | compiles TypeScript on every save | done |
