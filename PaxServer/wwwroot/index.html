@@ -11,9 +11,13 @@
       <div id="map"></div>
     </div>
 
-    <aside  class="panel">
-      <div  Id = "institution-panel" ></div>
+    <aside class="panel">
       <h2 id="province-name" class="panel-title"></h2>
+      <div id="province-owner" class="panel-owner">
+        <span id="owner-swatch" class="owner-swatch"></span>
+        <span id="owner-name"></span>
+      </div>
+      <div id="institution-panel"></div>
     </aside>              <!-- last: painted on top -->
     <pre id="province-text" class="text-box"></pre>
     <pre id="error-text" class="text-box"></pre>
@@ -24,11 +28,16 @@
     </script>
     <script type="module" src="main.js"></script>
 <template id="institution-template">
-  <div class="value-row">
-  </div>
+  <details class="institution">
+    <summary class="institution-name"></summary>
+    <div class="institution-values"></div>
+  </details>
 </template>
-<template id="value-template">
+<template id="value-row-template">
   <div class="value-row">
+    <div class="value-name"></div>
+    <div class="value-figure"></div>
+    <div class="value-description"></div>
   </div>
 </template>
   </body>

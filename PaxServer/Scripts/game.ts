@@ -1,6 +1,7 @@
 // the game as the page sees it: the two validated files joined by province id, then only read.
 // readonly marks that intent for the compiler; nothing enforces it at runtime
 import { CheckedFiles, GameState, Institution, ProvinceOutline } from "./validator.js";
+export type { Institution, Value } from "./validator.js";
 
 export type ShapeGeometry = GeoJSON.Polygon | GeoJSON.MultiPolygon;
 
