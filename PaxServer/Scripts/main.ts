@@ -1,6 +1,6 @@
 import { isLocal, showDebugText } from "./debugPanel.js";
 import { Game, buildGame } from "./game.js";
-import { createMap, drawGame, onProvinceClick } from "./map.js";
+import { createMap, drawGame, ProvinceClickListener } from "./map.js";
 import { findElement } from "./page.js";
 import { FillSidePanel } from "./showProvince.js";
 import { CheckedFiles, validateFiles } from "./validator.js";
@@ -17,19 +17,19 @@ async function start(): Promise<void> {
     // both files download at the same time
     const [mapFileJson, gameStateJson] = await Promise.all([fetchJson(mapFileUrl), fetchJson(gameStateUrl)]);
     const files: CheckedFiles = validateFiles(mapFileJson, gameStateJson);
-    const game: Game = buildGame(files);
     const map: L.Map = createMap();
-    listenForProvinceClicks();
-    drawGame(map, game);
+    const game: Game = buildGame(files);
+    drawGame(map, game, provinceClickListeners());
   } catch (error) {
     showError(error);
   }
 }
 
 // the real panel always; the raw-text debug panel only on the developer's machine
-function listenForProvinceClicks(): void {
-  onProvinceClick(FillSidePanel);
-  if (isLocal()) onProvinceClick(showDebugText);
+function provinceClickListeners(): ProvinceClickListener[] {
+  const listeners: ProvinceClickListener[] = [FillSidePanel];
+  if (isLocal()) listeners.push(showDebugText);
+  return listeners;
 }
 
 async function fetchJson(path: string): Promise<unknown> {

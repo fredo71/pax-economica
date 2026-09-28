@@ -1,7 +1,7 @@
 import { Game, Province, ShapeGeometry } from "./game.js";
 import { findElement } from "./page.js";
 
-type ProvinceClickListener = (province: Province) => void;
+export type ProvinceClickListener = (province: Province) => void;
 
 // each drawn shape carries its Province, so styling and clicks need no lookup
 interface DrawnProperties {
@@ -22,13 +22,6 @@ const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight
 // the layer on screen, kept so the next drawGame can remove it before drawing again
 let provinceLayer: L.GeoJSON | undefined;
 
-// everyone told about a province click. the map never knows what they do with it
-const clickListeners: ProvinceClickListener[] = [];
-
-export function onProvinceClick(listener: ProvinceClickListener): void {
-  clickListeners.push(listener);
-}
-
 export function createMap(): L.Map {
   const container: HTMLElement = findElement(mapElementId);
   const map: L.Map = L.map(container, mapOptions);
@@ -36,14 +29,15 @@ export function createMap(): L.Map {
   return map;
 }
 
-// removes everything drawn before, then draws every province of game again
-export function drawGame(map: L.Map, game: Game): void {
+// removes everything drawn before, then draws every province of game again.
+// listeners is announced to on every click, the map never knowing what they do with it
+export function drawGame(map: L.Map, game: Game, listeners: readonly ProvinceClickListener[]): void {
   provinceLayer?.remove();
 
   const shapes: DrawnShape[] = shapesOf(game);
   provinceLayer = L.geoJSON<DrawnProperties>(shapes, {
     style: provinceStyle,
-    onEachFeature: listenForClick,
+    onEachFeature: (shape, drawnShape) => listenForClick(shape, drawnShape, listeners),
   });
   provinceLayer.addTo(map);
 }
@@ -64,13 +58,13 @@ function provinceStyle(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>
   return { ...baseProvinceStyle, fillColor: ownerColour };
 }
 
-function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer): void {
+function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer, listeners: readonly ProvinceClickListener[]): void {
   const province: Province = shape.properties.province;
-  drawnShape.on("click", () => announceClick(province));
+  drawnShape.on("click", () => announceClick(province, listeners));
 }
 
-function announceClick(province: Province): void {
-  for (const listener of clickListeners) {
+function announceClick(province: Province, listeners: readonly ProvinceClickListener[]): void {
+  for (const listener of listeners) {
     listener(province);
   }
 }
