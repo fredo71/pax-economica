@@ -2,9 +2,11 @@ import { isLocal, showDebugText } from "./debugPanel.js";
 import { Game, buildGame } from "./game.js";
 import { createMap, drawGame, onProvinceClick } from "./map.js";
 import { findElement } from "./page.js";
+import { FillSidePanel } from "./showProvince.js";
+import { CheckedFiles, validateFiles } from "./validator.js";
 
-const shapesPath = "provinces.geojson";
-const gameDocumentPath = "europe.json";
+const mapFileUrl = "provinces.geojson";
+const gameStateUrl = "sampleGameState.json";   // stands in for the server until it can send the game state itself
 const errorTextElementId = "error-text";   // the <pre> in index.html
 
 start();
@@ -13,8 +15,9 @@ start();
 async function start(): Promise<void> {
   try {
     // both files download at the same time
-    const [shapesJson, gameDocumentJson] = await Promise.all([fetchJson(shapesPath), fetchJson(gameDocumentPath)]);
-    const game: Game = buildGame(shapesJson, gameDocumentJson);
+    const [mapFileJson, gameStateJson] = await Promise.all([fetchJson(mapFileUrl), fetchJson(gameStateUrl)]);
+    const files: CheckedFiles = validateFiles(mapFileJson, gameStateJson);
+    const game: Game = buildGame(files);
     const map: L.Map = createMap();
     listenForProvinceClicks();
     drawGame(map, game);
@@ -23,8 +26,9 @@ async function start(): Promise<void> {
   }
 }
 
-// the raw-text debug panel, only on the developer's machine
+// the real panel always; the raw-text debug panel only on the developer's machine
 function listenForProvinceClicks(): void {
+  onProvinceClick(FillSidePanel);
   if (isLocal()) onProvinceClick(showDebugText);
 }
 
