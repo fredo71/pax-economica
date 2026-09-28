@@ -4,14 +4,32 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="styles/page.css">
   <link rel="stylesheet" href="styles/map.css">
+  <link rel="stylesheet" href="styles/panel.css">
 </head>
-<body>
-  <div class="map-container">
-    <div id="map"></div>
+  <body>
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+
+    <aside  class="panel">
+      <div  Id = "institution-panel" ></div>
+      <h2 id="province-name" class="panel-title"></h2>
+    </aside>              <!-- last: painted on top -->
+    <pre id="province-text" class="text-box"></pre>
+    <pre id="error-text" class="text-box"></pre>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- compiled modules keep `from "zod"` as written; this tells the browser where that is. same version as package.json -->
+    <script type="importmap">
+      { "imports": { "zod": "https://cdn.jsdelivr.net/npm/zod@4.6.5/+esm" } }
+    </script>
+    <script type="module" src="main.js"></script>
+<template id="institution-template">
+  <div class="value-row">
   </div>
-  <pre id="province-text" class="text-box"></pre>
-  <pre id="error-text" class="text-box"></pre>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="main.js"></script>
-</body>
+</template>
+<template id="value-template">
+  <div class="value-row">
+  </div>
+</template>
+  </body>
 </html>

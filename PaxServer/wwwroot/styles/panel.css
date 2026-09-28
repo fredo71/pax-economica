@@ -1,0 +1,15 @@
+.panel {
+    position: absolute;   /* leaves the normal flow: placed by top/left instead of after the map */
+    top: 0;
+    left: 0;
+    background-color: white;
+    height: 100%;
+    width: 200px;
+}
+
+.value-row{
+    width: 20px;
+    height: 20px;
+    margin:2px;
+
+}
