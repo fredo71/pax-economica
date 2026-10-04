@@ -30,7 +30,7 @@ function fillInstitutions(institutions: readonly Institution[]): void {
 
 function buildInstitutionBlock(institution: Institution): DocumentFragment {
   const block: DocumentFragment = cloneTemplate("institution-template");
-  findIn(block, ".institution-name").textContent = institution.name;
+  findIn(block, ".institution-name").textContent = institution.displayName;
 
   const valuesContainer: HTMLElement = findIn(block, ".institution-values");
   for (const value of institution.values) {
@@ -41,7 +41,7 @@ function buildInstitutionBlock(institution: Institution): DocumentFragment {
 
 function buildValueRow(value: Value): DocumentFragment {
   const row: DocumentFragment = cloneTemplate("value-row-template");
-  findIn(row, ".value-name").textContent = value.name;
+  findIn(row, ".value-name").textContent = value.displayName;
   findIn(row, ".value-figure").textContent = String(value.figure);
 
   // most values have none; an empty description row would show as a blank line

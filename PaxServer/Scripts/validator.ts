@@ -14,12 +14,14 @@ const drawableColour = z.string().refine(colour => CSS.supports("color", colour)
 
 const valueSchema = z.object({
   name: nonEmptyText,                                       // "gdp"
+  displayName: nonEmptyText,                                // "GDP", what the player reads
   figure: z.union([z.number(), z.string(), z.boolean()]),
   description: z.string().default(""),                      // optional extra: missing becomes ""
 });
 
 const institutionSchema = z.object({
-  name: nonEmptyText,
+  name: nonEmptyText,                                       // "institution_economy_province"
+  displayName: nonEmptyText,                                // "Economy", what the player reads
   values: z.array(valueSchema),
 });
 
