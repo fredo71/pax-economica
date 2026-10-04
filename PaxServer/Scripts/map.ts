@@ -1,7 +1,7 @@
+import { isLocal, showDebugText } from "./debugPanel.js";
 import { Game, Province, ShapeGeometry } from "./game.js";
 import { findElement } from "./page.js";
-
-export type ProvinceClickListener = (province: Province) => void;
+import { FillSidePanel } from "./showProvince.js";
 
 // each drawn shape carries its Province, so styling and clicks need no lookup
 interface DrawnProperties {
@@ -12,34 +12,51 @@ type DrawnShape = GeoJSON.Feature<ShapeGeometry, DrawnProperties>;
 const mapElementId = "map";                     // the <div> in index.html
 const europeCentre: L.LatLngTuple = [50, 10];
 const startingZoom = 4;
+const provinceClassName = "province";           // on every province's <path>, so a click can tell it hit one
 
 // no +/- buttons: the panel covers the top-left corner they sit in. the wheel, double-click and pinch still zoom
 const mapOptions: L.MapOptions = { zoomControl: false };
 
 // every province shares these; only fillColor changes per province
-const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight: 1 };
+const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight: 1, className: provinceClassName };
 
-// the layer on screen, kept so the next drawGame can remove it before drawing again
-let provinceLayer: L.GeoJSON | undefined;
+// the map on screen, kept so the next drawGame can remove it: every draw starts from a fresh map
+let shownMap: L.Map | undefined;
 
-export function createMap(): L.Map {
+// replaces whatever was on screen with a new map showing every province of game.
+// a redraw also resets the zoom and position, since the old map is thrown away with everything on it
+export function drawGame(game: Game): void {
+  shownMap?.remove();
+  shownMap = createMap();
+  drawProvinces(shownMap, game);
+  listenForSeaClick(shownMap);
+}
+
+function createMap(): L.Map {
   const container: HTMLElement = findElement(mapElementId);
   const map: L.Map = L.map(container, mapOptions);
   map.setView(europeCentre, startingZoom);
   return map;
 }
 
-// removes everything drawn before, then draws every province of game again.
-// listeners is announced to on every click, the map never knowing what they do with it
-export function drawGame(map: L.Map, game: Game, listeners: readonly ProvinceClickListener[]): void {
-  provinceLayer?.remove();
-
+function drawProvinces(map: L.Map, game: Game): void {
   const shapes: DrawnShape[] = shapesOf(game);
-  provinceLayer = L.geoJSON<DrawnProperties>(shapes, {
+  const provinceLayer: L.GeoJSON = L.geoJSON<DrawnProperties>(shapes, {
     style: provinceStyle,
-    onEachFeature: (shape, drawnShape) => listenForClick(shape, drawnShape, listeners),
+    onEachFeature: (shape, drawnShape) => listenForClick(shape, drawnShape),
   });
   provinceLayer.addTo(map);
+}
+
+// a click on the sea calls onSelect with null
+function listenForSeaClick(map: L.Map): void {
+  map.on("click", (event: L.LeafletMouseEvent) => {
+    // the map hears every click, province clicks included; those are listenForClick's job
+    const clickedElement = event.originalEvent.target as Element;
+    const clickedProvince: boolean = clickedElement.classList.contains(provinceClassName);
+    if (clickedProvince) return;
+    onSelect(null);
+  });
 }
 
 function shapesOf(game: Game): DrawnShape[] {
@@ -58,13 +75,14 @@ function provinceStyle(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>
   return { ...baseProvinceStyle, fillColor: ownerColour };
 }
 
-function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer, listeners: readonly ProvinceClickListener[]): void {
+function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer): void {
   const province: Province = shape.properties.province;
-  drawnShape.on("click", () => announceClick(province, listeners));
+  drawnShape.on("click", () => onSelect(province));
 }
 
-function announceClick(province: Province, listeners: readonly ProvinceClickListener[]): void {
-  for (const listener of listeners) {
-    listener(province);
-  }
+// everything a click changes. province is null when the click landed on the sea.
+// the real panel always; the raw-text debug panel only on the developer's machine
+function onSelect(province: Province | null): void {
+  FillSidePanel(province);
+  if (isLocal()) showDebugText(province);
 }

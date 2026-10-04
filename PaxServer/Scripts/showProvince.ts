@@ -2,7 +2,14 @@
 import { Institution, Nation, Province, Value } from "./game.js";
 import { findElement } from "./page.js";
 
-export function FillSidePanel(province: Province): void {
+const panelElementId = "province-panel";   // the <aside> in index.html
+
+// shows province in the panel, or hides the panel entirely when nothing is selected
+export function FillSidePanel(province: Province | null): void {
+  const panel: HTMLElement = findElement(panelElementId);
+  panel.hidden = province === null;
+  if (province === null) return;
+
   findElement("province-name").textContent = province.name;
   fillOwner(province.owner);
   fillInstitutions(province.institutions);

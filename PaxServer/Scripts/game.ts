@@ -1,6 +1,6 @@
 // the game as the page sees it: the two validated files joined by province id, then only read.
 // readonly marks that intent for the compiler; nothing enforces it at runtime
-import { CheckedFiles, GameState, Institution, ProvinceOutline } from "./validator.js";
+import { CheckedFiles, GameState, Institution, ProvinceOutline, validateFiles } from "./validator.js";
 export type { Institution, Value } from "./validator.js";
 
 export type ShapeGeometry = GeoJSON.Polygon | GeoJSON.MultiPolygon;
@@ -31,11 +31,18 @@ export interface SerializedProvince {
   readonly owner: string;
 }
 
-// joins the two validated files by province id. validateFiles already confirmed every outline has a
-// province, every province an outline, and every owner a real nation, so this join cannot fail
-export function buildGame(files: CheckedFiles): Game {
-  const nations: ReadonlyMap<string, Nation> = buildNations(files.gameState);
-  const provinces: ReadonlyMap<string, Province> = buildProvinces(files.outlines, files.gameState, nations);
+// the two files as downloaded, not yet checked
+export interface GameFiles {
+  readonly mapFile: unknown;     // provinces.geojson
+  readonly gameState: unknown;   // sampleGameState.json, until the server sends it
+}
+
+// checks both files, then joins them by province id. throws, listing every problem, if they are bad.
+// builds everything from scratch on every call: nothing is kept from a previous game
+export function buildGame(files: GameFiles): Game {
+  const checkedFiles: CheckedFiles = validateFiles(files.mapFile, files.gameState);
+  const nations: ReadonlyMap<string, Nation> = buildNations(checkedFiles.gameState);
+  const provinces: ReadonlyMap<string, Province> = buildProvinces(checkedFiles.outlines, checkedFiles.gameState, nations);
   return { provinces, nations };
 }
 
@@ -56,6 +63,8 @@ function buildNations(gameState: GameState): ReadonlyMap<string, Nation> {
   return nations;
 }
 
+// validateFiles already confirmed every outline has a province, every province an outline,
+// and every owner a real nation, so this join cannot fail
 function buildProvinces(outlines: readonly ProvinceOutline[], gameState: GameState, nations: ReadonlyMap<string, Nation>): ReadonlyMap<string, Province> {
   const provinces = new Map<string, Province>();
   for (const outline of outlines) {

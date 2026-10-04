@@ -13,8 +13,13 @@ export function isLocal(): boolean {
   return localHostNames.includes(hostName);
 }
 
-export function showDebugText(province: Province): void {
+// an empty box hides itself (.text-box:empty in page.css), so a sea click hides it too
+export function showDebugText(province: Province | null): void {
   const textBox: HTMLElement = findElement(debugTextElementId);
+  if (province === null) {
+    textBox.textContent = "";
+    return;
+  }
   const printable: SerializedProvince = serializeProvince(province);
   textBox.textContent = JSON.stringify(printable, null, jsonIndentSpaces);
 }
