@@ -1,10 +1,12 @@
 .panel {
     position: absolute;   /* leaves the normal flow: placed by top/left instead of after the map */
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 240px;
+    top: 16px;
+    left: 16px;
+    width: 340px;
+    max-width: calc(100% - 32px);   /* on a phone narrower than the window, keeps the 16px gap on both sides */
     box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     padding: 12px;
     overflow-y: auto;
     background-color: white;
