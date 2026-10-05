@@ -6,13 +6,21 @@ const panelElementId = "province-panel";   // the <aside> in index.html
 
 // shows province in the panel, or hides the panel entirely when nothing is selected
 export function FillSidePanel(province: Province | null): void {
-  const panel: HTMLElement = findElement(panelElementId);
-  panel.hidden = province === null;
-  if (province === null) return;
+  const isSelected = province !== null;
+  showPanel(isSelected);
+  if (!isSelected) return;
 
-  findElement("province-name").textContent = province.name;
+  fillName(province.name);
   fillOwner(province.owner);
   fillInstitutions(province.institutions);
+}
+
+function showPanel(isShown: boolean): void {
+  findElement(panelElementId).hidden = !isShown;
+}
+
+function fillName(provinceName: string): void {
+  findElement("province-name").textContent = provinceName;
 }
 
 // the panel's top border is the strip that ties the window to the owner
