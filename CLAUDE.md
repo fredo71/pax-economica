@@ -32,7 +32,7 @@ you can find in the docs for the following:
 ### Readability (every language)
 
   - every rule in this file applies to every language in the repo -- C#, TypeScript, and local scripts alike
-  - one operation per line: give each intermediate result a named variable instead of chaining lookups, calls and object-building into one expression. the names are the explanation (e.g. `bool wasStillPending = pending.Remove(item);` then `if (!wasStillPending && ...)`)
+  - one operation per line: give each intermediate result a named variable instead of chaining lookups, calls and object-building into one expression. the names are the explanation (e.g. `bool wasStillPending = pending.Remove(item);` then `if (!wasStillPending && ...)`). a single lookup that is immediately set counts as one operation and may stay on one line (`findElement("owner-name").textContent = owner.name`): splitting it adds a line without explaining anything
   - no magic values inline: a number, colour or string that means something gets a named constant (e.g. `MinimumInstanceCapacity = 64`, not a bare 64). a value already labelled by the key it sits under (`weight: 1` inside a named style object) counts as named
   - show types the reader cannot see at a glance. in TypeScript, annotate every declaration whose type is not obvious from its own line, and never let `any` spread: check untyped data (parsed JSON) where it arrives and give it a real type there
   - exception, TypeScript: a condition saved to narrow a type (`const hasActors = isRecord(actors);` then `if (hasActors) ...`) takes no type annotation. writing `: boolean` on it silently stops TypeScript narrowing through it, and the code then needs a cast to compile
