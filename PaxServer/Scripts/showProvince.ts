@@ -15,7 +15,9 @@ export function FillSidePanel(province: Province | null): void {
   fillInstitutions(province.institutions);
 }
 
+// the panel's top border is the strip that ties the window to the owner
 function fillOwner(owner: Nation): void {
+  findElement(panelElementId).style.borderTopColor = owner.colour;
   findElement("owner-swatch").style.backgroundColor = owner.colour;
   findElement("owner-name").textContent = owner.name;
 }

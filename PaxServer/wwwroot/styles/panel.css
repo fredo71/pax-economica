@@ -7,7 +7,8 @@
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    padding: 12px;
+    border-top: 8px solid transparent;   /* the owner's colour strip, coloured by showProvince.ts */
+    padding: 12px 16px 16px;
     overflow-y: auto;
     background-color: white;
     font-family: sans-serif;
@@ -15,14 +16,15 @@
 
 .panel-title {
     margin: 0 0 4px;
-    font-size: 1.2em;
+    font-size: 1.6em;
+    line-height: 1.2;
 }
 
 .panel-owner {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     color: #444;
 }
 
