@@ -52,7 +52,7 @@ function buildInstitutionBlock(institution: Institution): DocumentFragment {
 function buildValueRow(value: Value): DocumentFragment {
   const row: DocumentFragment = cloneTemplate("value-row-template");
   findIn(row, ".value-name").textContent = value.displayName;
-  findIn(row, ".value-figure").textContent = String(value.figure);
+  findIn(row, ".value-figure").textContent = `${value.figure}${value.unit}`;
 
   // the browser's own tooltip on hover; an empty description shows none. phones have no hover, so they never see it
   findIn(row, ".value-row").title = value.description;

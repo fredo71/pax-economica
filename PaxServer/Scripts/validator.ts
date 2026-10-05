@@ -16,6 +16,7 @@ const valueSchema = z.object({
   name: nonEmptyText,                                       // "gdp"
   displayName: nonEmptyText,                                // "GDP", what the player reads
   figure: z.union([z.number(), z.string(), z.boolean()]),
+  unit: z.string().default(""),                             // " M$": put right after the figure, so it carries its own leading space if it wants one
   description: z.string().default(""),                      // optional extra: missing becomes ""
 });
 
