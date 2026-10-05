@@ -54,11 +54,8 @@ function buildValueRow(value: Value): DocumentFragment {
   findIn(row, ".value-name").textContent = value.displayName;
   findIn(row, ".value-figure").textContent = String(value.figure);
 
-  // most values have none; an empty description row would show as a blank line
-  const descriptionElement: HTMLElement = findIn(row, ".value-description");
-  if (value.description) descriptionElement.textContent = value.description;
-  else descriptionElement.remove();
-
+  // the browser's own tooltip on hover; an empty description shows none. phones have no hover, so they never see it
+  findIn(row, ".value-row").title = value.description;
   return row;
 }
 

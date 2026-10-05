@@ -49,15 +49,13 @@
     padding: 6px 0 6px 10px;
 }
 
+/* name on the left, figure pushed to the right edge */
 .value-row {
+    display: flex;
+    justify-content: space-between;
     margin: 6px 0;
 }
 
 .value-name {
     font-weight: 600;
-}
-
-.value-description {
-    font-size: 0.85em;
-    color: #666;
 }
