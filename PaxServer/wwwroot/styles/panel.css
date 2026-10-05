@@ -36,17 +36,36 @@
 }
 
 .institution {
-    border-top: 1px solid #ddd;
-    padding: 4px 0;
+    margin-top: 8px;
 }
 
+/* the bar that opens and closes the institution */
 .institution-name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background-color: #f2f2f2;
     cursor: pointer;
     font-weight: bold;
+    list-style: none;   /* hides the browser's own ▼ */
 }
+.institution-name::-webkit-details-marker { display: none; }   /* Safari's ▼ ignores list-style */
+.institution-name:hover { background-color: #e4e4e4; }
 
+/* the arrow on the right: points right when closed, down when open */
+.institution-name::after {
+    content: "\203A";        /* "›" written as its code: the stylesheet isn't read as UTF-8, so the character itself arrives garbled */
+    display: inline-block;   /* an inline element can't be rotated */
+    font-size: 1.3em;
+    transition: transform 0.15s;
+}
+.institution[open] > .institution-name::after { transform: rotate(90deg); }
+
+/* lined up with the bar's text */
 .institution-values {
-    padding: 6px 0 6px 10px;
+    padding: 6px 12px;
 }
 
 /* name on the left, figure pushed to the right edge */
