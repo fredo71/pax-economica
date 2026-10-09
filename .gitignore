@@ -7,6 +7,16 @@ obj/
 *.suo
 *.userprefs
 
+# ---- Node / TypeScript ----
+node_modules/
+# compiled from PaxServer/Scripts/ -- edit the .ts, never these
+PaxServer/wwwroot/*.js
+PaxServer/wwwroot/*.js.map
+
+# ---- Map tools ----
+# local scripts that generated PaxServer/wwwroot/provinces.geojson; see tools/map/README.md
+tools/map/
+
 # ---- IDE ----
 .vs/
 .idea/

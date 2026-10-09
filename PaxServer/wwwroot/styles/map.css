@@ -1,0 +1,10 @@
+/* the map and the province shapes */
+
+#map { height: 100%; background: #a9cce3; }   /* the sea: no street map underneath */
+.leaflet-interactive:focus { outline: none; }   /* browser focus box on clicked provinces */
+
+.map-container {
+    position: absolute;
+    top: 0; left: 0; height: 100%; width: 100%;
+    z-index: 0;     /* seals Leaflet's 400+ inside the map; the panel then wins by order alone */
+}

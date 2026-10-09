@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TypeScript on save",
+      "type": "shell",
+      "command": "npx tsc --watch -p .",
+      "options": { "cwd": "${workspaceFolder}/PaxServer" },
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch",
+      "runOptions": { "runOn": "folderOpen" }
+    }
+  ]
+}

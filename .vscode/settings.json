@@ -1,0 +1,4 @@
+{
+  "files.associations": { "*.geojson": "json" },
+  "[json]": { "editor.formatOnSave": true }
+}
