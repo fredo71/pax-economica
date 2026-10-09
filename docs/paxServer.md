@@ -181,6 +181,19 @@ Versions: the build package is 7.0.1 and npm's TypeScript is 7.0.2, because npm 
 
 ---
 
+## Deploying
+
+`.github/workflows/deploy.yml` builds the site on GitHub and sends it to Azure App Service.
+
+- **every push and pull request:** `npm ci`, then `dotnet publish`. This compiles the TypeScript, so a type error turns the run red
+- **push to `main` only:** the published folder is then deployed to Azure
+- **why GitHub builds it:** `wwwroot/*.js` is in `.gitignore`, so the repo alone holds no JavaScript. A deploy that doesn't compile first serves a page without code
+- **setup:** the app name is `AZURE_WEBAPP_NAME` in the workflow, and the secret `AZURE_WEBAPP_PUBLISH_PROFILE` (the App Service's downloaded publish profile) is in the repo's Actions secrets
+- **one deployer only:** if Deployment Center in the Azure portal also deploys from the repo, disable it
+- the App Service must run .NET 10
+
+---
+
 ## Keeping This Current
 
 When a step lands, update the Files and Steps tables. Write decisions down after they're made, not before.
