@@ -7,7 +7,7 @@ using static GameStateChecks;
 // property's JSON key is its own name unless [JsonPropertyName] says otherwise
 public class GameState
 {
-    public int Turn { get; }
+    public int Turn { get; private set; }
     [JsonPropertyName("Actor")]
     public Dictionary<string, Actor> Actors { get; }                        // keyed by actor tag
     public Dictionary<string, Province> Provinces { get; }                  // keyed by province id
@@ -105,6 +105,11 @@ public class GameState
     {
         string gameStateJson = JsonSerializer.Serialize(this, WebNames);
         return JsonSerializer.Deserialize<GameState>(gameStateJson, WebNames)!;
+    }
+
+    public void AdvanceTurn()
+    {
+        Turn++;
     }
 
     // every value of every actor, then of every province, then of the world, each in order of its key so the order never varies
@@ -235,9 +240,8 @@ public class Institution
 public class Value
 {
     public string DisplayName { get; }                                      // "GDP"
-    public string Kind { get; }                                             // "value" or "formula"
     public string Type { get; }                                             // "float"
-    public string Formula { get; }                                          // a literal for a value, an expression for a formula
+    public string Formula { get; }                                          // evaluated every tick: "0.5", "prev.base + growth*prev.base"
     [JsonPropertyName("calculated_value")]
     public double CalculatedValue
     {
@@ -254,14 +258,12 @@ public class Value
     public string Path { get; internal set; } = "";                         // "provinces.ad_06.institution_economy_province.gdp", set by GameState
 
     [JsonConstructor]
-    public Value(string displayName, string kind, string type, string formula, double calculatedValue, string unit = "", string description = "")
+    public Value(string displayName, string type, string formula, double calculatedValue, string unit = "", string description = "")
     {
         Require(IsNonEmpty(displayName), "a value has no display name");
-        Require(IsNonEmpty(kind), $"value {displayName} has no kind");
         Require(IsNonEmpty(type), $"value {displayName} has no type");
         Require(IsNonEmpty(formula), $"value {displayName} has no formula");
         DisplayName = displayName;
-        Kind = kind;
         Type = type;
         Formula = formula;
         CalculatedValue = calculatedValue;

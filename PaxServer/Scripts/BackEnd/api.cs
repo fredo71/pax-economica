@@ -13,10 +13,7 @@ public static class Api
 
     public static void RunTick(GameManager gameManager)
     {
-        GameState gameState = gameManager.GetGameState();
-        GameState newGameState = RunGame.RunTick(gameState);
-        gameManager.SetGameState(newGameState);
-
+        gameManager.RunTick();
     }
     
 
