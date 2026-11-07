@@ -1,9 +1,9 @@
+import { fetchGameState } from "./gameApi.js";
 import { Game, buildGame } from "./game.js";
 import { drawGame } from "./map.js";
 import { findElement } from "./page.js";
 
 const mapFileUrl = "provinces.geojson";
-const gameStateUrl = "sampleGameState.json";   // stands in for the server until it can send the game state itself
 const errorTextElementId = "error-text";   // the <pre> in index.html
 
 start();
@@ -12,7 +12,7 @@ start();
 async function start(): Promise<void> {
   try {
     // both files download at the same time
-    const [mapFile, gameState] = await Promise.all([fetchJson(mapFileUrl), fetchJson(gameStateUrl)]);
+    const [mapFile, gameState] = await Promise.all([fetchJson(mapFileUrl), fetchGameState()]);
     const game: Game = buildGame({ mapFile, gameState });
     drawGame(game);
   } catch (error) {

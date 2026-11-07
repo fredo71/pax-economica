@@ -1,5 +1,5 @@
 // fills the side panel on a click: province name, owner, then one collapsible block per institution
-import { Institution, Nation, Province, Value } from "./game.js";
+import { Actor, Institution, Province, Value } from "./game.js";
 import { findElement } from "./page.js";
 
 const panelElementId = "province-panel";   // the <aside> in index.html
@@ -24,16 +24,16 @@ function fillName(provinceName: string): void {
 }
 
 // the panel's top border is the strip that ties the window to the owner
-function fillOwner(owner: Nation): void {
+function fillOwner(owner: Actor): void {
   findElement(panelElementId).style.borderTopColor = owner.colour;
   findElement("owner-swatch").style.backgroundColor = owner.colour;
   findElement("owner-name").textContent = owner.name;
 }
 
-function fillInstitutions(institutions: readonly Institution[]): void {
+function fillInstitutions(institutions: Readonly<Record<string, Institution>>): void {
   const panel: HTMLElement = findElement("institution-panel");
   panel.replaceChildren();
-  for (const institution of institutions) {
+  for (const institution of Object.values(institutions)) {
     panel.append(buildInstitutionBlock(institution));
   }
 }
@@ -43,7 +43,7 @@ function buildInstitutionBlock(institution: Institution): DocumentFragment {
   findIn(block, ".institution-name").textContent = institution.displayName;
 
   const valuesContainer: HTMLElement = findIn(block, ".institution-values");
-  for (const value of institution.values) {
+  for (const value of Object.values(institution.values)) {
     valuesContainer.append(buildValueRow(value));
   }
   return block;
@@ -52,7 +52,7 @@ function buildInstitutionBlock(institution: Institution): DocumentFragment {
 function buildValueRow(value: Value): DocumentFragment {
   const row: DocumentFragment = cloneTemplate("value-row-template");
   findIn(row, ".value-name").textContent = value.displayName;
-  findIn(row, ".value-figure").textContent = `${value.figure}${value.unit}`;
+  findIn(row, ".value-figure").textContent = `${value.calculated_value}${value.unit}`;
 
   // the browser's own tooltip on hover; an empty description shows none. phones have no hover, so they never see it
   findIn(row, ".value-row").title = value.description;

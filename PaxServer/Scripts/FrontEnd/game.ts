@@ -5,8 +5,8 @@ export type { Institution, Value } from "./validator.js";
 
 export type ShapeGeometry = GeoJSON.Polygon | GeoJSON.MultiPolygon;
 
-export interface Nation {
-  readonly key: string;      // "fra", what province owners refer to
+export interface Actor {
+  readonly tag: string;      // "fra", what province owners refer to
   readonly name: string;     // "France"
   readonly colour: string;   // "#b426cf"
 }
@@ -14,14 +14,14 @@ export interface Nation {
 export interface Province {
   readonly id: string;                      // "fr_18", the same id as in provinces.geojson
   readonly name: string;                    // "Cher"
-  readonly owner: Nation;
+  readonly owner: Actor;
   readonly outline: ShapeGeometry;
-  readonly institutions: readonly Institution[];
+  readonly institutions: Readonly<Record<string, Institution>>;   // keyed by institution name
 }
 
 export interface Game {
   readonly provinces: ReadonlyMap<string, Province>;   // by id
-  readonly nations: ReadonlyMap<string, Nation>;       // by key
+  readonly actors: ReadonlyMap<string, Actor>;         // by tag
 }
 
 // a province as plain data, the way it would be written to a file or sent over the network
@@ -34,16 +34,16 @@ export interface SerializedProvince {
 // the two files as downloaded, not yet checked
 export interface GameFiles {
   readonly mapFile: unknown;     // provinces.geojson
-  readonly gameState: unknown;   // sampleGameState.json, until the server sends it
+  readonly gameState: unknown;   // what the server sends
 }
 
 // checks both files, then joins them by province id. throws, listing every problem, if they are bad.
 // builds everything from scratch on every call: nothing is kept from a previous game
 export function buildGame(files: GameFiles): Game {
   const checkedFiles: CheckedFiles = validateFiles(files.mapFile, files.gameState);
-  const nations: ReadonlyMap<string, Nation> = buildNations(checkedFiles.gameState);
-  const provinces: ReadonlyMap<string, Province> = buildProvinces(checkedFiles.outlines, checkedFiles.gameState, nations);
-  return { provinces, nations };
+  const actors: ReadonlyMap<string, Actor> = buildActors(checkedFiles.gameState);
+  const provinces: ReadonlyMap<string, Province> = buildProvinces(checkedFiles.outlines, checkedFiles.gameState, actors);
+  return { provinces, actors };
 }
 
 // references become ids (owner: "fra"); the outline is left out, being hundreds of points
@@ -51,34 +51,34 @@ export function serializeProvince(province: Province): SerializedProvince {
   return {
     id: province.id,
     name: province.name,
-    owner: province.owner.key,
+    owner: province.owner.tag,
   };
 }
 
-function buildNations(gameState: GameState): ReadonlyMap<string, Nation> {
-  const nations = new Map<string, Nation>();
-  for (const [key, nation] of Object.entries(gameState.nations)) {
-    nations.set(key, { key, name: nation.name, colour: nation.colour });
+function buildActors(gameState: GameState): ReadonlyMap<string, Actor> {
+  const actors = new Map<string, Actor>();
+  for (const [tag, actor] of Object.entries(gameState.Actor)) {
+    actors.set(tag, { tag, name: actor.name, colour: actor.colour });
   }
-  return nations;
+  return actors;
 }
 
 // validateFiles already confirmed every outline has a province, every province an outline,
-// and every owner a real nation, so this join cannot fail
-function buildProvinces(outlines: readonly ProvinceOutline[], gameState: GameState, nations: ReadonlyMap<string, Nation>): ReadonlyMap<string, Province> {
+// and every owner a real actor, so this join cannot fail
+function buildProvinces(outlines: readonly ProvinceOutline[], gameState: GameState, actors: ReadonlyMap<string, Actor>): ReadonlyMap<string, Province> {
   const provinces = new Map<string, Province>();
   for (const outline of outlines) {
     const id: string = outline.properties.id;
     const source = gameState.provinces[id];
-    const owner: Nation = nationOf(nations, source.owner);
-    provinces.set(id, { id, name: source.name, owner, outline: outline.geometry, institutions: source.institutions });
+    const owner: Actor = actorOf(actors, source.owner);
+    provinces.set(id, { id, name: source.name, owner, outline: outline.geometry, institutions: source.Institution });
   }
   return provinces;
 }
 
 // a miss here means validateFiles let an unknown owner through: a broken invariant, not bad input
-function nationOf(nations: ReadonlyMap<string, Nation>, key: string): Nation {
-  const nation: Nation | undefined = nations.get(key);
-  if (!nation) throw new Error(`nation ${key} not found even though validateFiles checked it exists`);
-  return nation;
+function actorOf(actors: ReadonlyMap<string, Actor>, tag: string): Actor {
+  const actor: Actor | undefined = actors.get(tag);
+  if (!actor) throw new Error(`actor ${tag} not found even though validateFiles checked it exists`);
+  return actor;
 }
