@@ -19,7 +19,7 @@ So the approach changes:
 
 | Doc | Status |
 |---|---|
-| CLAUDE.md | applies: naming, comments and structure rules for all code |
+| CLAUDE.md | applies: naming, comments and structure rules for all code, and how the page keeps its state |
 | docs/engineSpec.md | applies: what the game means. Needed once the engine arrives |
 | exemple/exemple.json | applies: the worked example document |
 | docs/paxServer.md (this file) | the guide for PaxServer |
@@ -48,12 +48,14 @@ opens the link  ───────────────────►  se
 reads it, runs main.js  ───────────►  sends main.js and the modules it imports
                                       (Leaflet and Zod come from CDNs)
 main.js asks for the map file  ────►  sends provinces.geojson
-     and for the game state  ──────►  sends sampleGameState.json (next: GET /api/game)
+     and for the game state  ──────►  GET /api/game sends the game state
 checks both, joins them by province id,
 Leaflet draws each province as an SVG <path>, filled with its owner's colour
+Next turn button  ─────────────────►  POST /api/game runs a tick
+then downloads and draws everything again
 ```
 
-The server loads `europe.json` at startup into its game state, keeps it in memory, and runs a tick on `POST /api/game`. `GET /api/game` sends that game state as it is. The page doesn't use it yet: it still reads `sampleGameState.json`, in the older page-only shape.
+The server loads `europe.json` at startup into its game state, keeps it in memory, and runs a tick on `POST /api/game`. `GET /api/game` sends that game state as it is.
 
 **The split, decided:** the server knows only the game state, which includes each province's id. The page knows the game state *and* the outlines, and turns the two into what it draws. The server never shapes data for the page.
 
@@ -64,9 +66,9 @@ The server loads `europe.json` at startup into its game state, keeps it in memor
 | **map file** | `provinces.geojson`: every province's outline. Fixed for a whole game | `mapFileUrl`, `mapFileJson` |
 | **province outline** | one entry of the map file: an id and a polygon. Only the drawing uses it | `ProvinceOutline`, `outlines` |
 | **game document** | `europe.json`: the starting state of a game, formulas included. Loaded once, at startup | `GameStateBuilder` |
-| **game state** | the game document loaded into memory and ticked from there. The server sends it to the page as it is | `GameState` (C#); `GameState`, `gameStateSchema`, `gameStateUrl` (page, still the older shape) |
+| **game state** | the game document loaded into memory and ticked from there. The server sends it to the page as it is | `GameState` (C#); `GameState`, `gameStateSchema`, `gameStateUrl` (page) |
 | **path** | where a value sits, as a formula writes it: `provinces.ad_06.institution_economy_province.gdp`, `world.technology.tech` | `Value.Path`, `GameState.FindValue` |
-| **game** | the game state joined with the outlines: everything the page draws and clicks | `Game` (the new one arrives with the join) |
+| **game** | the game state joined with the outlines: everything the page draws and clicks | `Game` |
 | **province** | one province inside the game: outline plus state | `Province` |
 
 Addresses end in `Url` (where to download), raw downloads end in `Json` (checked by nobody yet), and checked data has the plain name.
@@ -77,7 +79,7 @@ Addresses end in `Url` (where to download), raw downloads end in `Json` (checked
 |---|---|---|---|
 | map file (`provinces.geojson`) | sent to the page once | never during a game | province outlines: ids and polygons only |
 | game document (`europe.json`) | server, read once at startup | never: edited by hand between runs | the starting state (format below) |
-| game state | server memory, sent by `GET /api/game` | every tick | the game document's shape, with each value's `calculated_value` brought up to date. The page joins it with the outlines by province id (still `sampleGameState.json` until the page switches) |
+| game state | server memory, sent by `GET /api/game` | every tick | the game document's shape, with each value's `calculated_value` brought up to date. The page joins it with the outlines by province id |
 
 A province's outline and id are fixed. Everything else about it (owner, name, values) lives in the game state and can change.
 
@@ -102,20 +104,18 @@ Values.<name>           DisplayName, Type, Formula, calculated_value, Unit, Desc
 
 Types disappear when TypeScript compiles, so nothing checks downloaded JSON unless the page does. `Scripts/FrontEnd/validator.ts` checks both downloads before anything is drawn, in two stages:
 
-1. **Each piece on its own, with Zod schemas.** The map file must be a list of `Polygon` or `MultiPolygon` features, each with an id. The game state must have the right fields, non-empty names and ids, colours the browser can draw, and a whole-number `turn`. If either file fails, checking stops here, since later checks would only add noise.
-2. **References across pieces, one function each.** Every outline has a province and every province an outline; no outline id repeats; province and entity owners are real nations; entity locations are real provinces; no institution or value name repeats in one list.
+1. **Each piece on its own, with Zod schemas.** The map file must be a list of `Polygon` or `MultiPolygon` features, each with an id. The game state must be in the game document's shape (dictionaries keyed by id and name, `Actor`, `calculated_value`), with non-empty names and ids, colours the browser can draw, and a whole-number `turn`. If either file fails, checking stops here, since later checks would only add noise.
+2. **References across pieces, one function each.** Every outline has a province and every province an outline; no outline id repeats; province owners are real actors. Names inside the game state can't repeat, since they are JSON keys.
 
 Every problem is collected, then thrown once. The page shows them all in red and draws nothing.
 
 Not checked on purpose: game logic (is this figure plausible, can this army be there). That is the engine's job, and a second copy in TypeScript would drift from it.
 
-When the page switches to `GET /api/game`, the game state schema changes to the game document's shape (dictionaries keyed by id and name, `Actor`, `calculated_value`), and the checks above follow it.
-
 **Later, the server decides:**
 - the page sends an action as JSON, e.g. "eng takes fr_75"
 - the server runs it through the engine, which accepts or rejects it
 - the server sends the page the new game state
-- the page decides how facts look, and never keeps its own copy of the game state, because the document is the state (CLAUDE.md, Determinism and State)
+- the page decides how facts look, and never changes the game state itself: it only shows the last one the server sent, because the server's document is the state
 
 Sending the whole game state has a known cost: anything sent can be read with F12, formulas included. Once the game state holds something a player mustn't see, the server will have to leave it out.
 
@@ -133,19 +133,19 @@ Sending the whole game state has a known cost: anything sent can be read with F1
 | `Scripts/BackEnd/GameStateChecks.cs` | the rules fields must obey (actor tags, colours, finite figures) and `Require`, which refuses a broken one | done |
 | `Scripts/BackEnd/RunGame.cs` | `RunTick`: copies the state, recalculates every value from the *previous* state (so the order never matters), then advances the turn | done |
 | `Scripts/BackEnd/FormulaReader.cs` | `Evaluate` reads a formula left to right and calculates as it goes (see Choices): numbers, `+ - * /`, brackets, unary minus, `prev.base`, sibling names and full paths. A problem is printed where it happens (path, formula, position, reason) and the value becomes 0. Division by zero and huge figures follow §2's saturation rule | done |
-| `wwwroot/index.html` | the page skeleton: loads Leaflet and the stylesheets, holds the map, the side panel (hidden until a province is selected) with its `<template>`s, and the text boxes. Its import map tells the browser where `"zod"` is | done |
+| `wwwroot/index.html` | the page skeleton: loads Leaflet and the stylesheets, holds the map, the Next turn button, the side panel (hidden until a province is selected) with its `<template>`s, and the text boxes. Its import map tells the browser where `"zod"` is | done |
 | `wwwroot/styles/` | one stylesheet per feature: `page.css` (whole page, text boxes), `map.css` (map, outlines, and the container that keeps Leaflet's layers underneath), `panel.css` (the side panel) | done |
-| `Scripts/FrontEnd/main.ts` | entry point, three steps: downloads the two files, builds the game from them (`buildGame`), and draws it (`drawGame`). Any failure shows as red text on the page and nothing is drawn | done |
+| `Scripts/FrontEnd/main.ts` | entry point: downloads the two files, builds the game from them (`buildGame`), draws the map (`drawGame`) and hands the game to both panels (`showGame`). The Next turn button runs a tick, then does all of that again. Any failure shows as red text on the page and nothing is drawn | done |
+| `Scripts/FrontEnd/gameApi.ts` | the page's calls to the server: `fetchGameState` (`GET /api/game`) and `runTick` (`POST /api/game`). What comes back is checked by `validateFiles`, not here | done |
 | `Scripts/FrontEnd/validator.ts` | the game state's and the map file's schemas, and `validateFiles`, which runs every check (see Checking what arrives) and returns `{ outlines, gameState }` | done |
-| `Scripts/FrontEnd/showProvince.ts` | fills the side panel on a province click, or hides it when nothing is selected (a sea click): province name, owner (name and colour swatch), then one collapsible block per institution with one row per value (name, figure, description if it has one). Remembers which institutions are open by name, so a block stays open across turns and across provinces | done |
+| `Scripts/FrontEnd/showProvince.ts` | the side panel: province name, owner (name and colour swatch), then one collapsible block per institution with one row per value (name, figure, description if it has one). Hidden when nothing is selected (a sea click). Keeps its own state (the game, the selected province's id, and which institutions are open, by name) and changes it only through `showGame`, `selectProvince` and `setInstitutionOpen`, each redrawing the panel. So the selection and the open blocks survive a new turn, and a block stays open across provinces | done |
 | `Scripts/FrontEnd/game.ts` | the game as the page sees it (`Game`, `Province`, `Nation`, all readonly: built once, then only read). `buildGame` takes the two downloaded files as one `GameFiles` object, checks them with `validateFiles`, then joins outlines and game state by province id; the check already confirmed every reference resolves, so the join itself cannot fail. It rebuilds everything on every call, keeping nothing from a previous game. `Institution` and `Value` are re-exported from `validator.ts`, where the game state schema defines them | done |
-| `Scripts/FrontEnd/map.ts` | `drawGame(game)`, its only export, throws away any previous map and draws a new one with every province coloured by its owner (a redraw resets zoom and position). Both click handlers call `onSelect`, which records the clicked province's id, or `null` for the sea. Clicks and every redraw then show the selected province, looked up by that id in the game just drawn, in the side panel and, on localhost, the debug panel, so the panel shows the new figures after a turn | done |
-| `Scripts/FrontEnd/debugPanel.ts` | prints the clicked province as raw text, and empties on a sea click. Only switched on when the page runs on localhost; the code still reaches production, switched off | done |
+| `Scripts/FrontEnd/map.ts` | `drawGame(game)`, its only export, throws away any previous map and draws a new one with every province coloured by its owner (a redraw resets zoom and position). Both click handlers call `onSelect`, which passes the clicked province's id, or `null` for the sea, to `selectProvince` on both panels. The map keeps no selection itself, since it doesn't show one | done |
+| `Scripts/FrontEnd/debugPanel.ts` | prints the selected province as raw text, and empties on a sea click. Keeps its own copy of the game and the selected id, through its own `showGame` and `selectProvince`. Only switched on when the page runs on localhost (both actions check it); the code still reaches production, switched off | done |
 | `Scripts/FrontEnd/page.ts` | helpers for `index.html` itself, shared by the other modules (`findElement`) | done |
 | `wwwroot/*.js` | compiled from `Scripts/FrontEnd/`, loaded by the browser as modules. Never edit by hand; not committed | generated |
 | `wwwroot/provinces.geojson` | the map file: province outlines, each with only an `id` (`fr_75`). For now: 385 European provinces merged from Natural Earth admin-1 regions, one province per line, sorted by id. Made by the scripts in `tools/map/`, which are local only (ignored by git) | test data |
 | `wwwroot/europe.json` | the game document (format above): 55 modern nations (`Actor`), 385 provinces each with the economy institution (`gdp`, `growth`), and `World` (`technology.tech`, which `gdp`'s formula reads). The institution and `World` were copied from exemple.json, but the format has since moved away from it: `Formula` instead of `Value`, `owner` as a plain tag, plus `Turn`, `DisplayName` and `Unit`. `gdp` is made up from each province's area. Generated once by `tools/map/makeScenario.js`, edited by hand from then on. Being in `wwwroot/`, it can also be downloaded as a raw file | test data |
-| `wwwroot/sampleGameState.json` | the older page-only game state the page still reads: 55 nations with name and colour, 385 provinces with name, owner and institutions. Goes away once the page reads `GET /api/game` | test data, on its way out |
 | `tsconfig.json` | TypeScript settings, shared by the build and the editor | done |
 | `package.json` | TypeScript, Leaflet's and GeoJSON's type definitions, and Zod, from npm | done |
 | `.vscode/tasks.json` (repo root) | compiles TypeScript on every save | done |
@@ -170,6 +170,7 @@ Sending the whole game state has a known cost: anything sent can be read with F1
 | Loading Zod | an import map in `index.html`, pointing at the CDN | no bundler needed, same as Leaflet. The version (4.6.5) must match `package.json` | a bundler such as Vite (worth it once a UI framework arrives) |
 | Debug output | the raw-text box, switched on only on localhost | helps build the panel without showing players raw data | a `?debug` switch in the address; the server leaving it out in production (worth it once it shows anything secret) |
 | What a click changes | one `onSelect` function in `map.ts`, calling the panels directly | the code reads as a tree from `main.ts` down, with nothing passed through. The cost: `map.ts` imports the panels, and every new click effect lands there | `main.ts` passing `onSelect`, or a list of listeners, into `drawGame` (keeps the map unaware of the panels, but the calls are hidden behind a parameter); a global `onProvinceClick(listener)` registration in `map.ts` |
+| Where the selection lives | in each panel: `showProvince.ts` and `debugPanel.ts` each keep the game and the selected id, and `map.ts` passes clicks on | a file keeps the state its own view needs (CLAUDE.md, State in the page), and the map doesn't show the selection. An id, not a `Province`, because each turn brings a new game with new `Province` objects | `map.ts` keeping the selection and handing each panel the `Province` to show (the panels then can't redraw on their own, e.g. when a block is opened) |
 | Telling a sea click from a province click | the map's click handler ignores clicks whose element has the `province` class | the map hears every click, province clicks included. The class check only reads the click, so neither handler depends on the other or on which runs first | `bubblingMouseEvents: false` or `stopPropagation` on the provinces (switches off Leaflet behaviour, invisible where the map handler is written); a flag set by the province handler and read by the map's (depends on order, and must be reset) |
 | Nation colours | a `Colour` on each nation, in the game document | a nation's colour is part of its identity, like in Paradox games, so it's data. Generated so bordering nations never look alike | colours picked by the page |
 | Hosting (planned) | Azure App Service, free tier | built for .NET, no Docker needed | Render (sleeps when idle), GitHub Pages (no server) |
@@ -217,7 +218,7 @@ After milestone 1:
 5. **(done)** the page reads the game state instead of the game document: `sampleGameState.json`, the validator, and the join into `Game`. The page no longer reads `europe.json`
 6. **(done)** clicking a province shows a side panel, and clicking the sea hides it (it starts hidden): its name, owner (with a colour swatch), and one collapsible block per institution with one row per value (name, figure, and description when it has one). Built by cloning `<template>`s; a generic renderer, so a new institution needs no page code
 7. **(done)** the server loads `europe.json` at startup, refuses to start if its province ids don't match the map, serves the game state at `GET /api/game`, and runs a tick on `POST /api/game`: every value's formula is recalculated from the previous state, and the turn goes up by one
-8. the page reads `GET /api/game` instead of `sampleGameState.json`: its schema and join follow the game document's shape, and a button runs a tick and redraws
+8. **(done)** the page reads `GET /api/game` instead of `sampleGameState.json`: its schema and join follow the game document's shape, and a Next turn button runs a tick and redraws, keeping the selected province and its open blocks
 9. clicks become actions (`POST /actions`), and the server decides
 10. the engine goes behind the server (docs/engineSpec.md)
 11. the server pushes the new game state to every open page (SignalR) each time the engine stops
