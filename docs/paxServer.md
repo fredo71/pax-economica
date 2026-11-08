@@ -48,14 +48,15 @@ opens the link  ───────────────────►  se
 reads it, runs main.js  ───────────►  sends main.js and the modules it imports
                                       (Leaflet and Zod come from CDNs)
 main.js asks for the map file  ────►  sends provinces.geojson
-     and for the game state  ──────►  GET /api/game sends the game state
+     tab has no game yet  ─────────►  POST /api/game creates one, sends its token
+     and for the game state  ──────►  GET /api/game/{token} sends that game's state
 checks both, joins them by province id,
 Leaflet draws each province as an SVG <path>, filled with its owner's colour
-Next turn button  ─────────────────►  POST /api/game runs a tick
+Next turn button  ─────────────────►  POST /api/game/{token}/tick runs a tick
 then downloads and draws everything again
 ```
 
-The server loads `europe.json` at startup into its game state, keeps it in memory, and runs a tick on `POST /api/game`. `GET /api/game` sends that game state as it is.
+Each browser tab plays its own game. `POST /api/game` loads `europe.json` into a new game state, keeps it in memory under a new token, and sends the token back. The page keeps the token in the tab's `sessionStorage`, so a refresh finds the same game and a new tab starts a new one. A game nobody reads or ticks for 30 minutes is dropped; the tab then gets a 404 and starts a new game.
 
 **The split, decided:** the server knows only the game state, which includes each province's id. The page knows the game state *and* the outlines, and turns the two into what it draws. The server never shapes data for the page.
 
@@ -65,8 +66,9 @@ The server loads `europe.json` at startup into its game state, keeps it in memor
 |---|---|---|
 | **map file** | `provinces.geojson`: every province's outline. Fixed for a whole game | `mapFileUrl`, `mapFileJson` |
 | **province outline** | one entry of the map file: an id and a polygon. Only the drawing uses it | `ProvinceOutline`, `outlines` |
-| **game document** | `europe.json`: the starting state of a game, formulas included. Loaded once, at startup | `GameStateBuilder` |
-| **game state** | the game document loaded into memory and ticked from there. The server sends it to the page as it is | `GameState` (C#); `GameState`, `gameStateSchema`, `gameStateUrl` (page) |
+| **game document** | `europe.json`: the starting state of a game, formulas included. Loaded each time a game is created | `GameStateBuilder` |
+| **game state** | the game document loaded into memory and ticked from there. The server sends it to the page as it is | `GameState` (C#); `GameState`, `gameStateSchema` (page) |
+| **token** | the id of one game, made by the server when the game is created. The page keeps it per tab and puts it in every game address | `Guid token` (C#); `token`, `tokenStorageKey` (page) |
 | **path** | where a value sits, as a formula writes it: `provinces.ad_06.institution_economy_province.gdp`, `world.technology.tech` | `Value.Path`, `GameState.FindValue` |
 | **game** | the game state joined with the outlines: everything the page draws and clicks | `Game` |
 | **province** | one province inside the game: outline plus state | `Province` |
@@ -78,8 +80,8 @@ Addresses end in `Url` (where to download), raw downloads end in `Json` (checked
 | File | Lives | Changes | Holds |
 |---|---|---|---|
 | map file (`provinces.geojson`) | sent to the page once | never during a game | province outlines: ids and polygons only |
-| game document (`europe.json`) | server, read once at startup | never: edited by hand between runs | the starting state (format below) |
-| game state | server memory, sent by `GET /api/game` | every tick | the game document's shape, with each value's `calculated_value` brought up to date. The page joins it with the outlines by province id |
+| game document (`europe.json`) | server, read each time a game is created | never: edited by hand between runs | the starting state (format below) |
+| game state | server memory, one per game, sent by `GET /api/game/{token}` | every tick | the game document's shape, with each value's `calculated_value` brought up to date. The page joins it with the outlines by province id |
 
 A province's outline and id are fixed. Everything else about it (owner, name, values) lives in the game state and can change.
 
@@ -125,18 +127,18 @@ Sending the whole game state has a known cost: anything sent can be read with F1
 
 | File | Job | State |
 |---|---|---|
-| `Program.cs` | the server: creates the one `GameManager` (loading the game at startup), hands out everything in `wwwroot/`, `/` gives `index.html`, and adds the API. Registers `.geojson`, which it would otherwise refuse with a 404 | done |
-| `Scripts/BackEnd/api.cs` | `GET /api/game` sends the game state; `POST /api/game` runs one tick | done |
-| `Scripts/BackEnd/GameManager.cs` | holds one game's state. `RunTick` takes a lock, so two ticks of the same game never run at once (one would be lost); other games and reads are never blocked | done |
-| `Scripts/BackEnd/GameStateBuilder.cs` | reads `europe.json` at startup, and refuses to start if a province has no outline in the map file or an outline has no province. It only reads the outlines' ids | done |
+| `Program.cs` | the server: creates the one `GameManager`, hands out everything in `wwwroot/`, `/` gives `index.html`, and adds the API. Registers `.geojson`, which it would otherwise refuse with a 404 | done |
+| `Scripts/BackEnd/api.cs` | `POST /api/game` creates a game and sends its token; `GET /api/game/{token}` sends its state; `POST /api/game/{token}/tick` runs one tick. The last two answer 404 for an unknown or expired token | done |
+| `Scripts/BackEnd/GameManager.cs` | holds every game under its token, in a `MemoryCache` that drops a game after 30 minutes unused. A `Game` is just its state and its lock: `RunTick` takes that lock, so two ticks of the same game never run at once (one would be lost); other games and reads are never blocked | done |
+| `Scripts/BackEnd/GameStateBuilder.cs` | reads `europe.json` when a game is created, and throws if a province has no outline in the map file or an outline has no province (`POST /api/game` then answers 500). It only reads the outlines' ids | done |
 | `Scripts/BackEnd/GameState.cs` | the game state: `GameState`, `Actor`, `Province`, `World`, `Institution`, `Value`, in the game document's shape. Each constructor checks its own fields. The game state gives every value its path (`AssignPaths`) and finds a value by path (`FindValue`: each class handles its own step and hands the rest down; `null` when a step is missing). `Copy()` is a full copy through JSON | done |
 | `Scripts/BackEnd/GameStateChecks.cs` | the rules fields must obey (actor tags, colours, finite figures) and `Require`, which refuses a broken one | done |
 | `Scripts/BackEnd/RunGame.cs` | `RunTick`: copies the state, recalculates every value from the *previous* state (so the order never matters), then advances the turn | done |
 | `Scripts/BackEnd/FormulaReader.cs` | `Evaluate` reads a formula left to right and calculates as it goes (see Choices): numbers, `+ - * /`, brackets, unary minus, `prev.base`, sibling names and full paths. A problem is printed where it happens (path, formula, position, reason) and the value becomes 0. Division by zero and huge figures follow §2's saturation rule | done |
 | `wwwroot/index.html` | the page skeleton: loads Leaflet and the stylesheets, holds the map, the Next turn button, the side panel (hidden until a province is selected) with its `<template>`s, and the text boxes. Its import map tells the browser where `"zod"` is | done |
 | `wwwroot/styles/` | one stylesheet per feature: `page.css` (whole page, text boxes), `map.css` (map, outlines, and the container that keeps Leaflet's layers underneath), `panel.css` (the side panel) | done |
-| `Scripts/FrontEnd/main.ts` | entry point: downloads the two files, builds the game from them (`buildGame`), draws the map (`drawGame`) and hands the game to both panels (`showGame`). The Next turn button runs a tick, then does all of that again. Any failure shows as red text on the page and nothing is drawn | done |
-| `Scripts/FrontEnd/gameApi.ts` | the page's calls to the server: `fetchGameState` (`GET /api/game`) and `runTick` (`POST /api/game`). What comes back is checked by `validateFiles`, not here | done |
+| `Scripts/FrontEnd/main.ts` | entry point: keeps the tab's token in `sessionStorage` (creating a game when there is none or it has expired), downloads the two files, builds the game from them (`buildGame`), draws the map (`drawGame`) and hands the game to both panels (`showGame`). The Next turn button runs a tick, then does all of that again. Any failure shows as red text on the page and nothing is drawn | done |
+| `Scripts/FrontEnd/gameApi.ts` | the page's calls to the server, one request each: `createGame` (returns the token), `fetchGameState(token)` (`null` if expired) and `runTick(token)` (`false` if expired). Keeps nothing; `main.ts` holds the token. What comes back is checked by `validateFiles`, not here | done |
 | `Scripts/FrontEnd/validator.ts` | the game state's and the map file's schemas, and `validateFiles`, which runs every check (see Checking what arrives) and returns `{ outlines, gameState }` | done |
 | `Scripts/FrontEnd/showProvince.ts` | the side panel: province name, owner (name and colour swatch), then one collapsible block per institution with one row per value (name, figure, description if it has one). Hidden when nothing is selected (a sea click). Keeps its own state (the game, the selected province's id, and which institutions are open, by name) and changes it only through `showGame`, `selectProvince` and `setInstitutionOpen`, each redrawing the panel. So the selection and the open blocks survive a new turn, and a block stays open across provinces | done |
 | `Scripts/FrontEnd/game.ts` | the game as the page sees it (`Game`, `Province`, `Nation`, all readonly: built once, then only read). `buildGame` takes the two downloaded files as one `GameFiles` object, checks them with `validateFiles`, then joins outlines and game state by province id; the check already confirmed every reference resolves, so the join itself cannot fail. It rebuilds everything on every call, keeping nothing from a previous game. `Institution` and `Value` are re-exported from `validator.ts`, where the game state schema defines them | done |
@@ -165,7 +167,8 @@ Sending the whole game state has a known cost: anything sent can be read with F1
 | What a formula reads | only the previous tick's state | order within a tick can't change the result (§1), so values are filled in any order | reading the state being written (the result would depend on the order) |
 | A problem in a formula | printed where it happens, then the value becomes 0 | the failing step is the only one that knows why (unknown name, missing `)`, …). Stopping at the first problem reports it once | returning `null` and reporting at the end (the reason is lost); throwing (a bad formula is bad input, not an engine bug) |
 | Where a write lands | it replaces the value's `Formula` text | every value is then just a formula evaluated each tick, with one rule for all. A written figure must be turned into text with `"R"` and InvariantCulture so it reads back exactly. Differs from docs/engineSpec.md line 350, where writes land in `calculated_value` and `Formula` keeps the original | the spec's version (needs a `value`/`formula` kind, and plain values must never be recalculated, or each write is undone the next tick) |
-| Two ticks at once | a lock in each `GameManager` | the same game ticked twice at once would lose one tick. The lock lives on the manager, not the game state, because each tick replaces the state object. One lock per game, so other games and reads are never blocked. A second tick waits its turn | a "taken" flag (checking and taking would race, and a crash would leave it taken); locking the game state object (the second tick would lock the old state); refusing the second tick with a 409 (possible later with `Monitor.TryEnter`, if a button gets spammed) |
+| Telling games apart | a token per game, made by the server, kept in the tab's `sessionStorage` and put in the address (`/api/game/{token}`). Held in a `MemoryCache` with a 30-minute sliding expiry | `sessionStorage` is one per tab and survives a refresh. The server makes the token, so it never has to accept an id it doesn't know. The cache drops idle games with no sweeping code. A duplicated tab copies `sessionStorage` and shares the game; a closed tab's game waits out its 30 minutes | the ASP.NET session (its cookie is shared by every tab, it stores only bytes, and its expiry wouldn't free our games); a cookie (same sharing); the token in the page address (anyone with the link plays the same game); a `GET` that creates a game for an unknown token (an expired game would silently restart) |
+| Two ticks at once | a lock in each `Game` (state + lock, in `GameManager.cs`) | the same game ticked twice at once would lose one tick. The lock sits beside the game state, not on it, because each tick replaces the state object. One lock per game, so other games and reads are never blocked. A second tick waits its turn | a "taken" flag (checking and taking would race, and a crash would leave it taken); locking the game state object (the second tick would lock the old state); refusing the second tick with a 409 (possible later with `Monitor.TryEnter`, if a button gets spammed) |
 | Checking downloads | Zod schemas, then hand-written reference checks | one description gives both the check and the TypeScript type, and reports every problem with its path. A schema only sees one piece at a time, so references between pieces stay hand-written, one function each | hand-written checks for everything (one more `isRecord` level per nesting); trusting the data |
 | Loading Zod | an import map in `index.html`, pointing at the CDN | no bundler needed, same as Leaflet. The version (4.6.5) must match `package.json` | a bundler such as Vite (worth it once a UI framework arrives) |
 | Debug output | the raw-text box, switched on only on localhost | helps build the panel without showing players raw data | a `?debug` switch in the address; the server leaving it out in production (worth it once it shows anything secret) |
@@ -219,9 +222,10 @@ After milestone 1:
 6. **(done)** clicking a province shows a side panel, and clicking the sea hides it (it starts hidden): its name, owner (with a colour swatch), and one collapsible block per institution with one row per value (name, figure, and description when it has one). Built by cloning `<template>`s; a generic renderer, so a new institution needs no page code
 7. **(done)** the server loads `europe.json` at startup, refuses to start if its province ids don't match the map, serves the game state at `GET /api/game`, and runs a tick on `POST /api/game`: every value's formula is recalculated from the previous state, and the turn goes up by one
 8. **(done)** the page reads `GET /api/game` instead of `sampleGameState.json`: its schema and join follow the game document's shape, and a Next turn button runs a tick and redraws, keeping the selected province and its open blocks
-9. clicks become actions (`POST /actions`), and the server decides
-10. the engine goes behind the server (docs/engineSpec.md)
-11. the server pushes the new game state to every open page (SignalR) each time the engine stops
+9. **(done)** each tab plays its own game: `POST /api/game` creates one and sends its token, the page keeps it in `sessionStorage` and sends it on every call, and a game unused for 30 minutes is dropped (the page then starts a new one)
+10. clicks become actions (`POST /actions`), and the server decides
+11. the engine goes behind the server (docs/engineSpec.md)
+12. the server pushes the new game state to every open page (SignalR) each time the engine stops
 
 ---
 
@@ -243,8 +247,8 @@ Versions: the build package is 7.0.1 and npm's TypeScript is 7.0.2, because npm 
 - if a code change seems to do nothing, open the matching `.js` in `wwwroot/`: if your change isn't there, the "TypeScript on save" task isn't running (Terminal → Run Task…). The browser only ever runs the `.js`
 - errors inside a click handler don't reach the red box; they only show in the browser console (F12)
 - adding a library: `npm install` it for the compiler, and add it to the import map in `index.html` for the browser, with the same version
-- trying the API without the page: `curl http://localhost:5056/api/game` shows the game state, `curl -X POST http://localhost:5056/api/game` runs a tick. A formula that can't be read is printed in the `dotnet watch` terminal
-- restarting the server starts the game over from `europe.json`: nothing is saved yet
+- trying the API without the page: `curl -X POST http://localhost:5056/api/game` creates a game and prints its token, `curl http://localhost:5056/api/game/{token}` shows its state, `curl -X POST http://localhost:5056/api/game/{token}/tick` runs a tick. A formula that can't be read is printed in the `dotnet watch` terminal
+- restarting the server drops every game: nothing is saved yet. Open tabs get a 404 and start a new game from `europe.json`
 
 ---
 

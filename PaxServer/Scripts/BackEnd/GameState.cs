@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using static GameStateChecks;
 
-// the game document, read from wwwroot/europe.json and sent to the page as it is by GET /api/game.
+// the game document, read from wwwroot/europe.json and sent to the page as it is by GET /api/game/{token}.
 // every constructor is what the deserializer calls: its parameter names are the property names, and each
 // property's JSON key is its own name unless [JsonPropertyName] says otherwise
 public class GameState
