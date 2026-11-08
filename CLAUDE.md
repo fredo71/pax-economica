@@ -1,14 +1,6 @@
-introduction : this project is a simulation engine in C# for Pax Economica. the entire state of a run is one JSON document -- the engine loads it, ticks it, and writes it back out.
+introduction : this project is Pax Economica, a strategy game played on a map in the browser. the game is one JSON document; a C# server runs its turns and a TypeScript page shows it.
 
-you can find in the docs for the following:
-  - docs/paxServer.md : the web page -- a map anyone with the link can open. the current work: start here. its "Which docs still apply" table says which of the docs below are on hold
-  - docs/engineSpec.md : the language itself -- expressions, values, holders, writes, change, entities, agency, the AI, spans. the authority on what any behaviour *means*
-  - docs/architecture.md : layering, the projects and how they fit together, the loop that runs ticks and asks the AI, build order, and which stage the engine is currently at
-  - docs/engineArchitecture.md : how the engine works -- the stages from text to next document, the factories that validate while building, the expression compiler, the tick, and the decisions behind each
-  - docs/codeStructure.md : every project, file and class -- what each one is for, which spec section it implements, and what calls it
-  - docs/testing.md : the cli surface, the automatic suite (expression tables, unit, golden scenarios, invariants), the AI-driven exploration loop, and the promotion rule that connects them
-  - docs/developmentProcess.md : how a non-trivial change is planned and executed -- step definition, data structure and logic vocabulary, determinism guardrails, the objective/algorithm/architecture/testing/documentation planning phases, plan document format, and execution/escalation rules
-  - exemple/exemple.json : a full worked document. integration fixture, never a unit fixture
+this file holds only general rules. what the project looks like right now -- its files, its docs, what is built and what is planned -- is in docs/, starting at docs/paxServer.md.
 
 ## Rules to Follow
 
@@ -20,8 +12,8 @@ you can find in the docs for the following:
 
 ### General
 
-  - before writing any new helper/utility code (reading a JSON key, formatting a figure, parsing a type, emitting a diagnostic), check whether the project already has a shared location for that kind of task and reuse/extend what's there instead of duplicating it inline -- e.g. PaxEngine/Core/ holds everything every layer depends on (diagnostics, values, the type language); this generalizes to any other shared-responsibility folder.
-  - read the relevant section of docs/engineSpec.md before implementing a feature. it is sectioned; do not read all of it, and do not implement from memory of it.
+  - before writing any new helper/utility code (reading a JSON key, formatting a figure, parsing a type, emitting a diagnostic), check whether the project already has a shared location for that kind of task and reuse/extend what's there instead of duplicating it inline.
+  - when a feature is described in docs/, read that section before implementing it. do not read all of the docs, and do not implement from memory of them.
   - if documents are out of date, ask to update them
 
 ### Naming
@@ -50,7 +42,6 @@ you can find in the docs for the following:
   - write a comment only when no name can carry the knowledge. every sentence in it is one of two things: WHY it is this way (a constraint, a trap, a rejected alternative), or WHAT IF (a side effect or failure behaviour, e.g. "returns the default figure if unset, and logs").
   - never a comment that says WHAT the code does (the name's job) or HOW (the code's job), never one that repeats what a name already says, and never one about something the code does not actually do.
   - four lines is the cap for a comment block. going past it means the extra lines are a WHY that would otherwise cost someone real debugging time -- if they are not, cut them.
-  - a comment that explains a rule of the language cites the spec section rather than restating it (e.g. "§5: reads the frozen figure, not the one being written"). the spec is the authority; a paraphrase in a comment goes stale silently.
   - design history belongs in docs/, not in a function header. what was tried, what was rejected, what was confirmed empirically -- that goes in the matching docs/ file, with at most a one-line pointer from the code. in a comment it has no natural stopping point and grows without bound.
 
 ### Function and Class Structure
@@ -65,72 +56,35 @@ you can find in the docs for the following:
   - organize code like a tree: entry point at the top, followed by the functions it calls, followed by the functions those call, etc. this allows reading top-to-bottom without jumping around -- the control flow becomes visible at a glance.
   - the tree spans files, not just one file: the entry point reads as a short list of steps, one call per module (e.g. main.ts: fetch, buildGame, drawGame). each module has one entry function that does its whole job, including its own checks and setup -- buildGame validates its own input, drawGame creates the map and its click handlers. the caller never assembles a module's internals.
   - no hidden side effects to coordinate code. prefer a check that only reads (does the clicked element carry the "province" class?) over switching off library behaviour (stopPropagation, bubblingMouseEvents) or a flag one handler sets and another reads and resets.
-  - rebuild everything from scratch until that is measurably too slow. updating only what changed means keeping the previous state and handling every kind of change; do it only when a real need shows up.
+  - do not optimise until the plain version is measurably too slow. in the page, that means rebuilding the
+    whole view from its state every time, not updating only what changed.
 
-  Example -- the names carry the explanation; the notes on the right are only about why each takes the argument it takes:
+### State in the page
 
-  int currentTick;
-
-  void RunTick(Document document)
-  {
-    FreezeFigures();
-    ChangeSet changes = CollectChanges();
-    ApplyChanges(changes);
-    WriteBack(document);
-    AdvanceTick();
-  }
-
-  void FreezeFigures() { ... }                     // reads the class's own data: no argument
-  ChangeSet CollectChanges() { ... }               // its result is the only way to reach ApplyChanges
-  void ApplyChanges(ChangeSet changes) { ... }     // one data object, not loose parameters
-  void WriteBack(Document document) { ... }        // the document can only come from outside
-  void AdvanceTick() { currentTick++; }
-
-### Determinism and State
-
-  - the document is the entire state. no static mutable fields, no cache that survives a tick, nothing a save file would miss -- if state lives outside the document, save/load silently diverges from a live run and nothing in the test suite can see it.
-  - same document and same WORLD_SEED produces byte-identical output, on any machine, on any run
-  - forbidden, because each one breaks that: DateTime.Now, unseeded Random, GetHashCode used for anything ordered, iteration over an unordered collection where the order is observable in the output, culture-sensitive number formatting (use InvariantCulture always)
-  - ticking twice in memory must equal ticking once, serialising, reloading, and ticking again. if those differ, state is living outside the document.
-  - nothing printed to stdout may vary between runs -- no timestamps, no elapsed durations, no absolute paths. golden comparison depends on it, and the failure looks like a logic bug rather than a formatting one.
+  - a redraw is invisible: drawing the same game again leaves the page exactly as it was. only a change
+    in the game (a new turn) changes what is shown. a browser refresh is not a redraw.
+  - so anything the player can change on screen is state, kept by the file that draws it, and the view
+    is rebuilt from that state. whatever lives only in the page's elements is wiped by the rebuild.
+  - each file keeps the state its own view needs and reads only that. no file reads another's state;
+    a value two files need is passed to both through their actions, and each keeps its own copy.
+  - a file's state is private. the only way to change it is an exported function named for what
+    happened (selectProvince, setInstitutionOpen, showGame), never a setter or an exported variable.
+  - each such function changes the state, then redraws its view from it. if the state did not change,
+    it does not redraw: rebuilt elements fire their own events (a <details> fires toggle), and that loops.
+  - drawing reads the state and changes nothing. a browser event that changes state calls one of the
+    actions; it never edits the state itself.
 
 ### Diagnostics and Failure
 
-  - evaluation is total (§1) -- no expression path throws. a missing value yields the type's default, a malformed reference yields a diagnostic and a null figure.
-  - `throw` is reserved for programmer error, meaning a broken invariant inside the engine itself. it is never how the engine reports bad input. bad input is a diagnostic. the one exception is loading: a document that cannot be loaded is a LoadError, and a loader with nothing to continue with may throw to refuse it (the server's constructors do).
-  - the three tiers are not interchangeable:
-
-| tier | meaning | effect |
-|---|---|---|
-| LoadError | the document cannot be run | abort the scenario |
-| Rejection | one write was refused (permissions, bounds, type) | drop that write, continue the tick |
-| Log | something happened worth seeing | nothing |
-
-  - a run that completes with rejections is a successful run -- exit code 0. conflating a rejection with a failure makes every permissions test look like a crash.
-  - logs are capped, so a pathological document cannot exhaust memory through logging alone
-
-### Layering
-
-  - dependencies point one way, and a lower layer never references a higher one:
-
-```
-Core      diagnostics, values, types          -- depends on nothing
-Expressions      lexer, parser, syntax tree, evaluator       -- depends on Core
-Model     nodes, declarations, world, load    -- depends on Core, Expressions
-Runtime   tick, phases, writes, change        -- depends on Core, Expressions, Model
-Cli       argument parsing, output formatting -- depends on all
-```
-
-  - the evaluator takes a world as a parameter; it is not part of the world. do not weld the two together with a `partial class` spanning both layers -- neither can then be tested or reasoned about alone.
-  - `partial` is acceptable only to split one large class within a single layer, and a smaller class is better
-  - simulation logic never lives in Cli. a command parses arguments, reads files, calls the engine, formats output -- if it needs more than about 30 lines of real work, that work belongs in PaxEngine, or the game will not be able to reach it.
+  - `throw` is reserved for programmer error, meaning a broken invariant inside the code itself. it is never how bad input is reported. the one exception is loading: input that cannot be loaded at all may be refused by throwing, since there is nothing to continue with.
+  - a run that refuses some bad input and carries on is a successful run. conflating a refusal with a failure makes every test of that refusal look like a crash.
 
 ### Process
 
-  - always give your plan before any change -- except changes trivial enough to be obviously correct on sight (a typo fix, a rename, a single-line correction to an already-diagnosed bug), which can be implemented directly. see docs/developmentProcess.md for what a plan covers.
+  - always give your plan before any change -- except changes trivial enough to be obviously correct on sight (a typo fix, a rename, a single-line correction to an already-diagnosed bug), which can be implemented directly.
   - before making any architecture change, always ask first -- do not break existing logic or interfaces without confirming.
   - stick to the scope of what was asked -- do not bundle in adjacent renames, reordering, or other "while I'm at it" changes just because they seem like natural improvements. if something adjacent seems worth changing too, mention it or ask instead of just doing it.
-  - one stage at a time, in the build order of docs/architecture.md. never start stage N+1 while stage N does not build or does not pass its tests.
+  - one step at a time. never start the next step while the current one does not build or does not pass its tests.
   - when a bug is found, add the failing test first, watch it fail, then fix it
   - when you need to ask the user anything, gather every question into one single list asked together in one place -- never scatter questions through the response or across separate messages. that list is the complete set of questions being asked, not a first round with more to follow.
   - every question must explain itself -- name and briefly describe whatever specific code, step, or concept it refers to, not just a bare reference assumed to already be understood. do not assume the user has been tracking every implementation detail alongside you.
