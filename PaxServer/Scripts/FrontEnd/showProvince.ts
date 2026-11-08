@@ -1,15 +1,39 @@
-// fills the side panel on a click: province name, owner, then one collapsible block per institution
-import { Actor, Institution, Province, Value } from "./game.js";
+import { Actor, Game, Institution, Province, Value } from "./game.js";
 import { findElement } from "./page.js";
 
 const panelElementId = "province-panel";   // the <aside> in index.html
 
-// keyed by institution name, so a block stays open across turns and across provinces.
-// kept here because every fill rebuilds the blocks, and a <details> forgets it was open
+let shownGame: Game | null = null;
+// an id, not a Province: each turn brings a new game, and the id finds the selected province's new figures in it
+let selectedProvinceId: string | null = null;
+// keyed by institution name, so a block stays open across turns and across provinces
 const openInstitutions: Set<string> = new Set();
 
-// shows province in the panel, or hides the panel entirely when nothing is selected
-export function FillSidePanel(province: Province | null): void {
+export function showGame(game: Game): void {
+  const isSameGame = game === shownGame;
+  if (isSameGame) return;
+  shownGame = game;
+  drawPanel();
+}
+
+// provinceId is null when the click landed on the sea, which hides the panel
+export function selectProvince(provinceId: string | null): void {
+  const isSameProvince = provinceId === selectedProvinceId;
+  if (isSameProvince) return;
+  selectedProvinceId = provinceId;
+  drawPanel();
+}
+
+export function setInstitutionOpen(institutionName: string, isOpen: boolean): void {
+  const wasOpen: boolean = openInstitutions.has(institutionName);
+  if (wasOpen === isOpen) return;
+  if (isOpen) openInstitutions.add(institutionName);
+  else openInstitutions.delete(institutionName);
+  drawPanel();
+}
+
+function drawPanel(): void {
+  const province: Province | null = findSelectedProvince();
   const isSelected = province !== null;
   showPanel(isSelected);
   if (!isSelected) return;
@@ -17,6 +41,11 @@ export function FillSidePanel(province: Province | null): void {
   fillName(province.name);
   fillOwner(province.owner);
   fillInstitutions(province.institutions);
+}
+
+function findSelectedProvince(): Province | null {
+  if (selectedProvinceId === null) return null;
+  return shownGame?.provinces.get(selectedProvinceId) ?? null;
 }
 
 function showPanel(isShown: boolean): void {
@@ -49,22 +78,13 @@ function buildInstitutionBlock(institutionName: string, institution: Institution
   const details: HTMLElement = findIn(block, ".institution");
   if (!(details instanceof HTMLDetailsElement)) throw new Error("the institution template's .institution is not a <details>");
   details.open = openInstitutions.has(institutionName);
-  rememberWhetherOpen(details, institutionName);
+  details.addEventListener("toggle", () => setInstitutionOpen(institutionName, details.open));
 
   const valuesContainer: HTMLElement = findIn(block, ".institution-values");
   for (const value of Object.values(institution.values)) {
     valuesContainer.append(buildValueRow(value));
   }
   return block;
-}
-
-// the browser already opened or closed the block, so this only records it. rebuilding here would
-// never stop: setting open, as buildInstitutionBlock does, fires toggle too
-function rememberWhetherOpen(details: HTMLDetailsElement, institutionName: string): void {
-  details.addEventListener("toggle", () => {
-    if (details.open) openInstitutions.add(institutionName);
-    else openInstitutions.delete(institutionName);
-  });
 }
 
 function buildValueRow(value: Value): DocumentFragment {
