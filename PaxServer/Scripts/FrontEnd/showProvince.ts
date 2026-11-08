@@ -4,6 +4,10 @@ import { findElement } from "./page.js";
 
 const panelElementId = "province-panel";   // the <aside> in index.html
 
+// keyed by institution name, so a block stays open across turns and across provinces.
+// kept here because every fill rebuilds the blocks, and a <details> forgets it was open
+const openInstitutions: Set<string> = new Set();
+
 // shows province in the panel, or hides the panel entirely when nothing is selected
 export function FillSidePanel(province: Province | null): void {
   const isSelected = province !== null;
@@ -33,20 +37,34 @@ function fillOwner(owner: Actor): void {
 function fillInstitutions(institutions: Readonly<Record<string, Institution>>): void {
   const panel: HTMLElement = findElement("institution-panel");
   panel.replaceChildren();
-  for (const institution of Object.values(institutions)) {
-    panel.append(buildInstitutionBlock(institution));
+  for (const [institutionName, institution] of Object.entries(institutions)) {
+    panel.append(buildInstitutionBlock(institutionName, institution));
   }
 }
 
-function buildInstitutionBlock(institution: Institution): DocumentFragment {
+function buildInstitutionBlock(institutionName: string, institution: Institution): DocumentFragment {
   const block: DocumentFragment = cloneTemplate("institution-template");
   findIn(block, ".institution-name").textContent = institution.displayName;
+
+  const details: HTMLElement = findIn(block, ".institution");
+  if (!(details instanceof HTMLDetailsElement)) throw new Error("the institution template's .institution is not a <details>");
+  details.open = openInstitutions.has(institutionName);
+  rememberWhetherOpen(details, institutionName);
 
   const valuesContainer: HTMLElement = findIn(block, ".institution-values");
   for (const value of Object.values(institution.values)) {
     valuesContainer.append(buildValueRow(value));
   }
   return block;
+}
+
+// the browser already opened or closed the block, so this only records it. rebuilding here would
+// never stop: setting open, as buildInstitutionBlock does, fires toggle too
+function rememberWhetherOpen(details: HTMLDetailsElement, institutionName: string): void {
+  details.addEventListener("toggle", () => {
+    if (details.open) openInstitutions.add(institutionName);
+    else openInstitutions.delete(institutionName);
+  });
 }
 
 function buildValueRow(value: Value): DocumentFragment {

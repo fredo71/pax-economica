@@ -22,14 +22,20 @@ const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight
 
 // the map on screen, kept so the next drawGame can remove it: every draw starts from a fresh map
 let shownMap: L.Map | undefined;
+let shownGame: Game | undefined;
+
+// an id, not a Province: each draw gets a new game, and the id finds the selected province's new figures in it
+let selectedProvinceId: string | null = null;
 
 // replaces whatever was on screen with a new map showing every province of game.
 // a redraw also resets the zoom and position, since the old map is thrown away with everything on it
 export function drawGame(game: Game): void {
+  shownGame = game;
   shownMap?.remove();
   shownMap = createMap();
   drawProvinces(shownMap, game);
   listenForSeaClick(shownMap);
+  showSelectedProvince();
 }
 
 function createMap(): L.Map {
@@ -77,12 +83,23 @@ function provinceStyle(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>
 
 function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer): void {
   const province: Province = shape.properties.province;
-  drawnShape.on("click", () => onSelect(province));
+  drawnShape.on("click", () => onSelect(province.id));
 }
 
-// everything a click changes. province is null when the click landed on the sea.
+// everything a click changes. provinceId is null when the click landed on the sea
+function onSelect(provinceId: string | null): void {
+  selectedProvinceId = provinceId;
+  showSelectedProvince();
+}
+
 // the real panel always; the raw-text debug panel only on the developer's machine
-function onSelect(province: Province | null): void {
+function showSelectedProvince(): void {
+  const province: Province | null = findSelectedProvince();
   FillSidePanel(province);
   if (isLocal()) showDebugText(province);
+}
+
+function findSelectedProvince(): Province | null {
+  if (selectedProvinceId === null) return null;
+  return shownGame?.provinces.get(selectedProvinceId) ?? null;
 }

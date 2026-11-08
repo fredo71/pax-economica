@@ -10,3 +10,8 @@ html, body { height: 100%; margin: 0; }
 }
 .text-box:empty { display: none; }
 #error-text { color: #b22222; }
+
+.tick-button {
+  position: absolute; bottom: 10px; left: 10px; z-index: 1;   /* the map container is z-index 0 */
+  padding: 8px 16px; font-size: 14px;
+}
