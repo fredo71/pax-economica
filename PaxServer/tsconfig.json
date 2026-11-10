@@ -14,8 +14,8 @@
     "sourceMap": true,
     // the server only serves wwwroot, so the maps carry the TypeScript inside them for the browser's debugger
     "inlineSources": true,
-    "rootDir": "Scripts",
+    "rootDir": "Scripts/FrontEnd",
     "outDir": "wwwroot"
   },
-  "include": ["Scripts"]
+  "include": ["Scripts/FrontEnd"]
 }

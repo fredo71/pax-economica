@@ -1,7 +1,7 @@
-import { isLocal, showDebugText } from "./debugPanel.js";
+import * as debugPanel from "./debugPanel.js";
 import { Game, Province, ShapeGeometry } from "./game.js";
 import { findElement } from "./page.js";
-import { FillSidePanel } from "./showProvince.js";
+import * as provincePanel from "./showProvince.js";
 
 // each drawn shape carries its Province, so styling and clicks need no lookup
 interface DrawnProperties {
@@ -77,12 +77,11 @@ function provinceStyle(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>
 
 function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer): void {
   const province: Province = shape.properties.province;
-  drawnShape.on("click", () => onSelect(province));
+  drawnShape.on("click", () => onSelect(province.id));
 }
 
-// everything a click changes. province is null when the click landed on the sea.
-// the real panel always; the raw-text debug panel only on the developer's machine
-function onSelect(province: Province | null): void {
-  FillSidePanel(province);
-  if (isLocal()) showDebugText(province);
+// everything a click changes. provinceId is null when the click landed on the sea
+function onSelect(provinceId: string | null): void {
+  provincePanel.selectProvince(provinceId);
+  debugPanel.selectProvince(provinceId);
 }

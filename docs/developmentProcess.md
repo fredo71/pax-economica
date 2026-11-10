@@ -22,16 +22,15 @@ A step is:
 
 **Example**: a feature that evaluates a modifier's expression and then applies the result to a value's effective reading is two steps, not one. Step 1 evaluates and exposes the figure, with nothing applied. Step 2 applies it.
 
-### Class Purity
+### Data Structures and Logic
 
-| Category | Criteria |
+| Kind | Criteria |
 |---|---|
-| **Pure data** | Stores and retrieves data; no other functionality. |
-| **Pure function** | Reads and writes nothing outside its own parameters. |
-| **Pure object** | Same arguments always produce the same outcome; relies only on memory owned by the class itself; is not pure data or a pure function. Equivalent to what the top-level CLAUDE.md calls a self-contained class. |
-| **Unpure** | Doesn't meet any of the above. |
+| **Data structure** | Holds its own data and only that: reads it, writes it, iterates over it, copies it. A constructor may check the data is coherent, since that decides whether the object can exist. |
+| **Logic class** | Decides or calculates. Takes the data structures it works on as input. |
+| **Self-contained class** | Owns its state and the logic over it, all visible in one place (a tick runner with its current tick). |
 
-The evaluator is the case to watch: it must be a pure function of (expression, context, world). The moment it caches anything across calls it becomes unpure, and determinism stops being checkable.
+The evaluator is the case to watch: its result depends only on (expression, context, world). The moment it caches anything across calls, determinism stops being checkable.
 
 ### State Ownership
 
@@ -42,7 +41,7 @@ Every piece of state is in exactly one of these categories. Anything that doesn'
 | **Document state** | Lives in the JSON document; survives serialisation. | The run, and every run loaded from the saved file. |
 | **Derived state** | Rebuilt from the document at load (the node tree, the declaration index, parsed expression ASTs). | One load. Never written back. |
 | **Phase state** | The frozen figures a phase reads, and the writes it has collected but not applied. | One phase of one tick. Discarded at the barrier. |
-| **None** | A pure function's locals. | The call. |
+| **None** | A function's locals. | The call. |
 
 Derived state is never the authority on anything. If a figure can be read from both the document and a derived index, the document wins and the index is a cache that must be rebuilt, not patched.
 
@@ -75,10 +74,9 @@ Where the spec defines behaviour by equation (bounds, coercion, division, compos
 
 ### 3. Architecture
 
-Decide which classes change or get added, using the purity categories above:
-- Prefer pure data and pure functions.
-- Where full purity isn't feasible, push as much of the class into pure data and pure functions as possible, and keep only what genuinely can't be pure in an object of its own.
-- Avoid unnecessary class proliferation — split a task into multiple classes only when the pieces are genuinely separable, not for size alone. Each split is followed by the same question again: can this piece be made pure data or a pure function?
+Decide which classes change or get added, using the kinds above:
+- Keep data structures apart from the logic classes that work on them.
+- Start with the fewest classes that stay understandable. Split a task into more classes only when a reader would otherwise struggle, not for size alone.
 - **Minimal, purpose-stable entry points.** A class built around a calculation should expose one entry point where possible — or at most two, sharing the same purpose but reaching it by different methods (e.g. evaluating a cached AST and parsing-then-evaluating a literal source string), rather than multiple entry points with different purposes. An argument that's required internally but can be cheaply re-derived belongs *inside* the function, not passed in.
 - State the layer each class belongs to, and confirm no dependency points upward.
 - Classify any new state against the State Ownership table.
@@ -107,7 +105,7 @@ Prefer diagrams, equations, and lists over prose paragraphs — use prose only w
 
 1. **Objective** — plain text, with the governing spec sections named.
 2. **Algorithms** — a short introduction to what each candidate does, then a step-by-step trace of the reasoning behind the one that was chosen. Equations wherever the spec states one, rather than describing the math in words.
-3. **Architecture** — a diagram of the classes involved: their role, their layer, and which purity category each falls into. List the functions that will exist in code by name only (self-explanatory names, no bodies). Any new state, classified.
+3. **Architecture** — a diagram of the classes involved: their role, their layer, and whether each is a data structure, a logic class or a self-contained class. List the functions that will exist in code by name only (self-explanatory names, no bodies). Any new state, classified.
 4. **Testing** — which scenarios and which table rows, what the expected output looks like, and which invariant is at risk.
 5. **Steps** — short, referential entries pointing back to the sections above: which object gets implemented, and what happens once it exists (a test goes green, it gets wired into the tick, a CLI command exposes it).
 
