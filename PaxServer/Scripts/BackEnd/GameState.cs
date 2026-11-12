@@ -23,6 +23,7 @@ public class GameState
         World = world;
         CheckActorTags();
         CheckProvinceOwners();
+        CheckEntityLocations();
         AssignPaths();
     }
 
@@ -97,6 +98,18 @@ public class GameState
         }
     }
 
+    void CheckEntityLocations()
+    {
+        foreach ((string actorTag, Actor actor) in Actors)
+        {
+            foreach ((string entityId, Entity entity) in actor.Entities)
+            {
+                bool locationExists = Provinces.ContainsKey(entity.Location);
+                Require(locationExists, $"entity {entityId} of {actorTag} stands in {entity.Location}, which is not a province");
+            }
+        }
+    }
+
     // camelCase names, matched without regard to case: the same settings ASP.NET uses to send it to the page
     public static readonly JsonSerializerOptions WebNames = new(JsonSerializerDefaults.Web);
 
@@ -150,15 +163,18 @@ public class Actor
     public string Colour { get; }
     [JsonPropertyName("Institution")]
     public Dictionary<string, Institution> Institutions { get; }           // keyed by institution name
+    [JsonPropertyName("Entity")]
+    public Dictionary<string, Entity> Entities { get; }                     // keyed by entity id, unique within this actor
 
     [JsonConstructor]
-    public Actor(string name, string colour, Dictionary<string, Institution>? institutions = null)
+    public Actor(string name, string colour, Dictionary<string, Institution>? institutions = null, Dictionary<string, Entity>? entities = null)
     {
         Require(IsNonEmpty(name), "an actor has no name");
         Require(IsColour(colour), $"colour of actor {name} must look like #b426cf, not \"{colour}\"");
         Name = name;
         Colour = colour;
         Institutions = institutions ?? [];
+        Entities = entities ?? [];
     }
 
     // steps start at an institution name ("institution_economy_province.gdp"). null when any step is missing
@@ -193,6 +209,25 @@ public class Province
         if (steps.Length == 0) return null;
         Institution? institution = Institutions.GetValueOrDefault(steps[0]);
         return institution?.FindValue(steps[1..]);
+    }
+}
+
+// owned by the actor it is filed under, so it carries no owner of its own
+public class Entity
+{
+    public string Name { get; }                                             // "Belgian Army"
+    public string Type { get; }                                             // "entity_army", not checked: templates do not exist yet
+    public string Location { get; }                                         // a key into Provinces
+
+    [JsonConstructor]
+    public Entity(string name, string type, string location)
+    {
+        Require(IsNonEmpty(name), "an entity has no name");
+        Require(IsNonEmpty(type), $"entity {name} has no type");
+        Require(IsNonEmpty(location), $"entity {name} has no location");
+        Name = name;
+        Type = type;
+        Location = location;
     }
 }
 

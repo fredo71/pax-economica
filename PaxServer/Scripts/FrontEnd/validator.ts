@@ -28,10 +28,17 @@ const institutionSchema = z.object({
 
 const institutionsByName = z.record(z.string(), institutionSchema);
 
+const entitySchema = z.object({
+  name: nonEmptyText,
+  type: nonEmptyText,                                       // "entity_army"
+  location: nonEmptyText,                                   // a key into provinces
+});
+
 const actorSchema = z.object({
   name: nonEmptyText,
   colour: drawableColour,
   Institution: institutionsByName,
+  Entity: z.record(z.string(), entitySchema),               // keyed by entity id, unique within this actor
 });
 
 const provinceSchema = z.object({
@@ -113,6 +120,7 @@ function checkReferences(outlines: readonly ProvinceOutline[], gameState: GameSt
     ...findOutlinesWithoutProvince(outlines, gameState),
     ...findProvincesWithoutOutline(outlines, gameState),
     ...findUnknownProvinceOwners(gameState),
+    ...findUnknownEntityLocations(gameState),
   ];
 }
 
@@ -147,6 +155,17 @@ function findUnknownProvinceOwners(gameState: GameState): string[] {
   for (const [id, province] of Object.entries(gameState.provinces)) {
     const ownerExists = Object.hasOwn(gameState.Actor, province.owner);
     if (!ownerExists) problems.push(`province ${id} is owned by ${province.owner}, which is not an actor`);
+  }
+  return problems;
+}
+
+function findUnknownEntityLocations(gameState: GameState): string[] {
+  const problems: string[] = [];
+  for (const [tag, actor] of Object.entries(gameState.Actor)) {
+    for (const [id, entity] of Object.entries(actor.Entity)) {
+      const locationExists = Object.hasOwn(gameState.provinces, entity.location);
+      if (!locationExists) problems.push(`entity ${id} of ${tag} stands in ${entity.location}, which is not a province`);
+    }
   }
   return problems;
 }

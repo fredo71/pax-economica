@@ -19,9 +19,18 @@ export interface Province {
   readonly institutions: Readonly<Record<string, Institution>>;   // keyed by institution name
 }
 
+export interface Entity {
+  readonly id: string;           // "bel.army_1": owner tag first, since the document's id is only unique within its actor
+  readonly name: string;         // "Belgian Army"
+  readonly type: string;         // "entity_army"
+  readonly owner: Actor;
+  readonly location: Province;
+}
+
 export interface Game {
   readonly provinces: ReadonlyMap<string, Province>;   // by id
   readonly actors: ReadonlyMap<string, Actor>;         // by tag
+  readonly entities: ReadonlyMap<string, Entity>;      // by id ("bel.army_1")
 }
 
 // a province as plain data, the way it would be written to a file or sent over the network
@@ -43,7 +52,8 @@ export function buildGame(files: GameFiles): Game {
   const checkedFiles: CheckedFiles = validateFiles(files.mapFile, files.gameState);
   const actors: ReadonlyMap<string, Actor> = buildActors(checkedFiles.gameState);
   const provinces: ReadonlyMap<string, Province> = buildProvinces(checkedFiles.outlines, checkedFiles.gameState, actors);
-  return { provinces, actors };
+  const entities: ReadonlyMap<string, Entity> = buildEntities(checkedFiles.gameState, actors, provinces);
+  return { provinces, actors, entities };
 }
 
 // references become ids (owner: "fra"); the outline is left out, being hundreds of points
@@ -81,4 +91,25 @@ function actorOf(actors: ReadonlyMap<string, Actor>, tag: string): Actor {
   const actor: Actor | undefined = actors.get(tag);
   if (!actor) throw new Error(`actor ${tag} not found even though validateFiles checked it exists`);
   return actor;
+}
+
+// validateFiles already confirmed every entity's location is a province, so this join cannot fail
+function buildEntities(gameState: GameState, actors: ReadonlyMap<string, Actor>, provinces: ReadonlyMap<string, Province>): ReadonlyMap<string, Entity> {
+  const entities = new Map<string, Entity>();
+  for (const [tag, actorSource] of Object.entries(gameState.Actor)) {
+    const owner: Actor = actorOf(actors, tag);
+    for (const [idWithinOwner, entitySource] of Object.entries(actorSource.Entity)) {
+      const id: string = `${tag}.${idWithinOwner}`;
+      const location: Province = provinceOf(provinces, entitySource.location);
+      entities.set(id, { id, name: entitySource.name, type: entitySource.type, owner, location });
+    }
+  }
+  return entities;
+}
+
+// a miss here means validateFiles let an unknown location through: a broken invariant, not bad input
+function provinceOf(provinces: ReadonlyMap<string, Province>, id: string): Province {
+  const province: Province | undefined = provinces.get(id);
+  if (!province) throw new Error(`province ${id} not found even though validateFiles checked it exists`);
+  return province;
 }
