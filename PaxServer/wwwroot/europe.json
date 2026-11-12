@@ -63,7 +63,13 @@
             "Name": "Belgium",
             "Colour": "#cf8a26",
             "Institution": {},
-            "Entity": {}
+            "Entity": {
+                "army_1": {
+                    "Name": "Belgian Army",
+                    "Type": "entity_army",
+                    "Location": "be_vwv"
+                }
+            }
         },
         "bgr": {
             "Name": "Bulgaria",

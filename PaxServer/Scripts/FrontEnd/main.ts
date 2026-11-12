@@ -3,7 +3,7 @@ import { createGame, fetchGameState, runTick } from "./gameApi.js";
 import { Game, buildGame } from "./game.js";
 import { drawGame } from "./map.js";
 import { findElement } from "./page.js";
-import * as provincePanel from "./showProvince.js";
+import * as sidePanel from "./sidePanel.js";
 
 const mapFileUrl = "provinces.geojson";
 const errorTextElementId = "error-text";   // the <pre> in index.html
@@ -39,7 +39,7 @@ async function loadAndDraw(): Promise<void> {
   const [mapFile, gameState] = await Promise.all([fetchJson(mapFileUrl), fetchCurrentGameState()]);
   const game: Game = buildGame({ mapFile, gameState });
   drawGame(game);
-  provincePanel.showGame(game);
+  sidePanel.showGame(game);
   debugPanel.showGame(game);
 }
 
