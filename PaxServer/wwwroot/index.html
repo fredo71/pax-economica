@@ -11,13 +11,25 @@
       <div id="map"></div>
     </div>
 
-    <!-- hidden until a province is selected -->
+    <!-- both hidden until sidePanel.ts shows one -->
+    <aside id="entity-panel" class="panel" hidden>
+      <h2 id="entity-name" class="panel-title"></h2>
+      <div class="panel-owner">
+        <span id="entity-owner-swatch" class="owner-swatch"></span>
+        <span id="entity-owner-name"></span>
+      </div>
+      <div class="value-row">
+        <div class="value-name">Location</div>
+        <button id="entity-location" class="panel-button"></button>
+      </div>
+    </aside>
     <aside id="province-panel" class="panel" hidden>
       <h2 id="province-name" class="panel-title"></h2>
       <div id="province-owner" class="panel-owner">
         <span id="owner-swatch" class="owner-swatch"></span>
         <span id="owner-name"></span>
       </div>
+      <div id="province-entities"></div>
       <div id="institution-panel"></div>
     </aside>              <!-- last: painted on top -->
     <button id="tick-button" class="tick-button">Next turn</button>
@@ -29,11 +41,17 @@
       { "imports": { "zod": "https://cdn.jsdelivr.net/npm/zod@4.6.5/+esm" } }
     </script>
     <script type="module" src="main.js"></script>
-<template id="institution-template">
-  <details class="institution">
-    <summary class="institution-name"></summary>
-    <div class="institution-values"></div>
+<template id="dropdown-template">
+  <details class="dropdown">
+    <summary class="dropdown-title"></summary>
+    <div class="dropdown-content"></div>
   </details>
+</template>
+<template id="entity-row-template">
+  <button class="entity-row panel-button">
+    <span class="owner-swatch"></span>
+    <span class="entity-row-name"></span>
+  </button>
 </template>
 <template id="value-row-template">
   <div class="value-row">

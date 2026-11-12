@@ -1,7 +1,7 @@
 import * as debugPanel from "./debugPanel.js";
 import { Game, Province, ShapeGeometry } from "./game.js";
 import { findElement } from "./page.js";
-import * as provincePanel from "./showProvince.js";
+import * as sidePanel from "./sidePanel.js";
 
 // each drawn shape carries its Province, so styling and clicks need no lookup
 interface DrawnProperties {
@@ -13,12 +13,20 @@ const mapElementId = "map";                     // the <div> in index.html
 const europeCentre: L.LatLngTuple = [50, 10];
 const startingZoom = 4;
 const provinceClassName = "province";           // on every province's <path>, so a click can tell it hit one
+const entityClassName = "entity";               // on every entity's dot, for the same reason
 
 // no +/- buttons: the panel covers the top-left corner they sit in. the wheel, double-click and pinch still zoom
 const mapOptions: L.MapOptions = { zoomControl: false };
 
 // every province shares these; only fillColor changes per province
 const baseProvinceStyle: L.PathOptions = { fillOpacity: 1, color: "#333", weight: 1, className: provinceClassName };
+
+// in metres on the ground, so a dot grows and shrinks with the provinces as the map zooms
+const entityDotRadiusInMetres = 10_000;
+
+// every entity shares these; only fillColor changes, to its owner's colour. the dark border keeps a dot visible
+// on its owner's own provinces, which share that colour
+const baseEntityDotStyle: L.CircleMarkerOptions = { radius: entityDotRadiusInMetres, fillOpacity: 1, color: "#000", weight: 1, className: entityClassName };
 
 // the map on screen, kept so the next drawGame can remove it: every draw starts from a fresh map
 let shownMap: L.Map | undefined;
@@ -29,6 +37,7 @@ export function drawGame(game: Game): void {
   shownMap?.remove();
   shownMap = createMap();
   drawProvinces(shownMap, game);
+  drawEntities(shownMap, game);
   listenForSeaClick(shownMap);
 }
 
@@ -48,14 +57,32 @@ function drawProvinces(map: L.Map, game: Game): void {
   provinceLayer.addTo(map);
 }
 
-// a click on the sea calls onSelect with null
+// one dot per entity, at its province's centre. several entities in one province draw on top of each other
+function drawEntities(map: L.Map, game: Game): void {
+  for (const entity of game.entities.values()) {
+    const centre: L.LatLng = findProvinceCentre(entity.location);
+    const dotStyle: L.CircleMarkerOptions = { ...baseEntityDotStyle, fillColor: entity.owner.colour };
+    const dot: L.Circle = L.circle(centre, dotStyle);
+    dot.on("click", () => onEntityClick(entity.id));
+    dot.addTo(map);
+  }
+}
+
+// the middle of the province's bounding box, which can fall outside a crescent-shaped province or one with far islands
+function findProvinceCentre(province: Province): L.LatLng {
+  const outlineLayer: L.GeoJSON = L.geoJSON(province.outline);
+  const bounds: L.LatLngBounds = outlineLayer.getBounds();
+  return bounds.getCenter();
+}
+
 function listenForSeaClick(map: L.Map): void {
   map.on("click", (event: L.LeafletMouseEvent) => {
-    // the map hears every click, province clicks included; those are listenForClick's job
+    // the map hears every click, province and entity clicks included; those have their own listeners
     const clickedElement = event.originalEvent.target as Element;
     const clickedProvince: boolean = clickedElement.classList.contains(provinceClassName);
-    if (clickedProvince) return;
-    onSelect(null);
+    const clickedEntity: boolean = clickedElement.classList.contains(entityClassName);
+    if (clickedProvince || clickedEntity) return;
+    onSeaClick();
   });
 }
 
@@ -77,11 +104,19 @@ function provinceStyle(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>
 
 function listenForClick(shape: GeoJSON.Feature<GeoJSON.Geometry, DrawnProperties>, drawnShape: L.Layer): void {
   const province: Province = shape.properties.province;
-  drawnShape.on("click", () => onSelect(province.id));
+  drawnShape.on("click", () => onProvinceClick(province.id));
 }
 
-// everything a click changes. provinceId is null when the click landed on the sea
-function onSelect(provinceId: string | null): void {
-  provincePanel.selectProvince(provinceId);
+function onProvinceClick(provinceId: string): void {
+  sidePanel.selectProvince(provinceId);
   debugPanel.selectProvince(provinceId);
+}
+
+function onEntityClick(entityId: string): void {
+  sidePanel.selectEntity(entityId);
+}
+
+function onSeaClick(): void {
+  sidePanel.hide();
+  debugPanel.selectProvince(null);
 }

@@ -7,7 +7,7 @@
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    border-top: 8px solid transparent;   /* the owner's colour strip, coloured by showProvince.ts */
+    border-top: 8px solid transparent;   /* the owner's colour strip, coloured by showProvince.ts and showEntity.ts */
     padding: 12px 16px 16px;
     overflow-y: auto;
     background-color: white;
@@ -35,12 +35,31 @@
     border: 1px solid #333;
 }
 
-.institution {
+/* same greys as the institution bar, so everything clickable in the panel looks alike */
+.panel-button {
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f2f2f2;
+    font: inherit;
+    cursor: pointer;
+}
+.panel-button:hover { background-color: #e4e4e4; }
+
+.entity-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    margin: 6px 0;
+}
+
+.dropdown {
     margin-top: 8px;
 }
 
-/* the bar that opens and closes the institution */
-.institution-name {
+/* the bar that opens and closes the dropdown */
+.dropdown-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,20 +70,20 @@
     font-weight: bold;
     list-style: none;   /* hides the browser's own ▼ */
 }
-.institution-name::-webkit-details-marker { display: none; }   /* Safari's ▼ ignores list-style */
-.institution-name:hover { background-color: #e4e4e4; }
+.dropdown-title::-webkit-details-marker { display: none; }   /* Safari's ▼ ignores list-style */
+.dropdown-title:hover { background-color: #e4e4e4; }
 
 /* the arrow on the right: points right when closed, down when open */
-.institution-name::after {
+.dropdown-title::after {
     content: "\203A";        /* "›" written as its code: the stylesheet isn't read as UTF-8, so the character itself arrives garbled */
     display: inline-block;   /* an inline element can't be rotated */
     font-size: 1.3em;
     transition: transform 0.15s;
 }
-.institution[open] > .institution-name::after { transform: rotate(90deg); }
+.dropdown[open] > .dropdown-title::after { transform: rotate(90deg); }
 
 /* lined up with the bar's text */
-.institution-values {
+.dropdown-content {
     padding: 6px 12px;
 }
 
